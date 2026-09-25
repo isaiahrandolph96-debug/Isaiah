@@ -5,6 +5,8 @@ Africa news and stories for social media ("The stories others miss"). This repo 
 ## The standard
 `reels/uganda-southsudan-power-60s/` is the **reference reel**. The owner approved it as the baseline: every new reel must match or exceed it, never fall below it. See `reels/uganda-southsudan-power-60s/storyboard.jpg`. To make a reel, follow `.claude/skills/africa-reel/SKILL.md` (`/africa-reel`).
 
+Reusable formats (data race, roundup, quiz, myth vs reality, timeline, then vs now, kinetic quote, whiteboard, carousel, audiogram, plus the explainer and map story) live in `reels/formats.py`; copy a scene from `reels/format-templates/script.json` to use one in any story.
+
 Non-negotiables for every reel:
 1. **Facts first.** Every number has a source listed in `script.json` → `sources` and in the post's pinned comment. Check superlatives ("largest", "first") against two sources. State "as of <date>".
 2. **Hook in frame 1.** No intro bumper before the hook. Lead with the stake or the surprising number.

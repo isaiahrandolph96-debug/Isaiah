@@ -79,9 +79,19 @@ def ease(t):
     return t * t * (3 - 2 * t)
 
 
+def resolve_view(v, scale=24.0, screen_y=820):
+    """A view is a VIEWS name, a PLACES name (centred on that place) or [lon, lat, px_per_degree, screen_y]."""
+    if isinstance(v, (list, tuple)):
+        return tuple(v)
+    if v in VIEWS:
+        return VIEWS[v]
+    lon, lat = PLACES[v]
+    return (lon, lat, scale, screen_y)
+
+
 def view_at(spec, p):
-    a = VIEWS[spec.get("from", spec.get("view", "east"))]
-    b = VIEWS[spec.get("to", spec.get("view", "east"))]
+    a = resolve_view(spec.get("from", spec.get("view", "east")))
+    b = resolve_view(spec.get("to", spec.get("view", "east")))
     e = ease(p)
     cx = a[0] + (b[0] - a[0]) * e
     cy = a[1] + (b[1] - a[1]) * e

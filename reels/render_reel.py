@@ -231,8 +231,8 @@ def grade(img, bright=0.58, tint=None, sat=1.0, blur=0):
 
 
 def load_bg(reel_dir, spec):
-    if "map" in spec or "anim" in spec:
-        return spec  # drawn per frame by mapviz / anim
+    if "map" in spec or "anim" in spec or "format" in spec:
+        return spec  # drawn per frame by mapviz / anim / formats
     return _load_image_bg(reel_dir, spec)
 
 
@@ -542,7 +542,7 @@ def main():
     prev_last = None
     for sc_i, (sc, seg) in enumerate(zip(scenes, timeline)):
         big = load_bg(rd, sc["bg_spec"])
-        head_y = sc.get("head_y", 760 if sc.get("special") else 960)
+        head_y = sc.get("head_y", 420 if "format" in sc["bg_spec"] else 760 if sc.get("special") else 960)
         head = headline_layer(sc["head"], sc.get("gold", 1), sc.get("cta", False), head_y)
         spans = seg["spans"]
         if spans:
@@ -585,8 +585,13 @@ def main():
                     ctx = {"speaker": sp["who"] if talking else None,
                            "level": float(env[min(len(env) - 1, int(lt * FPS))]) if talking else 0.0,
                            "line": cur, "line_p": max(0.0, min(1.0, (lt - sp["start"]) / max(0.01, sp["end"] - sp["start"])))}
-                base = mapviz.render(big["map"], p, lt) if "map" in big else None
-                frame = (anim.render(big, p, lt, base, ctx) if "anim" in big else base).convert("RGBA")
+                if "format" in big:  # reusable video formats (race, quiz, timeline, ...)
+                    import formats
+                    fctx = dict(ctx or {}, vo=seg["vo"], reel_dir=rd)
+                    frame = formats.render(big, p, lt, seg["dur"], fctx)
+                else:
+                    base = mapviz.render(big["map"], p, lt) if "map" in big else None
+                    frame = (anim.render(big, p, lt, base, ctx) if "anim" in big else base).convert("RGBA")
             else:
                 frame = bg_frame(big, lt, seg["dur"], zoom_in=sc_i % 2 == 0).convert("RGBA")
             frame.alpha_composite(header)

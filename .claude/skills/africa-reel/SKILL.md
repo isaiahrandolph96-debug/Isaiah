@@ -21,6 +21,7 @@ Arc: **hook stat → what happened → the money → the scale (map) → the key
 Pick from, or add to, `reels/anim.py` and `reels/mapviz.py`:
 - Maps: `{"map": {"from"/"to"/"view", "highlight", "route": {"grow", "flow", "places", "segments"}, "rings", "capitals", "dim"}}`. Add new places and routes to `mapviz.PLACES` and `ROUTE`.
 - Scenes: `village`, `coins`, `pylons`, `whowins`, `build`, `feed`, `planes`. Overlays: `ranks` (with `ranks_y`), `chips`, `bars`, `count`.
+- **Formats** (`reels/formats.py`, `bg_spec: {"format": ...}`): `race`, `roundup`, `quiz`, `myth`, `timeline`, `thenvsnow`, `kinetic`, `whiteboard`, `carousel`, `audiogram`. Copy the matching scene from `reels/format-templates/script.json` and swap in the story's data (schemas are in `reels/README.md` → "Format library"). Mix formats inside one reel, e.g. a map for the scale, `race` for results, `kinetic` for the key quote, `myth` for the blind-spot line.
 - If no existing animation fits the story, **write a new one in `anim.py`** (drawn per frame, in the reel palette) instead of using a static background. Record it in `reels/README.md`.
 
 ## 4. Voice and sound

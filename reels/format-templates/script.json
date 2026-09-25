@@ -1,0 +1,452 @@
+{
+ "title": "Format library templates",
+ "_readme": "One ready-to-copy scene per format. Copy a scene into a new reel's script.json, replace the data, and keep the headline 2 lines. Scenes use 'lines' so they preview with silent placeholders before a voice exists; a normal scene with 'say'/'show' and vo/NN.mp3 works the same. See README.md, 'Format library'.",
+ "gap": 0.2,
+ "scenes": [
+  {
+   "_format": "explainer (anim + chips)",
+   "head": [
+    "UP TO",
+    "1,000 MEGAWATTS"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "special": "chips",
+   "chips": [
+    {
+     "label": "VOLTAGE",
+     "value": "400 kV"
+    },
+    {
+     "label": "CAPACITY",
+     "value": "1,000 MW",
+     "hi": true
+    }
+   ],
+   "bg_spec": {
+    "anim": "pylons"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s01.mp3",
+     "say": "Uganda's new line to South Sudan is built to carry up to one thousand megawatts.",
+     "show": "Uganda's new line to South Sudan is built to carry up to 1,000 megawatts."
+    }
+   ]
+  },
+  {
+   "_format": "map story (mapviz)",
+   "head": [
+    "299 KM",
+    "OF POWER LINE"
+   ],
+   "gold": 0,
+   "head_y": 420,
+   "bg_spec": {
+    "map": {
+     "view": "east",
+     "highlight": [
+      "Uganda",
+      "S. Sudan"
+     ],
+     "label_pos": {
+      "Uganda": [
+       33.1,
+       2.6
+      ],
+      "S. Sudan": [
+       33.2,
+       5.35
+      ]
+     },
+     "route": {
+      "grow": [
+       0.1,
+       0.8
+      ],
+      "places": [
+       "Olwiyo",
+       "Nimule",
+       "Juba"
+      ],
+      "label_side": {
+       "Olwiyo": "l",
+       "Nimule": "r",
+       "Juba": "l"
+      },
+      "segments": [
+       {
+        "between": [
+         "Olwiyo",
+         "Nimule"
+        ],
+        "text": "UGANDA · 150 KM"
+       },
+       {
+        "between": [
+         "Nimule",
+         "Juba"
+        ],
+        "text": "SOUTH SUDAN · 149 KM"
+       }
+      ]
+     }
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s02.mp3",
+     "say": "A two hundred ninety-nine kilometre line, from Olwiyo, through Nimule, to Juba.",
+     "show": "A 299 km line, from Olwiyo, through Nimule, to Juba."
+    }
+   ]
+  },
+  {
+   "_format": "race",
+   "head": [
+    "MOROCCO'S PARLIAMENT",
+    "SEATS · 2021 → 2026"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "race",
+    "from_label": "2021",
+    "to_label": "2026",
+    "items": [
+     [
+      "PAM",
+      87,
+      97
+     ],
+     [
+      "RNI",
+      102,
+      66
+     ],
+     [
+      "ISTIQLAL",
+      81,
+      65
+     ],
+     [
+      "PJD",
+      13,
+      54
+     ]
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s03.mp3",
+     "say": "PAM rose to ninety-seven seats. The ruling RNI fell from one hundred and two to sixty-six.",
+     "show": "PAM rose to 97 seats. The ruling RNI fell from 102 to 66."
+    }
+   ]
+  },
+  {
+   "_format": "roundup",
+   "head": [
+    "AFRICA",
+    "THIS WEEK"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "roundup",
+    "items": [
+     {
+      "title": "MOROCCO",
+      "body": "PAM wins most seats (97). Turnout: 38%.",
+      "place": "Rabat"
+     },
+     {
+      "title": "UGANDA → SOUTH SUDAN",
+      "body": "$121M power line gets under way.",
+      "place": "Juba"
+     },
+     {
+      "title": "DR CONGO",
+      "body": "Ebola: 7,773 cases, 2nd-largest outbreak on record.",
+      "place": "Bunia"
+     },
+     {
+      "title": "NIGERIA",
+      "body": "Minerals investment framework signed with the US.",
+      "place": "Abuja"
+     }
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s04.mp3",
+     "say": "Four stories from Africa this week that most feeds missed.",
+     "show": "Four stories from Africa this week that most feeds missed."
+    }
+   ]
+  },
+  {
+   "_format": "quiz",
+   "head": [
+    "GUESS",
+    "THE COUNTRY"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "quiz",
+    "clues": [
+     "Its parliament has 395 seats",
+     "It co-hosts the 2030 World Cup",
+     "Its capital is Rabat"
+    ],
+    "answer": "MOROCCO",
+    "place": "Rabat"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s05.mp3",
+     "say": "Three clues. Can you guess the country before the timer runs out?",
+     "show": "Three clues. Can you guess the country before the timer runs out?"
+    }
+   ]
+  },
+  {
+   "_format": "myth",
+   "head": [
+    "MYTH",
+    "VS REALITY"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "myth",
+    "myth": "Africa is a country",
+    "reality": "54 countries",
+    "detail": "1.4+ billion people"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s06.mp3",
+     "say": "Africa is not a country. It is fifty-four of them, home to more than one point four billion people.",
+     "show": "Africa is not a country. It is 54 of them, home to more than 1.4 billion people."
+    }
+   ]
+  },
+  {
+   "_format": "timeline",
+   "head": [
+    "HOW WE GOT HERE",
+    "MOROCCO 2021 → 2026"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "timeline",
+    "events": [
+     [
+      "SEPT 2021",
+      "RNI wins the election (102 seats)"
+     ],
+     [
+      "SEPT–OCT 2025",
+      "Gen Z 212 youth protests"
+     ],
+     [
+      "FEB 2026",
+      "Akhannouch steps down as RNI leader"
+     ],
+     [
+      "23 SEPT 2026",
+      "Morocco votes; turnout 38%"
+     ],
+     [
+      "24 SEPT 2026",
+      "PAM comes first with 97 seats"
+     ]
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s07.mp3",
+     "say": "Five years, one protest movement and a new first party.",
+     "show": "Five years, one protest movement and a new first party."
+    }
+   ]
+  },
+  {
+   "_format": "thenvsnow",
+   "head": [
+    "MOROCCO VOTER TURNOUT",
+    "THEN VS NOW"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "thenvsnow",
+    "then": {
+     "label": "2021",
+     "value": "50%",
+     "filled": 5
+    },
+    "now": {
+     "label": "2026",
+     "value": "38%",
+     "filled": 4
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s08.mp3",
+     "say": "In twenty twenty-one, half of voters turned out. This time, thirty-eight percent.",
+     "show": "In 2021, half of voters turned out. This time, 38%."
+    }
+   ]
+  },
+  {
+   "_format": "kinetic",
+   "head": [
+    "SENEGAL",
+    "AT THE UN"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "kinetic",
+    "quote": "The Sahel must not be abandoned to its desolate fate.",
+    "gold": [
+     "SAHEL",
+     "ABANDONED"
+    ],
+    "by": "Bassirou Diomaye Faye, President of Senegal",
+    "where": "UN General Assembly · Sept 2026"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s09.mp3",
+     "say": "Senegal's president told the UN the Sahel must not be abandoned to its desolate fate.",
+     "show": "Senegal's president told the UN the Sahel must not be abandoned to its desolate fate."
+    }
+   ]
+  },
+  {
+   "_format": "whiteboard",
+   "head": [
+    "HOW A COALITION",
+    "WORKS"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "whiteboard",
+    "items": [
+     {
+      "type": "hemicycle",
+      "at": [
+       540,
+       1170
+      ],
+      "r": 330,
+      "split": true
+     },
+     {
+      "type": "text",
+      "text": "395 SEATS",
+      "at": [
+       540,
+       1225
+      ],
+      "size": 50
+     },
+     {
+      "type": "text",
+      "text": "198 = MAJORITY",
+      "at": [
+       540,
+       700
+      ],
+      "size": 60,
+      "color": "red"
+     }
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s10.mp3",
+     "say": "Three hundred ninety-five seats. You need one hundred ninety-eight to govern.",
+     "show": "395 seats. You need 198 to govern."
+    }
+   ]
+  },
+  {
+   "_format": "carousel",
+   "head": [
+    "EBOLA IN DR CONGO",
+    "3 NUMBERS"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "carousel",
+    "tag": "EBOLA IN DR CONGO",
+    "source": "Sources: WHO · CDC · UN",
+    "slides": [
+     [
+      "7,773",
+      "confirmed cases (as of 22 Sept)"
+     ],
+     [
+      "2ND",
+      "largest Ebola outbreak on record"
+     ],
+     [
+      "NO",
+      "approved vaccine yet for this strain"
+     ]
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s11.mp3",
+     "say": "Three numbers on the Ebola outbreak in Congo.",
+     "show": "Three numbers on the Ebola outbreak in Congo."
+    }
+   ]
+  },
+  {
+   "_format": "audiogram",
+   "head": [
+    "AUDIOGRAM",
+    "LISTEN IN"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "audiogram",
+    "badge": "ABS",
+    "badge_sub": "PODCAST",
+    "map": {
+     "view": "region",
+     "highlight": [
+      "Uganda",
+      "S. Sudan"
+     ],
+     "dim": 0.35,
+     "labels": false
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "audiogram.mp3",
+     "say": "In South Sudan, only about one in twenty people has electricity. That could be about to change.",
+     "show": "In South Sudan, only about 1 in 20 people has electricity. That could be about to change."
+    }
+   ]
+  }
+ ],
+ "sources": [
+  "See briefings/2026-09-25-africa.md and briefings/2026-09-25-morocco-elections.md"
+ ]
+}

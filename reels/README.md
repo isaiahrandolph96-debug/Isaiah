@@ -41,3 +41,28 @@ Dialogue scenes use `"lines": [{"who": "narrator|yasmine|haj", "file": "sNN_k.mp
 - Speaker names show above the captions.
 - A missing clip becomes a timed silent placeholder, so you can preview before every voice exists.
 - Script-level `"tempo"` speeds all lines; `"note"` shows a disclaimer for the first seconds; `"sub"` adds a caveat under the headline.
+
+## Format library (reuse any format in any story)
+`formats.py` holds 10 data-driven video formats. The animated explainer and the map story come from `anim.py` and `mapviz.py`, which makes 12 in total. To use one, set a scene's `bg_spec` to `{"format": "<name>", ...data}`. `render_reel.py` then draws it under the usual header, headline (placed at the top, `head_y` 420), captions and progress bar.
+- **Timing:** each format is choreographed on a 6.5 s clock and stretched to the scene's real length.
+- **Layout:** content stays between y 540 and 1290, so it never collides with the headline or the Instagram-safe captions.
+- **Templates:** `format-templates/script.json` has one ready-to-copy scene per format. Its preview render is `format-templates/format-templates-preview.mp4`, with a `storyboard.jpg`.
+- **Sampler:** `format_samples.py` renders the 12-format sampler from the same templates.
+
+| Format | Use it for | `bg_spec` |
+|---|---|---|
+| Animated explainer | infrastructure, economy, "how big is it" | `{"anim": "pylons"}` + scene `"special": "chips"` (any `anim.py` scene) |
+| Map story | borders, routes, where it happened | `{"map": {...}}` (see Map scenes) |
+| `race` | elections, rankings, budgets over time | `{"format": "race", "from_label": "2021", "to_label": "2026", "items": [["PAM", 87, 97], ["RNI", 102, 66, [70,110,170]]], "suffix": "", "decimals": 0}`: `[name, from, to, colour?]`; bars re-rank as they grow |
+| `roundup` | weekly news roundups | `{"format": "roundup", "items": [{"title": "DR CONGO", "body": "Ebola: 7,773 cases…", "place": "Bunia"}]}`: one card per item, the map centres on each `place` |
+| `quiz` | engagement ("guess the country / number") | `{"format": "quiz", "clues": ["…", "…", "…"], "answer": "MOROCCO", "place": "Rabat", "prompt": "Did you get it? Comment below"}` |
+| `myth` | myth-busting, misinformation | `{"format": "myth", "myth": "Africa is a country", "reality": "54 countries", "detail": "1.4+ billion people"}` |
+| `timeline` | background, "how we got here" | `{"format": "timeline", "events": [["SEPT 2021", "RNI wins the election"], …]}` (any number; they scroll) |
+| `thenvsnow` | one strong before/after number | `{"format": "thenvsnow", "then": {"label": "2021", "value": "50%", "filled": 5}, "now": {"label": "2026", "value": "38%", "filled": 4}}`: `filled` (0–10) draws "N in 10" people icons, or use `"note": "text"` |
+| `kinetic` | speeches, statements, quotes | `{"format": "kinetic", "quote": "…", "gold": ["SAHEL"], "by": "Name, role", "where": "Venue · date"}` |
+| `whiteboard` | how a system works (coalitions, loans, supply chains) | `{"format": "whiteboard", "items": [{"type": "hemicycle", "at": [540,1170], "r": 330, "split": true}, {"type": "text", "text": "198 = MAJORITY", "at": [540,700], "color": "red"}, {"type": "arrow", "from": [x,y], "to": [x,y]}, {"type": "circle", "at": [x,y], "r": 80}, {"type": "line", …}]}`: drawn in order by a marker; colours `ink/red/blue/green/gold`; optional `start`/`len` per item; keep inside x 90–990, y 570–1260 |
+| `carousel` | 2–5 key facts; also works as a static carousel post | `{"format": "carousel", "tag": "EBOLA IN DR CONGO", "source": "Sources: WHO · CDC · UN", "slides": [["7,773", "confirmed cases"], …]}` |
+| `audiogram` | interview or podcast clips, strong quotes | `{"format": "audiogram", "badge": "ABS", "badge_sub": "PODCAST", "map": {mapviz spec, optional}, "audio": "vo/x.mp3" (optional)}`: without `audio`, the waveform follows the scene's own narration |
+
+Maps (roundup, quiz, any `"map"`) accept `"view"` as a view name (`africa`, `region`, `east`), a `PLACES` name (centred on it) or `[lon, lat, px_per_degree, screen_y]`. Add new places to `mapviz.PLACES`.
+To add a format, write `def name(spec, u, t, ctx)` in `formats.py` (u = design-clock seconds, 0 to 6.5), register it in `FORMATS`, add a template scene, and re-render the templates preview to check it.
