@@ -1,0 +1,248 @@
+{
+ "title": "The Ebola outbreak nobody's talking about",
+ "date": "2026-09-25",
+ "voice": "Yusuf Hakeem Kiser (ElevenLabs, nJvj5shg2xu1GKGxqfkE)",
+ "scenes": [
+  {
+   "head": [
+    "THE OUTBREAK",
+    "NO ONE'S TALKING ABOUT"
+   ],
+   "gold": 1,
+   "say": "There's an Ebola outbreak in Congo right now. And almost nobody is talking about it.",
+   "show": "There's an Ebola outbreak in Congo right now. And almost nobody is talking about it.",
+   "bg_spec": {
+    "src": "clinic.jpg",
+    "bright": 0.8
+   }
+  },
+  {
+   "head": [
+    "EBOLA",
+    "IS BACK"
+   ],
+   "gold": 1,
+   "say": "It started in Ituri, in eastern Congo. It has now reached six provinces.",
+   "show": "It started in Ituri, in eastern Congo. It has now reached six provinces.",
+   "bg_spec": {
+    "src": "map.jpg",
+    "bright": 1.0
+   }
+  },
+  {
+   "head": [
+    "7,773",
+    "CASES"
+   ],
+   "gold": 0,
+   "say": "As of September twenty-second: seven thousand, seven hundred and seventy-three confirmed cases. Three thousand, seven hundred and fifty-nine people dead.",
+   "show": "As of September 22nd: 7,773 confirmed cases. 3,759 people dead.",
+   "bg_spec": {
+    "src": "map.jpg",
+    "crop": [
+     0.46,
+     0.19,
+     1.0,
+     0.73
+    ],
+    "bright": 0.95,
+    "tint": [
+     170,
+     50,
+     35
+    ]
+   }
+  },
+  {
+   "head": [
+    "FASTEST",
+    "EVER"
+   ],
+   "gold": 1,
+   "say": "It hit one thousand cases in just forty days. The twenty eighteen outbreak took two hundred and thirty-five.",
+   "show": "It hit 1,000 cases in just 40 days. The 2018 outbreak took 235.",
+   "bg_spec": {
+    "src": null,
+    "color": [
+     8,
+     7,
+     6
+    ],
+    "glow": [
+     110,
+     62,
+     12
+    ]
+   },
+   "special": "bars",
+   "bars_title": "DAYS TO REACH 1,000 CASES",
+   "bars": [
+    {
+     "label": "2026 · Bundibugyo",
+     "value": 40,
+     "value_label": "40 days",
+     "hi": true
+    },
+    {
+     "label": "2018 · DR Congo",
+     "value": 235,
+     "value_label": "235 days"
+    }
+   ]
+  },
+  {
+   "head": [
+    "NO APPROVED",
+    "VACCINE"
+   ],
+   "gold": 1,
+   "say": "This is Bundibugyo, a rare strain. Today's Ebola vaccines were built for a different one.",
+   "show": "This is Bundibugyo, a rare strain. Today's Ebola vaccines were built for a different one.",
+   "bg_spec": {
+    "src": "clinic-wide.jpg",
+    "crop": [
+     0.62,
+     0.0,
+     0.936,
+     1.0
+    ],
+    "bright": 0.72,
+    "sat": 0.85
+   }
+  },
+  {
+   "head": [
+    "2ND LARGEST",
+    "IN HISTORY"
+   ],
+   "gold": 0,
+   "say": "It's now the second-largest Ebola outbreak ever recorded. Only West Africa, in twenty fourteen, was bigger.",
+   "show": "It's now the second-largest Ebola outbreak ever recorded. Only West Africa, in 2014, was bigger.",
+   "bg_spec": {
+    "src": "map.jpg",
+    "bright": 0.72,
+    "sat": 0.15,
+    "tint": [
+     200,
+     150,
+     90
+    ],
+    "blur": 5
+   },
+   "special": "ranks",
+   "ranks": [
+    {
+     "text": "#1  WEST AFRICA · 2014–16"
+    },
+    {
+     "text": "#2  DR CONGO · 2026",
+     "hi": true
+    }
+   ]
+  },
+  {
+   "head": [
+    "EBOLA IS",
+    "SPREADING SOUTH"
+   ],
+   "gold": 1,
+   "say": "Cases in Ituri are slowing. But in North Kivu, they're up seventy-three percent in three weeks.",
+   "show": "Cases in Ituri are slowing. But in North Kivu, they're up 73% in three weeks.",
+   "bg_spec": {
+    "src": "map.jpg",
+    "crop": [
+     0.56,
+     0.28,
+     0.92,
+     0.64
+    ],
+    "bright": 0.95,
+    "tint": [
+     170,
+     50,
+     35
+    ]
+   },
+   "special": "chips",
+   "chips": [
+    {
+     "label": "ITURI",
+     "value": "−26%"
+    },
+    {
+     "label": "NORTH KIVU",
+     "value": "+73%",
+     "hi": true
+    }
+   ]
+  },
+  {
+   "head": [
+    "A RACE",
+    "AGAINST TIME"
+   ],
+   "gold": 1,
+   "say": "A vaccine trial is now underway. More than two thousand health workers have already had a dose.",
+   "show": "A vaccine trial is now underway. More than 2,000 health workers have already had a dose.",
+   "bg_spec": {
+    "src": "clinic.jpg",
+    "crop": [
+     0.45,
+     0.3,
+     0.93,
+     0.78
+    ],
+    "bright": 0.8
+   }
+  },
+  {
+   "head": [
+    "WHY ISN'T THIS",
+    "ON YOUR FEED?"
+   ],
+   "gold": 1,
+   "say": "So why isn't this on your feed? That's the blind spot.",
+   "show": "So why isn't this on your feed? That's the blind spot.",
+   "bg_spec": {
+    "src": null,
+    "color": [
+     5,
+     7,
+     14
+    ],
+    "glow": [
+     18,
+     36,
+     100
+    ]
+   }
+  },
+  {
+   "head": [
+    "SEND THIS TO",
+    "SOMEONE WHO HASN'T HEARD"
+   ],
+   "gold": 1,
+   "cta": true,
+   "say": "Send this to someone who hasn't heard.",
+   "show": "Send this to someone who hasn't heard.",
+   "bg_spec": {
+    "src": "map.jpg",
+    "bright": 0.75,
+    "tint": [
+     200,
+     160,
+     80
+    ],
+    "blur": 12
+   },
+   "hold": 1.2
+  }
+ ],
+ "sources": [
+  "https://www.globalsecurity.org/security/library/news/2026/09/sec-260923-unnews01.htm",
+  "https://www.cdc.gov/mmwr/volumes/75/wr/mm7537e1.htm",
+  "https://www.who.int/emergencies/disease-outbreak-news/item/2026-DON617",
+  "https://news.un.org/en/story/2026/09/1168381"
+ ]
+}
