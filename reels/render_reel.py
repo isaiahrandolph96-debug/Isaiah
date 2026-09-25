@@ -33,6 +33,9 @@ GREY = (120, 116, 108)
 BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
 SCENE_GAP = 0.30  # silence after each voice clip, seconds (script.json "gap" overrides)
 XFADE = 6  # frames of crossfade between scenes
+# caption placement; --ig-safe moves them clear of Instagram's bottom overlay and side buttons
+CAP_Y, CAP_W, GRID_Y = 1545, 860, 990
+CRF, PRESET = "19", "medium"
 
 try:
     import imageio_ffmpeg
@@ -262,7 +265,8 @@ def wrap_words(words, f, d, max_w):
     return lines
 
 
-def caption_pages(words, d, f, max_w=860):
+def caption_pages(words, d, f, max_w=None):
+    max_w = max_w or CAP_W
     """Split words into 2-line pages, like the reference reels."""
     lines = wrap_words(words, f, d, max_w)
     return [lines[i:i + 2] for i in range(0, len(lines), 2)]
@@ -272,7 +276,7 @@ def caption_layer(words, page, active, f):
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(layer)
     lh = f.size * 1.18
-    y0 = 1545 - lh * (len(page) - 1) / 2
+    y0 = CAP_Y - lh * (len(page) - 1) / 2
     for li, idxs in enumerate(page):
         text_w = d.textlength(" ".join(words[i] for i in idxs), font=f)
         x = W / 2 - text_w / 2
@@ -353,7 +357,7 @@ def grid_layer(p, t, spec):
     rows = math.ceil(n / cols)
     gap = 150
     x0 = W / 2 - gap * (cols - 1) / 2
-    y0 = 990
+    y0 = GRID_Y
     for k in range(n):
         a = ease_out((p - 0.05 - k * 0.012) / 0.12)
         if a <= 0:
@@ -382,7 +386,12 @@ def main():
     ap.add_argument("--sfx", help="transition sound played at each scene change")
     ap.add_argument("--sfx-vol", type=float, default=0.35)
     ap.add_argument("--endcard-len", type=float, default=2.2)
+    ap.add_argument("--ig-safe", action="store_true",
+                    help="Instagram Reels export: captions inside the safe zone, higher-quality encode")
     args = ap.parse_args()
+    if args.ig_safe:
+        global CAP_Y, CAP_W, GRID_Y, CRF, PRESET
+        CAP_Y, CAP_W, GRID_Y, CRF, PRESET = 1380, 780, 920, "16", "slow"
 
     rd = args.reel_dir
     script = json.load(open(os.path.join(rd, "script.json")))
@@ -446,7 +455,7 @@ def main():
     silent = os.path.join(work, "body.mp4")
     enc = subprocess.Popen([FFMPEG, "-v", "error", "-y", "-f", "rawvideo", "-pix_fmt", "rgb24",
                             "-s", f"{W}x{H}", "-r", str(FPS), "-i", "-", "-i", voice,
-                            "-c:v", "libx264", "-preset", "medium", "-crf", "19", "-pix_fmt", "yuv420p",
+                            "-c:v", "libx264", "-preset", PRESET, "-crf", CRF, "-pix_fmt", "yuv420p",
                             "-c:a", "aac", "-b:a", "160k", "-shortest", silent], stdin=subprocess.PIPE)
 
     nframes = int(round(total * FPS))
@@ -539,12 +548,13 @@ def main():
         tail = os.path.join(work, "endcard.mp4")
         subprocess.run([FFMPEG, "-v", "error", "-y", "-ss", f"{start:.2f}", "-i", args.endcard,
                         "-vf", f"scale={W}:{H},fps={FPS},setsar=1", "-af", "aresample=44100", "-ac", "2",
-                        "-c:v", "libx264", "-crf", "19", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
+                        "-c:v", "libx264", "-preset", PRESET, "-crf", CRF, "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
                         tail], check=True)
         subprocess.run([FFMPEG, "-v", "error", "-y", "-i", silent, "-i", tail, "-filter_complex",
                         "[0:v][0:a][1:v][1:a]concat=n=2:v=1:a=1[v][a]", "-map", "[v]", "-map", "[a]",
-                        "-c:v", "libx264", "-crf", "19", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "160k",
-                        "-movflags", "+faststart", out], check=True)
+                        "-c:v", "libx264", "-preset", PRESET, "-crf", CRF, "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
+                        "-profile:v", "high", "-level", "4.1", "-ar", "48000", "-movflags", "+faststart", out],
+                       check=True)
     else:
         os.replace(silent, out)
     print(out)
