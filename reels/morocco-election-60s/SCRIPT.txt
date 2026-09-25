@@ -1,0 +1,111 @@
+AFRICA BLIND SPOT | REEL SCRIPT
+"Morocco just voted. Most people didn't."
+Series: Blind Spot of the Week | Length: ~55 s | 11 scenes | Format: 9:16 Instagram Reel
+Facts as of: provisional results, 24 September 2026
+
+======================================================================
+SCENE 1 | HOOK (0:00-0:05)
+HEADLINE:   6 IN 10 MOROCCANS / DIDN'T VOTE        (gold: DIDN'T VOTE)
+VOICEOVER:  "Morocco just held an election. And more than six in ten voters stayed home."
+ANIMATION:  An empty polling station at dawn: rows of ballot booths and one lone voter.
+            A turnout gauge drains from 50% (2021) down to 38%.
+
+======================================================================
+SCENE 2 | CONTEXT (0:05-0:10)
+HEADLINE:   A KINGDOM / THAT VOTES                  (gold: THAT VOTES)
+VOICEOVER:  "Morocco is a kingdom, but its three-hundred-and-ninety-five-seat parliament is elected every five years."
+CAPTION:    "Morocco is a kingdom, but its 395-seat parliament is elected every five years."
+ANIMATION:  Map zooms from Africa to northern Morocco. Rabat and Casablanca pulse.
+            (Frame on the north so no disputed border is drawn.)
+
+======================================================================
+SCENE 3 | THE RULE (0:10-0:15)
+HEADLINE:   THE RULE THAT / DECIDES EVERYTHING      (gold: DECIDES EVERYTHING)
+VOICEOVER:  "The King picks the head of government from the party that wins the most seats."
+ANIMATION:  A gold crown above a parliament half-circle. A beam of light searches the seats
+            and lands on the biggest block.
+
+======================================================================
+SCENE 4 | THE WINNER (0:15-0:20)
+HEADLINE:   PAM / COMES FIRST                       (gold: PAM); counts up to "97 SEATS"
+VOICEOVER:  "This time, that's PAM, with ninety-seven seats, up from eighty-seven."
+CAPTION:    "This time, that's PAM, with 97 seats, up from 87."
+ANIMATION:  The parliament half-circle fills seat by seat in party colours, PAM's 97 in gold.
+
+======================================================================
+SCENE 5 | THE FALL (0:20-0:25)
+HEADLINE:   THE RULING PARTY / CRASHED              (gold: CRASHED)
+VOICEOVER:  "The R-N-I, which led the government, fell from one hundred and two seats to sixty-six."
+CAPTION:    "The RNI, which led the government, fell from 102 seats to 66."
+ANIMATION:  Before/after bars shrinking: RNI 102 to 66, Istiqlal 81 to 65.
+
+======================================================================
+SCENE 6 | THE COMEBACK (0:25-0:31)
+HEADLINE:   THE ISLAMISTS / ARE BACK                (gold: ARE BACK)
+VOICEOVER:  "The Islamist P-J-D quadrupled its seats, from thirteen to fifty-four, and says it will stay in opposition."
+CAPTION:    "The Islamist PJD quadrupled its seats, from 13 to 54, and says it will stay in opposition."
+ANIMATION:  A single bar grows from 13 to 54 with a "x4" chip.
+
+======================================================================
+SCENE 7 | WHY SO ANGRY? (0:31-0:37)
+HEADLINE:   WHY SO / ANGRY?                         (gold: ANGRY?)
+VOICEOVER:  "Last year, Gen Z protesters marched for jobs, hospitals and schools, not World Cup stadiums."
+ANIMATION:  A silhouetted crowd marches across the frame with "212" placards. A football stadium
+            glows in the distance while a hospital and a school sit dark.
+
+======================================================================
+SCENE 8 | THE PUZZLE (0:37-0:43)
+HEADLINE:   THE COALITION / PUZZLE                  (gold: PUZZLE)
+VOICEOVER:  "PAM needs about one hundred more seats, and it has ruled out its old partner, the R-N-I."
+CAPTION:    "PAM needs about 100 more seats, and it has ruled out its old partner, the RNI."
+ANIMATION:  The half-circle again, with a majority line at 198. Istiqlal, Popular Movement and
+            Constitutional Union slide in next to PAM and cross the line (208). The RNI block is greyed out.
+
+======================================================================
+SCENE 9 | THE HUMAN ANGLE (0:43-0:48)
+HEADLINE:   A WOMAN / AT THE TOP?                   (gold: AT THE TOP?)
+VOICEOVER:  "If the King picks PAM leader Fatima-Zahra El Mansouri, she'd be the Arab world's second woman to lead a government."
+ANIMATION:  A single chair at the head of a long table under a spotlight, with a crown motif above.
+
+======================================================================
+SCENE 10 | THE BLIND SPOT (0:48-0:52)
+HEADLINE:   BARELY / MADE THE NEWS                  (gold: MADE THE NEWS)
+VOICEOVER:  "Morocco just reshaped its parliament, and it barely made the news. That's the blind spot."
+ANIMATION:  The doom-scroll phone feed. A gold "Morocco election" card slides past unnoticed.
+
+======================================================================
+SCENE 11 | CTA (0:52-0:55)
+HEADLINE:   SEND THIS TO / SOMEONE WHO HASN'T HEARD
+VOICEOVER:  "Send this to someone who hasn't heard."   (reuse the existing CTA clip)
+ANIMATION:  Paper planes fly out from Morocco across Africa, then the brand end card.
+
+======================================================================
+IG CAPTION (draft)
+Morocco just voted, and most people didn't. 🗳️
+
+🇲🇦 Turnout: 38% (down from 50% in 2021)
+🥇 PAM first with 97 seats; the King picks the next head of government from it
+📉 Ruling RNI: 102 to 66 seats
+📈 Islamist PJD: 13 to 54, staying in opposition
+🧩 PAM needs ~100 more seats for a majority (198 of 395)
+
+Why do you think so many Moroccans stayed home? 👇
+
+Send this to someone who hasn't heard. Follow @africablindspot for the stories others miss.
+
+#AfricaBlindSpot #Morocco #Maroc #MoroccoElections #Rabat #Casablanca #GenZ212 #NorthAfrica #AfricaNews #Elections
+
+PINNED COMMENT (sources)
+Provisional results, Moroccan Interior Ministry (24 Sept 2026) via Maroc.ma and Hespress · Al Jazeera · The National · Morocco World News
+
+======================================================================
+PRODUCTION NOTES
+- Animations: scenes 1, 3, 4, 7, 8 and 9 need new animations (turnout polling station, crown and
+  parliament, parliament fill, Gen Z crowd, coalition puzzle, empty chair). These are this reel's
+  "grow" step: build them in reels/anim.py so future election reels can reuse them.
+  Scenes 2, 5, 6, 10 and 11 use existing tools (map, bars and chips, feed, planes).
+- Map sensitivity: frame scene 2 on northern Morocco and don't draw a Morocco/Western Sahara border line.
+- Voice: the ElevenLabs free credits ran out on the last reel. Scenes 1-10 need new clips
+  (about 1,000 characters), so either top up credits or wait for the monthly reset.
+- Say party acronyms letter by letter ("R-N-I", "P-J-D") so the voice doesn't read them as words.
+- Watch point: if the King appoints the head of government before this posts, update scene 9.
