@@ -24,3 +24,8 @@ python3 render_reel.py ebola-blindspot-60s --endcard <a reference reel with the 
 
 ## Map scenes
 `mapviz.py` draws animated maps with real country borders (Natural Earth via `pip install "geopandas<1.0"`). In `bg_spec`, use `{"map": {"view" | "from"/"to": "africa|region|east", "highlight": [...], "route": {"grow": [start, end], "flow": true, "places": [...]}, "dim": 0.5}}`. Routes and places live in `mapviz.PLACES` / `ROUTE`.
+
+## Sound
+- `music_bed.py out.wav 50` synthesizes a royalty-free underscore (100 BPM, Am–F–C–G, builds in the last third).
+- `render_reel.py ... --music audio/music.wav --music-vol 0.28 --sfx audio/whoosh.mp3 --sfx-vol 0.45`: the voice is loudness-normalized to -16 LUFS, the music is ducked under it, and the whoosh plays on every scene change.
+- Other polish: crossfades between scenes, a gold progress bar, caption timing snapped to real pauses in the voice, `"count"` for count-up numbers, `"gap"` to tighten pacing.

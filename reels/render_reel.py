@@ -31,7 +31,8 @@ GOLD = (212, 170, 52)
 WHITE = (246, 244, 238)
 GREY = (120, 116, 108)
 BOLD = "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"
-SCENE_GAP = 0.30  # silence after each voice clip, seconds
+SCENE_GAP = 0.30  # silence after each voice clip, seconds (script.json "gap" overrides)
+XFADE = 6  # frames of crossfade between scenes
 
 try:
     import imageio_ffmpeg
@@ -72,6 +73,58 @@ def speech_bounds(path, total):
     begin = ends[0] if starts and starts[0] <= 0.02 and ends else 0.0
     finish = starts[-1] if starts and starts[-1] > total - 1.0 and starts[-1] > begin else total
     return begin, finish
+
+
+def pauses(path, s0, s1):
+    """Silences inside the speech window: list of (start, end)."""
+    out = subprocess.run(
+        [FFMPEG, "-hide_banner", "-i", path, "-af", "silencedetect=n=-36dB:d=0.11", "-f", "null", "-"],
+        capture_output=True, text=True).stderr
+    st, res = None, []
+    for line in out.splitlines():
+        if "silence_start:" in line:
+            st = float(line.split("silence_start:")[1].split()[0])
+        if "silence_end:" in line and st is not None:
+            en = float(line.split("silence_end:")[1].split()[0])
+            if st > s0 + 0.05 and en < s1 - 0.05:
+                res.append((st, en))
+            st = None
+    return res
+
+
+def word_times(words, s0, s1, gaps):
+    """Start time of each word. Phrase breaks (after , . ? ! :) snap to real pauses."""
+    weights = [len(w) + 2 for w in words]
+    total = sum(weights)
+    est, acc = [], 0
+    for w_ in weights:
+        est.append(s0 + (s1 - s0) * acc / total)
+        acc += w_
+    breaks = [i + 1 for i, w in enumerate(words[:-1]) if w[-1] in ",.?!:;"]
+    anchors = {0: s0}
+    used = set()
+    for b in breaks:
+        guess = est[b]
+        cand = [(abs(g[1] - guess), k) for k, g in enumerate(gaps) if k not in used]
+        if cand:
+            dist, k = min(cand)
+            if dist < 0.9:
+                used.add(k)
+                anchors[b] = gaps[k][1]
+    keys = sorted(anchors) + [len(words)]
+    times = [0.0] * len(words)
+    for a, b in zip(keys, keys[1:]):
+        t0 = anchors[a]
+        t1 = anchors.get(b, s1) if b < len(words) else s1
+        if b < len(words):
+            # speech of this phrase ends where its pause began
+            t1 = min([g[0] for g in gaps if abs(g[1] - anchors[b]) < 1e-6] or [t1])
+        seg_w = sum(weights[a:b])
+        acc = 0
+        for i in range(a, b):
+            times[i] = t0 + (t1 - t0) * acc / seg_w
+            acc += weights[i]
+    return times
 
 
 # ---------------------------------------------------------------- backgrounds
@@ -324,6 +377,11 @@ def main():
     ap.add_argument("--endcard", help="video to take the brand end card from")
     ap.add_argument("--endcard-start", type=float, default=None, help="seconds into --endcard")
     ap.add_argument("--out", default=None)
+    ap.add_argument("--music", help="music bed, looped and ducked under the voice")
+    ap.add_argument("--music-vol", type=float, default=0.22)
+    ap.add_argument("--sfx", help="transition sound played at each scene change")
+    ap.add_argument("--sfx-vol", type=float, default=0.35)
+    ap.add_argument("--endcard-len", type=float, default=2.2)
     args = ap.parse_args()
 
     rd = args.reel_dir
@@ -333,14 +391,16 @@ def main():
     os.makedirs(work, exist_ok=True)
 
     # --- audio timeline
+    gap_s = script.get("gap", SCENE_GAP)
     timeline, t = [], 0.0
     for i, sc in enumerate(scenes, 1):
         vo = os.path.join(rd, "vo", f"{i:02d}.mp3")
         dur = audio_duration(vo)
         s0, s1 = speech_bounds(vo, dur)
         hold = sc.get("hold", 0.0)  # extra seconds on screen after the voice
-        timeline.append(dict(start=t, dur=dur + SCENE_GAP + hold, vo=vo, speech=(s0, s1), pad=SCENE_GAP + hold))
-        t += dur + SCENE_GAP + hold
+        timeline.append(dict(start=t, dur=dur + gap_s + hold, vo=vo, speech=(s0, s1), pad=gap_s + hold,
+                             gaps=pauses(vo, s0, s1)))
+        t += dur + gap_s + hold
     total = t
 
     # voice track: clips placed back to back with gaps
@@ -348,10 +408,36 @@ def main():
     for k, seg in enumerate(timeline):
         inputs += ["-i", seg["vo"]]
         filt.append(f"[{k}:a]aresample=44100,apad=pad_dur={seg['pad']:.3f}[a{k}]")
-    filt.append("".join(f"[a{k}]" for k in range(len(timeline))) + f"concat=n={len(timeline)}:v=0:a=1[vo]")
+    filt.append("".join(f"[a{k}]" for k in range(len(timeline))) + f"concat=n={len(timeline)}:v=0:a=1,"
+                "loudnorm=I=-16:TP=-1.5:LRA=11,aresample=44100[vo]")
     voice = os.path.join(work, "voice.wav")
     subprocess.run([FFMPEG, "-v", "error", "-y", *inputs, "-filter_complex", ";".join(filt),
                     "-map", "[vo]", "-ac", "2", voice], check=True)
+    if args.music or args.sfx:
+        mixed = os.path.join(work, "mix.wav")
+        ins, fc, labels = ["-i", voice], ["[0:a]asplit=2[vox][key]"], ["[vox]"]
+        n = 1
+        if args.music:
+            ins += ["-stream_loop", "-1", "-i", args.music]
+            fc.append(f"[{n}:a]aresample=44100,atrim=0:{total:.2f},volume={args.music_vol},"
+                      f"afade=t=in:d=0.6,afade=t=out:st={max(0, total - 1.8):.2f}:d=1.8[mus]")
+            fc.append("[mus][key]sidechaincompress=threshold=0.03:ratio=6:attack=15:release=350[duck]")
+            labels.append("[duck]")
+            n += 1
+        else:
+            fc[0] = "[0:a]anull[vox]"
+        if args.sfx:
+            for k, seg in enumerate(timeline[1:], 1):
+                ins += ["-i", args.sfx]
+                ms = int(max(0, seg["start"] - 0.25) * 1000)
+                fc.append(f"[{n}:a]aresample=44100,volume={args.sfx_vol},adelay={ms}|{ms}[s{k}]")
+                labels.append(f"[s{k}]")
+                n += 1
+        fc.append("".join(labels) + f"amix=inputs={len(labels)}:normalize=0:duration=first,"
+                  "alimiter=limit=0.95[out]")
+        subprocess.run([FFMPEG, "-v", "error", "-y", *ins, "-filter_complex", ";".join(fc),
+                        "-map", "[out]", "-ac", "2", "-t", f"{total:.2f}", mixed], check=True)
+        voice = mixed
 
     # --- frames
     header = header_layer()
@@ -365,6 +451,7 @@ def main():
 
     nframes = int(round(total * FPS))
     cache = {}
+    prev_last = None
     for sc_i, (sc, seg) in enumerate(zip(scenes, timeline)):
         big = load_bg(rd, sc["bg_spec"])
         head_y = sc.get("head_y", 760 if sc.get("special") else 960)
@@ -373,11 +460,9 @@ def main():
         pages = caption_pages(words, probe, cap_font)
         # word timings, proportional to word length inside the speech window
         s0, s1 = seg["speech"]
-        weights = [len(w) + 2 for w in words]
-        acc, times = 0, []
-        for w_ in weights:
-            times.append(s0 + (s1 - s0) * acc / sum(weights))
-            acc += w_
+        times = word_times(words, s0, s1, seg["gaps"])
+        count = sc.get("count")
+        count_cache = {}
         f0 = int(round(seg["start"] * FPS))
         f1 = min(nframes, int(round((seg["start"] + seg["dur"]) * FPS)))
         for fr in range(f0, f1):
@@ -389,17 +474,26 @@ def main():
             else:
                 frame = bg_frame(big, lt, seg["dur"], zoom_in=sc_i % 2 == 0).convert("RGBA")
             frame.alpha_composite(header)
+            if count and lt < count.get("dur", 1.0) + 0.1:
+                val = int(round(count["to"] * ease_out(lt / count.get("dur", 1.0))))
+                if val not in count_cache:
+                    lines = list(sc["head"])
+                    lines[count.get("line", 0)] = f'{count.get("prefix", "")}{val:,}{count.get("suffix", "")}'
+                    count_cache[val] = headline_layer(lines, sc.get("gold", 1), False, head_y)
+                head_now = count_cache[val]
+            else:
+                head_now = head
             # headline pops in over 0.3s
             pop = ease_out(lt / 0.3)
             if pop < 1:
                 s = 0.86 + 0.14 * pop
-                hl = head.resize((int(W * s), int(H * s)), Image.BILINEAR)
+                hl = head_now.resize((int(W * s), int(H * s)), Image.BILINEAR)
                 a = np.asarray(hl).copy()
                 a[..., 3] = (a[..., 3] * pop).astype(np.uint8)
                 hl = Image.fromarray(a)
                 frame.alpha_composite(hl, ((W - hl.width) // 2, int(head_y - head_y * s)))
             else:
-                frame.alpha_composite(head)
+                frame.alpha_composite(head_now)
             special = sc.get("special")
             if special == "bars":
                 frame.alpha_composite(bars_layer(p, sc))
@@ -420,9 +514,18 @@ def main():
                 cache.clear()
                 cache[key] = caption_layer(words, pages[pi], active, cap_font)
             frame.alpha_composite(cache[key])
-            # quick fade from black at the very start
+            # progress bar keeps viewers oriented (and watching to the end)
+            d = ImageDraw.Draw(frame, "RGBA")
+            d.rectangle((0, H - 9, W, H - 3), fill=(255, 255, 255, 40))
+            d.rectangle((0, H - 9, int(W * fr / max(1, nframes - 1)), H - 3), fill=(*GOLD, 230))
+            # quick fade from black at the very start, crossfade between scenes
+            k = fr - f0
             if fr < 6:
                 frame = Image.blend(Image.new("RGBA", (W, H), (0, 0, 0, 255)), frame, fr / 6)
+            elif sc_i > 0 and k < XFADE and prev_last is not None:
+                frame = Image.blend(prev_last, frame, (k + 1) / (XFADE + 1))
+            if fr == f1 - 1:
+                prev_last = frame.copy()
             enc.stdin.write(frame.convert("RGB").tobytes())
         print(f"scene {sc_i + 1}/{len(scenes)} done", file=sys.stderr)
     enc.stdin.close()
@@ -432,7 +535,7 @@ def main():
     if args.endcard:
         start = args.endcard_start
         if start is None:
-            start = audio_duration(args.endcard) - 3.0
+            start = audio_duration(args.endcard) - args.endcard_len
         tail = os.path.join(work, "endcard.mp4")
         subprocess.run([FFMPEG, "-v", "error", "-y", "-ss", f"{start:.2f}", "-i", args.endcard,
                         "-vf", f"scale={W}:{H},fps={FPS},setsar=1", "-af", "aresample=44100", "-ac", "2",

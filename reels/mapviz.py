@@ -113,6 +113,16 @@ def partial(pts, frac):
     return out, pts[-1]
 
 
+def stop_fracs(pts):
+    """Fraction of the route length at which each stop is reached."""
+    seg = [math.dist(pts[i], pts[i + 1]) for i in range(len(pts) - 1)]
+    total, acc, out = sum(seg) or 1, 0.0, [0.0]
+    for L in seg:
+        acc += L
+        out.append(acc / total)
+    return out
+
+
 def point_at(pts, frac):
     return partial(pts, frac)[1]
 
@@ -186,7 +196,7 @@ def render(spec, p, t):
         # places
         for name in rs.get("places", []):
             x, y = project(*PLACES[name], v)
-            reached = name not in ROUTE or frac >= ROUTE.index(name) / (len(ROUTE) - 1) - 0.02
+            reached = name not in ROUTE or frac >= stop_fracs(pts)[ROUTE.index(name)] - 0.02
             if not reached or not (0 < x < W and 0 < y < H):
                 continue
             d.ellipse((x - 11, y - 11, x + 11, y + 11), fill=WHITE, outline=(0, 0, 0), width=3)
@@ -198,6 +208,26 @@ def render(spec, p, t):
             else:
                 d.text((x - 26, y), name.upper(), font=f, fill=WHITE, anchor="rm", stroke_width=3,
                        stroke_fill=(0, 0, 0))
+        # segment labels, e.g. "UGANDA · 150 KM", once the line has passed them
+        for sg in rs.get("segments", []):
+            i0, i1 = ROUTE.index(sg["between"][0]), ROUTE.index(sg["between"][1])
+            if frac < stop_fracs(pts)[i1] - 0.02:
+                continue
+            a0, a1 = project(*PLACES[sg["between"][0]], v), project(*PLACES[sg["between"][1]], v)
+            mx, my = (a0[0] + a1[0]) / 2, (a0[1] + a1[1]) / 2
+            f = _font(32)
+            tw = d.textlength(sg["text"], font=f)
+            x = mx + 34 if sg.get("side", "r") == "r" else mx - 34 - tw
+            d.rounded_rectangle((x - 14, my - 28, x + tw + 14, my + 28), radius=10, fill=(12, 10, 6, 215),
+                                outline=(*GOLD, 255), width=2)
+            d.text((x, my), sg["text"], font=f, fill=GOLD, anchor="lm")
+    # capital markers for orientation
+    for name in spec.get("capitals", []):
+        x, y = project(*PLACES[name], v)
+        if 0 < x < W and 250 < y < H - 250:
+            d.rectangle((x - 8, y - 8, x + 8, y + 8), fill=WHITE, outline=(0, 0, 0), width=2)
+            d.text((x + 20, y), name.upper(), font=_font(30), fill=(225, 220, 210), anchor="lm",
+                   stroke_width=3, stroke_fill=(0, 0, 0))
     out = img.convert("RGB")
     dim = spec.get("dim", 1.0)
     if dim < 1.0:
