@@ -33,3 +33,11 @@ python3 render_reel.py ebola-blindspot-60s --endcard <a reference reel with the 
 ## Story animations
 `anim.py` draws an animated background for each beat of the story, selected with `bg_spec: {"anim": name}` (optionally on top of a `"map"`):
 `village` (night huts, one lit window, a power line sweeps in) · `coins` (funding stacks up) · `pylons` (towers to the horizon, energy pulses on the cables) · `whowins` (dam powers a city skyline) · `build` (a pylon rises with welding sparks) · `feed` (doom-scroll; the Africa story slides past) · `planes` (share: paper planes fly out). Maps also support `"rings"` (pulses from a place), and route ticks are now small pylons.
+
+## Stop motion (story reels with characters)
+`stopmo.py` makes cut-out paper stop-motion scenes: 12 poses per second, per-pose boil, cut edges, drop shadows, paper grain, and sepia for flashbacks. Scenes are chosen with `bg_spec: {"anim": "sm_<name>"}`: `sm_rooftop_dawn`, `sm_protest`, `sm_apartment_morning`, `sm_polling`, `sm_tv_results`, `sm_sugar`, `sm_tv_leader`, `sm_rooftop_night`. Puppets: `yasmine()` and `haj()`, with poses and arm angles.
+Dialogue scenes use `"lines": [{"who": "narrator|yasmine|haj", "file": "sNN_k.mp3", "say", "show", "tempo"}]`:
+- The renderer stitches the clips and drives mouth flaps from the real audio loudness.
+- Speaker names show above the captions.
+- A missing clip becomes a timed silent placeholder, so you can preview before every voice exists.
+- Script-level `"tempo"` speeds all lines; `"note"` shows a disclaimer for the first seconds; `"sub"` adds a caveat under the headline.

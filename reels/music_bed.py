@@ -101,6 +101,9 @@ def render(seconds):
 def main():
     out = sys.argv[1]
     secs = float(sys.argv[2]) if len(sys.argv) > 2 else 60
+    shift = float(sys.argv[3]) if len(sys.argv) > 3 else 0  # transpose in semitones for a different colour
+    global PROG
+    PROG = [(root * 2 ** (shift / 12), tones) for root, tones in PROG]
     audio = render(secs)
     with wave.open(out, "wb") as w:
         w.setnchannels(2)

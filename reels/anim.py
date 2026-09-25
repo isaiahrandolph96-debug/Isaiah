@@ -409,5 +409,8 @@ SCENES = {"village": village, "coins": coins, "pylons": pylons, "whowins": whowi
           "build": build, "feed": feed, "planes": planes}
 
 
-def render(spec, p, t, base=None):
+def render(spec, p, t, base=None, ctx=None):
+    if spec["anim"].startswith("sm_"):  # cut-out stop-motion scenes
+        import stopmo
+        return stopmo.render(spec, p, t, ctx)
     return SCENES[spec["anim"]](spec, p, t, base).convert("RGB")

@@ -95,6 +95,71 @@ def pauses(path, s0, s1):
     return res
 
 
+LINE_GAP = 0.12  # pause between dialogue lines inside a scene
+
+
+def build_lines(rd, work, idx, sc, default_tempo=1.0):
+    """Concatenate a scene's dialogue lines (one clip per line) into one clip.
+
+    Missing clips become silent placeholders timed from the word count, so the
+    film can be previewed before every voice is recorded. Returns (path, spans).
+    """
+    parts, spans, t = [], [], 0.0
+    for k, ln in enumerate(sc["lines"]):
+        src = os.path.join(rd, "vo", ln["file"])
+        synthetic = not os.path.exists(src)
+        out = os.path.join(work, f"line_{idx:02d}_{k}.wav")
+        if synthetic:
+            est = (len(ln["say"].split()) / 2.7 + 0.3) / ln.get("tempo", default_tempo)
+            subprocess.run([FFMPEG, "-v", "error", "-y", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono",
+                            "-t", f"{est:.2f}", out], check=True)
+        else:
+            tempo = ln.get("tempo", default_tempo)
+            subprocess.run([FFMPEG, "-v", "error", "-y", "-i", src, "-af",
+                            f"atempo={tempo},loudnorm=I=-18:TP=-2:LRA=11,aresample=44100", "-ac", "1", out], check=True)
+        dur = audio_duration(out)
+        if synthetic:
+            a, b, g = 0.15, dur - 0.15, []
+        else:
+            a, b = speech_bounds(out, dur)
+            g = pauses(out, a, b)
+        spans.append(dict(start=t, end=t + dur, who=ln["who"], synthetic=synthetic, s0=t + a, s1=t + b,
+                          gaps=[(x + t, y + t) for x, y in g], show=ln["show"]))
+        parts.append(out)
+        t += dur + (LINE_GAP if k < len(sc["lines"]) - 1 else 0)
+    path = os.path.join(work, f"scene_{idx:02d}.wav")
+    ins, fc = [], []
+    for k, pth in enumerate(parts):
+        ins += ["-i", pth]
+        pad = LINE_GAP if k < len(parts) - 1 else 0
+        fc.append(f"[{k}:a]apad=pad_dur={pad}[p{k}]")
+    fc.append("".join(f"[p{k}]" for k in range(len(parts))) + f"concat=n={len(parts)}:v=0:a=1[o]")
+    subprocess.run([FFMPEG, "-v", "error", "-y", *ins, "-filter_complex", ";".join(fc), "-map", "[o]", path], check=True)
+    return path, spans
+
+
+def envelope(path, spans, fps):
+    """Mouth-open level per video frame from the clip's loudness (synthetic lines flap)."""
+    raw = subprocess.run([FFMPEG, "-v", "error", "-i", path, "-ac", "1", "-ar", "16000", "-f", "f32le", "-"],
+                         capture_output=True, check=True).stdout
+    a = np.frombuffer(raw, np.float32)
+    hop = int(16000 / fps)
+    n = len(a) // hop + 1
+    rms = np.array([np.sqrt(np.mean(a[i * hop:(i + 1) * hop] ** 2)) if a[i * hop:(i + 1) * hop].size else 0
+                    for i in range(n)])
+    lvl = np.zeros(n)
+    for sp in spans:
+        i0, i1 = int(sp["s0"] * fps), int(sp["s1"] * fps) + 1
+        if sp["synthetic"]:
+            for i in range(i0, min(i1, n)):
+                lvl[i] = 0.35 + 0.35 * math.sin(i / fps * 2 * math.pi * 4.5)
+        else:
+            seg = rms[i0:i1]
+            ref = np.percentile(seg, 90) if seg.size else 1
+            lvl[i0:i1] = np.clip(seg / (ref * 0.8 + 1e-6), 0, 1)
+    return lvl
+
+
 def word_times(words, s0, s1, gaps):
     """Start time of each word. Phrase breaks (after , . ? ! :) snap to real pauses."""
     weights = [len(w) + 2 for w in words]
@@ -272,11 +337,20 @@ def caption_pages(words, d, f, max_w=None):
     return [lines[i:i + 2] for i in range(0, len(lines), 2)]
 
 
-def caption_layer(words, page, active, f):
+SPEAKER_LABELS = {"yasmine": "YASMINE", "haj": "HAJ AHMED"}
+
+
+def caption_layer(words, page, active, f, label=None):
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(layer)
     lh = f.size * 1.18
     y0 = CAP_Y - lh * (len(page) - 1) / 2
+    if label:  # who is speaking, for dialogue scenes
+        lf = font(28)
+        tw = d.textlength(label, font=lf)
+        ly = y0 - lh * 0.5 - 34
+        d.rounded_rectangle((W / 2 - tw / 2 - 16, ly - 20, W / 2 + tw / 2 + 16, ly + 20), radius=10, fill=(0, 0, 0, 150))
+        d.text((W / 2, ly), label, font=lf, fill=GOLD, anchor="mm")
     for li, idxs in enumerate(page):
         text_w = d.textlength(" ".join(words[i] for i in idxs), font=f)
         x = W / 2 - text_w / 2
@@ -403,12 +477,17 @@ def main():
     gap_s = script.get("gap", SCENE_GAP)
     timeline, t = [], 0.0
     for i, sc in enumerate(scenes, 1):
-        vo = os.path.join(rd, "vo", f"{i:02d}.mp3")
+        spans = None
+        if "lines" in sc:
+            vo, spans = build_lines(rd, work, i, sc, script.get("tempo", 1.0))
+        else:
+            vo = os.path.join(rd, "vo", f"{i:02d}.mp3")
         dur = audio_duration(vo)
-        s0, s1 = speech_bounds(vo, dur)
+        s0, s1 = (spans[0]["s0"], spans[-1]["s1"]) if spans else speech_bounds(vo, dur)
         hold = sc.get("hold", 0.0)  # extra seconds on screen after the voice
         timeline.append(dict(start=t, dur=dur + gap_s + hold, vo=vo, speech=(s0, s1), pad=gap_s + hold,
-                             gaps=pauses(vo, s0, s1)))
+                             gaps=[] if spans else pauses(vo, s0, s1), spans=spans,
+                             env=envelope(vo, spans, FPS) if spans else None))
         t += dur + gap_s + hold
     total = t
 
@@ -465,13 +544,27 @@ def main():
         big = load_bg(rd, sc["bg_spec"])
         head_y = sc.get("head_y", 760 if sc.get("special") else 960)
         head = headline_layer(sc["head"], sc.get("gold", 1), sc.get("cta", False), head_y)
-        words = sc["show"].split()
-        pages = caption_pages(words, probe, cap_font)
-        # word timings, proportional to word length inside the speech window
-        s0, s1 = seg["speech"]
-        times = word_times(words, s0, s1, seg["gaps"])
+        spans = seg["spans"]
+        if spans:
+            words, pages, times, who_of_word = [], [], [], []
+            for sp in spans:
+                ws = sp["show"].split()
+                base_i = len(words)
+                for pg in caption_pages(ws, probe, cap_font):
+                    pages.append([[base_i + i for i in ln] for ln in pg])
+                times += word_times(ws, sp["s0"], sp["s1"], sp["gaps"])
+                who_of_word += [sp["who"]] * len(ws)
+                words += ws
+        else:
+            words = sc["show"].split()
+            pages = caption_pages(words, probe, cap_font)
+            # word timings, proportional to word length inside the speech window
+            s0, s1 = seg["speech"]
+            times = word_times(words, s0, s1, seg["gaps"])
+            who_of_word = None
         count = sc.get("count")
         count_cache = {}
+        cache.pop("sub_layer", None)
         f0 = int(round(seg["start"] * FPS))
         f1 = min(nframes, int(round((seg["start"] + seg["dur"]) * FPS)))
         for fr in range(f0, f1):
@@ -480,8 +573,20 @@ def main():
             if isinstance(big, dict):
                 import anim
                 import mapviz
+                ctx = None
+                if spans:
+                    cur = 0
+                    for k, sp in enumerate(spans):
+                        if lt >= sp["start"]:
+                            cur = k
+                    sp = spans[cur]
+                    talking = sp["s0"] - 0.05 <= lt <= sp["s1"] + 0.05
+                    env = seg["env"]
+                    ctx = {"speaker": sp["who"] if talking else None,
+                           "level": float(env[min(len(env) - 1, int(lt * FPS))]) if talking else 0.0,
+                           "line": cur, "line_p": max(0.0, min(1.0, (lt - sp["start"]) / max(0.01, sp["end"] - sp["start"])))}
                 base = mapviz.render(big["map"], p, lt) if "map" in big else None
-                frame = (anim.render(big, p, lt, base) if "anim" in big else base).convert("RGBA")
+                frame = (anim.render(big, p, lt, base, ctx) if "anim" in big else base).convert("RGBA")
             else:
                 frame = bg_frame(big, lt, seg["dur"], zoom_in=sc_i % 2 == 0).convert("RGBA")
             frame.alpha_composite(header)
@@ -505,6 +610,16 @@ def main():
                 frame.alpha_composite(hl, ((W - hl.width) // 2, int(head_y - head_y * s)))
             else:
                 frame.alpha_composite(head_now)
+            if sc.get("sub"):  # small persistent line under the headline (e.g. a caveat)
+                if "sub_layer" not in cache:
+                    lay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+                    ImageDraw.Draw(lay).text((W / 2, head_y + 118), sc["sub"], font=font(30), fill=WHITE, anchor="mm",
+                                             stroke_width=3, stroke_fill=(0, 0, 0))
+                    cache["sub_layer"] = lay
+                frame.alpha_composite(cache["sub_layer"])
+            if sc.get("note") and lt < sc.get("note_secs", 3.5):  # e.g. "Dramatization..." disclaimer
+                ImageDraw.Draw(frame).text((W / 2, 250), sc["note"], font=font(26), fill=(235, 230, 215), anchor="mm",
+                                           stroke_width=3, stroke_fill=(0, 0, 0))
             special = sc.get("special")
             if special == "bars":
                 frame.alpha_composite(bars_layer(p, sc))
@@ -520,10 +635,15 @@ def main():
             for k, pg in enumerate(pages):
                 if active >= pg[0][0]:
                     pi = k
-            key = (sc_i, pi, active)
+            spk = who_of_word[pages[pi][0][0]] if who_of_word and pages else None
+            key = (sc_i, pi, active, spk)
             if key not in cache:
+                sub = cache.get("sub_layer")
                 cache.clear()
-                cache[key] = caption_layer(words, pages[pi], active, cap_font)
+                if sub is not None and sc.get("sub"):
+                    cache["sub_layer"] = sub
+                cache[key] = caption_layer(words, pages[pi], active, cap_font,
+                                           label=SPEAKER_LABELS.get(spk))
             frame.alpha_composite(cache[key])
             # progress bar keeps viewers oriented (and watching to the end)
             d = ImageDraw.Draw(frame, "RGBA")

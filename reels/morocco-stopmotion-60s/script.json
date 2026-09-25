@@ -1,0 +1,230 @@
+{
+ "title": "Yasmine's Vote (stop motion)",
+ "date": "2026-09-25",
+ "series": "Blind Spot of the Week",
+ "format": "cut-out paper stop motion, 12 poses per second",
+ "voices": {
+  "narrator": "Yusuf Hakeem Kiser (nJvj5shg2xu1GKGxqfkE)",
+  "yasmine": "Laloosh - Calm, Bright & Friendly (e69QIFnbVVXTRO1LrTN8)",
+  "haj": "Amir Pro Narration (J8qhTPFlbVBa24VtZvhY)"
+ },
+ "gap": 0.1,
+ "scenes": [
+  {
+   "head": [
+    "ELECTION DAY",
+    "MOROCCO · 23 SEPT 2026"
+   ],
+   "gold": 1,
+   "head_y": 360,
+   "note": "Dramatization. Characters are fictional; events and figures are real.",
+   "bg_spec": {
+    "anim": "sm_rooftop_dawn"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s01_1.mp3",
+     "say": "Yasmine is twenty-four. Engineering degree. No job. Today, Morocco votes.",
+     "show": "Yasmine is 24. Engineering degree. No job. Today, Morocco votes."
+    }
+   ]
+  },
+  {
+   "head": [
+    "ONE YEAR EARLIER",
+    "GEN Z 212 PROTESTS"
+   ],
+   "gold": 1,
+   "head_y": 360,
+   "bg_spec": {
+    "anim": "sm_protest"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s02_1.mp3",
+     "say": "A year ago, she marched with Gen Z two-one-two, for jobs, hospitals and schools.",
+     "show": "A year ago, she marched with Gen Z 212, for jobs, hospitals and schools."
+    },
+    {
+     "who": "yasmine",
+     "file": "s02_2.mp3",
+     "say": "Hospitals, not stadiums!",
+     "show": "Hospitals, not stadiums!"
+    }
+   ]
+  },
+  {
+   "head": [
+    "THE KING PICKS THE PM",
+    "FROM THE TOP PARTY"
+   ],
+   "gold": 1,
+   "head_y": 360,
+   "bg_spec": {
+    "anim": "sm_apartment_morning"
+   },
+   "lines": [
+    {
+     "who": "haj",
+     "file": "s03_1.mp3",
+     "say": "Shoes on. We're voting.",
+     "show": "Shoes on. We're voting."
+    },
+    {
+     "who": "yasmine",
+     "file": "s03_2.mp3",
+     "say": "What changes?",
+     "show": "What changes?"
+    },
+    {
+     "who": "haj",
+     "file": "s03_3.mp3",
+     "tempo": 1.15,
+     "say": "The King picks the head of government from the party with the most seats. So change the seats.",
+     "show": "The King picks the head of government from the party with the most seats. So change the seats."
+    }
+   ]
+  },
+  {
+   "head": [
+    "TURNOUT 38%",
+    "6 IN 10 STAYED HOME"
+   ],
+   "gold": 0,
+   "head_y": 360,
+   "bg_spec": {
+    "anim": "sm_polling"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s04_1.mp3",
+     "say": "He voted. She walked home. So did six in ten Moroccans.",
+     "show": "He voted. She walked home. So did 6 in 10 Moroccans."
+    }
+   ]
+  },
+  {
+   "head": [
+    "PAM 97 · RNI 66",
+    "ISTIQLAL 65 · PJD 54"
+   ],
+   "gold": 0,
+   "head_y": 360,
+   "bg_spec": {
+    "anim": "sm_tv_results"
+   },
+   "lines": [
+    {
+     "who": "haj",
+     "file": "s05_1.mp3",
+     "say": "Pam first!",
+     "show": "PAM first!"
+    },
+    {
+     "who": "yasmine",
+     "file": "s05_2.mp3",
+     "say": "And Akhannouch's party crashed. A hundred and two seats, down to sixty-six.",
+     "show": "And Akhannouch's party crashed. 102 seats, down to 66."
+    },
+    {
+     "who": "haj",
+     "file": "s05_3.mp3",
+     "tempo": 1.12,
+     "say": "And the Islamists are back. Thirteen to fifty-four!",
+     "show": "And the Islamists are back. 13 to 54!"
+    }
+   ]
+  },
+  {
+   "head": [
+    "395 SEATS",
+    "198 TO GOVERN"
+   ],
+   "gold": 1,
+   "head_y": 360,
+   "sub": "ONE POSSIBLE MAJORITY · NO DEAL AGREED YET",
+   "bg_spec": {
+    "anim": "sm_sugar"
+   },
+   "lines": [
+    {
+     "who": "haj",
+     "file": "s06_1.mp3",
+     "tempo": 1.12,
+     "say": "Three hundred ninety-five seats. You need one ninety-eight. Pam has ninety-seven.",
+     "show": "395 seats. You need 198. PAM has 97."
+    },
+    {
+     "who": "yasmine",
+     "file": "s06_2.mp3",
+     "say": "So who joins them?",
+     "show": "So who joins them?"
+    },
+    {
+     "who": "haj",
+     "file": "s06_3.mp3",
+     "say": "Not the R-N-I, they say.",
+     "show": "Not the RNI, they say."
+    }
+   ],
+   "hold": 0.3
+  },
+  {
+   "head": [
+    "A FIRST",
+    "FOR MOROCCO?"
+   ],
+   "gold": 1,
+   "head_y": 360,
+   "bg_spec": {
+    "anim": "sm_tv_leader"
+   },
+   "lines": [
+    {
+     "who": "yasmine",
+     "file": "s07_1.mp3",
+     "say": "If the King picks her, she'd be our first woman head of government.",
+     "show": "If the King picks her, she'd be our first woman head of government."
+    }
+   ]
+  },
+  {
+   "head": [
+    "NEW PARLIAMENT",
+    "SAME QUESTIONS"
+   ],
+   "gold": 1,
+   "head_y": 360,
+   "bg_spec": {
+    "anim": "sm_rooftop_night"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "s08_1.mp3",
+     "say": "New parliament. Same questions. And it barely made the news. That's the blind spot.",
+     "show": "New parliament. Same questions. And it barely made the news. That's the blind spot."
+    },
+    {
+     "who": "narrator",
+     "file": "s08_2.mp3",
+     "say": "Send this to someone who hasn't heard.",
+     "show": "Send this to someone who hasn't heard."
+    }
+   ],
+   "hold": 0.3
+  }
+ ],
+ "sources": [
+  "https://maroc.ma/en/news/2026-legislative-elections-pam-leads-97-seats-according-preliminary-results-minister-interior",
+  "https://en.hespress.com/145938-%F0%9F%94%B4morocco-election-2026-pjd-says-its-leading-in-several-constituencies-live-tracker.html",
+  "https://www.aljazeera.com/news/2026/9/24/moroccos-elections-fragmentation-disengagement-and-pjds-major-return",
+  "https://www.thenationalnews.com/news/mena/2026/09/24/moroccos-pam-wins-election-as-coalition-talks-loom/",
+  "https://www.moroccoworldnews.com/2026/09/339565/pam-wins-moroccos-legislative-elections-with-97-seats/",
+  "https://en.wikipedia.org/wiki/2025_Moroccan_Gen_Z_protests"
+ ],
+ "tempo": 1.08
+}
