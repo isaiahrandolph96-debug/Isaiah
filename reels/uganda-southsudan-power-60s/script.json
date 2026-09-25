@@ -10,21 +10,17 @@
     "HAS ELECTRICITY"
    ],
    "gold": 1,
-   "special": "grid",
    "grid_n": 20,
    "grid_lit": 1,
    "say": "In South Sudan, only about one in twenty people has electricity. That could be about to change.",
    "show": "In South Sudan, only about 1 in 20 people has electricity. That could be about to change.",
    "bg_spec": {
-    "map": {
-     "view": "region",
-     "highlight": [
-      "S. Sudan"
-     ],
-     "dim": 0.25,
-     "labels": false
-    }
-   }
+    "anim": "village",
+    "lit_slot": 13,
+    "lit_at": 0.22,
+    "line_at": 0.62
+   },
+   "head_y": 560
   },
   {
    "head": [
@@ -46,7 +42,12 @@
      "capitals": [
       "Kampala",
       "Juba"
-     ]
+     ],
+     "rings": {
+      "at": "Nimule",
+      "start": 0.55,
+      "radius": 260
+     }
     }
    }
   },
@@ -69,15 +70,7 @@
    "say": "It's backed by one hundred and twenty-one million dollars from the African Development Fund.",
    "show": "It's backed by $121 million from the African Development Fund.",
    "bg_spec": {
-    "map": {
-     "view": "region",
-     "highlight": [
-      "Uganda",
-      "S. Sudan"
-     ],
-     "dim": 0.28,
-     "labels": false
-    }
+    "anim": "coins"
    },
    "count": {
     "line": 0,
@@ -169,35 +162,7 @@
    "say": "At four hundred kilovolts, it's built to carry up to one thousand megawatts.",
    "show": "At 400 kilovolts, it's built to carry up to 1,000 megawatts.",
    "bg_spec": {
-    "map": {
-     "view": "east",
-     "highlight": [
-      "Uganda",
-      "S. Sudan"
-     ],
-     "dim": 0.55,
-     "label_pos": {
-      "Uganda": [
-       33.1,
-       2.6
-      ],
-      "S. Sudan": [
-       33.2,
-       5.35
-      ]
-     },
-     "route": {
-      "flow": true,
-      "places": [
-       "Olwiyo",
-       "Juba"
-      ],
-      "label_side": {
-       "Olwiyo": "l",
-       "Juba": "l"
-      }
-     }
-    }
+    "anim": "pylons"
    }
   },
   {
@@ -219,19 +184,10 @@
    "say": "South Sudan gets more reliable, potentially cheaper power. Uganda gets a new market across the border.",
    "show": "South Sudan gets more reliable, potentially cheaper power. Uganda gets a new market across the border.",
    "bg_spec": {
-    "map": {
-     "view": "east",
-     "highlight": [
-      "Uganda",
-      "S. Sudan"
-     ],
-     "dim": 0.3,
-     "labels": false,
-     "route": {
-      "flow": true
-     }
-    }
-   }
+    "anim": "whowins"
+   },
+   "head_y": 420,
+   "ranks_y": 600
   },
   {
    "head": [
@@ -258,7 +214,12 @@
      },
      "capitals": [
       "Kampala"
-     ]
+     ],
+     "rings": {
+      "at": "Juba",
+      "start": 0.0,
+      "radius": 420
+     }
     }
    }
   },
@@ -284,20 +245,10 @@
    "say": "Construction runs from twenty twenty-six to twenty twenty-nine.",
    "show": "Construction runs from 2026 to 2029.",
    "bg_spec": {
-    "map": {
-     "view": "region",
-     "highlight": [
-      "Uganda",
-      "S. Sudan"
-     ],
-     "dim": 0.28,
-     "labels": false,
-     "route": {
-      "flow": true,
-      "ticks": false
-     }
-    }
-   }
+    "anim": "build"
+   },
+   "head_y": 400,
+   "ranks_y": 560
   },
   {
    "head": [
@@ -308,16 +259,10 @@
    "say": "Africa building its own future rarely trends. That's the blind spot.",
    "show": "Africa building its own future rarely trends. That's the blind spot.",
    "bg_spec": {
-    "map": {
-     "view": "africa",
-     "highlight": [
-      "Uganda",
-      "S. Sudan"
-     ],
-     "dim": 0.5,
-     "labels": false
-    }
-   }
+    "anim": "feed",
+    "gold_card": 6
+   },
+   "head_y": 420
   },
   {
    "head": [
@@ -331,18 +276,19 @@
    "show": "Send this to someone who hasn't heard.",
    "bg_spec": {
     "map": {
-     "view": "region",
+     "view": "africa",
      "highlight": [
       "Uganda",
       "S. Sudan"
      ],
-     "dim": 0.35,
-     "labels": false,
-     "route": {
-      "flow": true,
-      "ticks": false
-     }
-    }
+     "dim": 0.4,
+     "labels": false
+    },
+    "anim": "planes",
+    "origin": [
+     640,
+     960
+    ]
    }
   }
  ],

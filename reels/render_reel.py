@@ -166,8 +166,8 @@ def grade(img, bright=0.58, tint=None, sat=1.0, blur=0):
 
 
 def load_bg(reel_dir, spec):
-    if "map" in spec:
-        return spec  # drawn per frame by mapviz
+    if "map" in spec or "anim" in spec:
+        return spec  # drawn per frame by mapviz / anim
     return _load_image_bg(reel_dir, spec)
 
 
@@ -337,7 +337,7 @@ def chips_layer(p, spec):
 def ranks_layer(p, spec):
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(layer)
-    y = 1000
+    y = spec.get("ranks_y", 1000)
     for k, r in enumerate(spec["ranks"]):
         a = ease_out((p - 0.15 - 0.2 * k) / 0.2)
         if a <= 0:
@@ -478,8 +478,10 @@ def main():
             lt = fr / FPS - seg["start"]
             p = lt / seg["dur"]
             if isinstance(big, dict):
+                import anim
                 import mapviz
-                frame = mapviz.render(big["map"], p, lt).convert("RGBA")
+                base = mapviz.render(big["map"], p, lt) if "map" in big else None
+                frame = (anim.render(big, p, lt, base) if "anim" in big else base).convert("RGBA")
             else:
                 frame = bg_frame(big, lt, seg["dur"], zoom_in=sc_i % 2 == 0).convert("RGBA")
             frame.alpha_composite(header)

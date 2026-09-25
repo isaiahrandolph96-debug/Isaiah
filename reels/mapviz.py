@@ -171,20 +171,23 @@ def render(spec, p, t):
             d.line(line, fill=(*GOLD, 70), width=22, joint="curve")
             d.line(line, fill=(*GOLD, 140), width=11, joint="curve")
             d.line(line, fill=(255, 236, 170, 255), width=5, joint="curve")
-            # pylon ticks every ~34px along the drawn line
+            # small pylons every ~46px along the drawn line
             if rs.get("ticks", True) and v[2] > 150:
                 total = sum(math.dist(line[i], line[i + 1]) for i in range(len(line) - 1))
-                n = int(total // 34)
+                n = int(total // 46)
                 full = sum(math.dist(pts[i], pts[i + 1]) for i in range(len(pts) - 1))
                 for k in range(1, n + 1):
-                    q = k * 34 / full
-                    a = point_at(pts, max(0, q - 0.004))
-                    b = point_at(pts, min(1, q + 0.004))
+                    q = k * 46 / full
                     c = point_at(pts, q)
-                    dx, dy = b[0] - a[0], b[1] - a[1]
-                    L = math.hypot(dx, dy) or 1
-                    nx, ny = -dy / L * 12, dx / L * 12
-                    d.line([(c[0] - nx, c[1] - ny), (c[0] + nx, c[1] + ny)], fill=(*GOLD, 200), width=3)
+                    # little pylon that pops up just behind the growing head
+                    behind = (frac - q) * full
+                    sc = min(1.0, max(0.0, behind / 40)) if frac < 1 else 1.0
+                    if sc > 0:
+                        x, y, h = c[0], c[1], 30 * sc
+                        col = (255, 236, 170, 255)
+                        d.line([(x - 8 * sc, y + 6), (x, y - h), (x + 8 * sc, y + 6)], fill=(0, 0, 0, 200), width=6)
+                        d.line([(x - 8 * sc, y + 6), (x, y - h), (x + 8 * sc, y + 6)], fill=col, width=3)
+                        d.line([(x - 12 * sc, y - h * 0.62), (x + 12 * sc, y - h * 0.62)], fill=col, width=3)
         if frac < 1:
             r_ = 14 + 5 * pulse
             d.ellipse((head[0] - r_, head[1] - r_, head[0] + r_, head[1] + r_), fill=(255, 236, 170, 255))
@@ -221,6 +224,14 @@ def render(spec, p, t):
             d.rounded_rectangle((x - 14, my - 28, x + tw + 14, my + 28), radius=10, fill=(12, 10, 6, 215),
                                 outline=(*GOLD, 255), width=2)
             d.text((x, my), sg["text"], font=f, fill=GOLD, anchor="lm")
+    # pulse rings radiating from a place (e.g. a new connection)
+    rg = spec.get("rings")
+    if rg and p >= rg.get("start", 0.0):
+        x, y = project(*PLACES[rg["at"]], v)
+        for k in range(3):
+            ph = (t * 0.7 + k / 3) % 1.0
+            r = 24 + ph * rg.get("radius", 300)
+            d.ellipse((x - r, y - r, x + r, y + r), outline=(*GOLD, int(220 * (1 - ph))), width=4)
     # capital markers for orientation
     for name in spec.get("capitals", []):
         x, y = project(*PLACES[name], v)

@@ -29,3 +29,7 @@ python3 render_reel.py ebola-blindspot-60s --endcard <a reference reel with the 
 - `music_bed.py out.wav 50` synthesizes a royalty-free underscore (100 BPM, Am–F–C–G, builds in the last third).
 - `render_reel.py ... --music audio/music.wav --music-vol 0.28 --sfx audio/whoosh.mp3 --sfx-vol 0.45`: the voice is loudness-normalized to -16 LUFS, the music is ducked under it, and the whoosh plays on every scene change.
 - Other polish: crossfades between scenes, a gold progress bar, caption timing snapped to real pauses in the voice, `"count"` for count-up numbers, `"gap"` to tighten pacing.
+
+## Story animations
+`anim.py` draws an animated background for each beat of the story, selected with `bg_spec: {"anim": name}` (optionally on top of a `"map"`):
+`village` (night huts, one lit window, a power line sweeps in) · `coins` (funding stacks up) · `pylons` (towers to the horizon, energy pulses on the cables) · `whowins` (dam powers a city skyline) · `build` (a pylon rises with welding sparks) · `feed` (doom-scroll; the Africa story slides past) · `planes` (share: paper planes fly out). Maps also support `"rings"` (pulses from a place), and route ticks are now small pylons.
