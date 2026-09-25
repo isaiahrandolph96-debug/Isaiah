@@ -1,0 +1,232 @@
+Title: MOROCCO JUST VOTED. MOST PEOPLE DIDN'T.
+Credit: An Africa Blind Spot Reel
+Author: Africa Blind Spot
+Draft date: 25 September 2026
+Notes: Vertical 9:16 (1080x1920) · Runtime ~55 sec · 11 scenes · Facts: provisional results, Moroccan Interior Ministry, 24 Sept 2026
+
+====
+
+FORMAT KEY
+
+SUPER = on-screen text. The brand header "AFRICA BLIND SPOT" (gold, small, top centre) stays on screen throughout.
+HEADLINE = two lines, bold uppercase, centred; the [bracketed] line is gold, the other white.
+CAPTIONS = word-by-word subtitles near the bottom; each word turns gold as it is spoken.
+GFX = motion graphics. B-ROLL = real footage alternative, if you shoot or license footage instead.
+Keep all text out of the bottom 360 px and the right-hand 120 px (Instagram buttons).
+
+====
+
+FADE IN:
+
+EXT. MOROCCAN POLLING STATION - DAWN                                  [0:00-0:05]
+
+A school courtyard turned polling station. Rows of empty voting booths. Blue dawn light. A single voter walks in; the rest of the frame is empty chairs and folded ballot boxes.
+
+GFX: A semicircular TURNOUT GAUGE rises into the upper frame, reading "50% · 2021". The needle falls and settles on "38%". The drained part of the gauge glows dim red.
+
+SUPER (HEADLINE): 6 IN 10 MOROCCANS / [DIDN'T VOTE]
+
+NARRATOR (V.O.)
+Morocco just held an election. And more than six in ten voters stayed home.
+
+SFX: A single footstep echoes. Low synth drone begins.
+
+B-ROLL: Wide shot of an empty classroom polling station; slow push-in on an unused ballot box.
+
+CUT TO:
+
+EXT. AFRICA FROM SPACE - NIGHT                                        [0:05-0:10]
+
+GFX: A dark night map of Africa. The camera glides north-west and zooms into northern Morocco, which is outlined and filled in gold. Two city markers pulse: RABAT and CASABLANCA.
+
+Frame on the north only. Do not draw a Morocco/Western Sahara border line.
+
+SUPER (HEADLINE): A KINGDOM / [THAT VOTES]
+
+SUPER (small, under the map): 395 SEATS · ELECTED EVERY 5 YEARS
+
+NARRATOR (V.O.)
+Morocco is a kingdom, but its 395-seat parliament is elected every five years.
+
+MUSIC: Main underscore enters (steady 100 BPM pulse, tense but hopeful).
+
+B-ROLL: Aerial of Rabat at dusk; the parliament building on Avenue Mohammed V.
+
+CUT TO:
+
+INT. THE HOUSE OF REPRESENTATIVES - NIGHT (STYLISED)                  [0:10-0:15]
+
+GFX: A half-circle of 395 small dots (the chamber) in dim grey. A gold CROWN icon hangs above it. A beam of light sweeps across the dots like a searchlight...
+
+...and stops on the largest block.
+
+SUPER (HEADLINE): THE RULE THAT / [DECIDES EVERYTHING]
+
+NARRATOR (V.O.)
+The King picks the head of government from the party that wins the most seats.
+
+SFX: Soft "whoom" as the beam locks on.
+
+CUT TO:
+
+INT. THE HOUSE OF REPRESENTATIVES - CONTINUOUS                        [0:15-0:20]
+
+GFX: The chamber fills seat by seat from left to right in party colours. PAM's block fills in GOLD, and a counter rises from 0 to 97.
+
+SUPER (HEADLINE): [97 SEATS] / PAM COMES FIRST
+(The number counts up from 0 to 97 over one second.)
+
+NARRATOR (V.O.)
+This time, that's PAM, with ninety-seven seats, up from eighty-seven.
+
+SUPER (small legend, fades in): PAM 97 · RNI 66 · ISTIQLAL 65 · PJD 54
+
+CUT TO:
+
+INT. DATA ROOM - NIGHT                                                [0:20-0:25]
+
+GFX: A dark warm background. Two pairs of horizontal bars grow in, then the 2026 bars visibly shrink:
+RNI: 102 (2021, grey) → 66 (2026, gold)
+ISTIQLAL: 81 (2021, grey) → 65 (2026, gold)
+
+SUPER (HEADLINE): THE RULING PARTY / [CRASHED]
+
+SUPER (bar title): SEATS · 2021 → 2026
+
+NARRATOR (V.O.)
+The R-N-I, which led the government, fell from one hundred and two seats to sixty-six.
+
+SFX: A low descending "thud" as the bars shrink.
+
+CUT TO:
+
+INT. DATA ROOM - CONTINUOUS                                           [0:25-0:31]
+
+GFX: Two stat boxes slide in side by side:
+[ PJD 2021 | 13 ]    [ PJD 2026 | 54 ]  (the second box outlined in gold)
+A small gold chip pops above them: "x4".
+
+SUPER (HEADLINE): THE ISLAMISTS / [ARE BACK]
+
+NARRATOR (V.O.)
+The Islamist P-J-D quadrupled its seats, from thirteen to fifty-four, and says it will stay in opposition.
+
+B-ROLL: Archive footage of PJD supporters with party flags (licensed news footage only).
+
+CUT TO:
+
+EXT. CITY BOULEVARD - DUSK (STYLISED)                                 [0:31-0:37]
+
+GFX: Silhouettes of young people march left to right across the lower frame, some holding placards reading "212". In the far distance a football STADIUM blazes with floodlights. In the foreground, a HOSPITAL and a SCHOOL sit dark, one window flickering.
+
+SUPER (HEADLINE): WHY SO / [ANGRY?]
+
+NARRATOR (V.O.)
+Last year, Gen Z protesters marched for jobs, hospitals and schools, not World Cup stadiums.
+
+SFX: A distant crowd chant, low in the mix.
+
+B-ROLL: Licensed news footage of the Gen Z 212 protests (Sept-Oct 2025). Avoid clearly identifiable faces of minors.
+
+CUT TO:
+
+INT. THE HOUSE OF REPRESENTATIVES - CONTINUOUS                        [0:37-0:43]
+
+GFX: The chamber returns. A dashed vertical line marks the MAJORITY at 198 seats. PAM's gold block (97) sits alone. One by one, partner blocks slide in beside it like puzzle pieces:
++ ISTIQLAL (65) → 162
++ POPULAR MOVEMENT (29) → 191
++ CONSTITUTIONAL UNION (17) → 208 (crosses the line; the line flashes gold)
+The RNI block (66) turns grey with a thin strike-through.
+
+SUPER (HEADLINE): THE COALITION / [PUZZLE]
+
+NARRATOR (V.O.)
+PAM needs about one hundred more seats, and it has ruled out its old partner, the R-N-I.
+
+SUPER (small, bottom of graphic): ONE POSSIBLE MAJORITY · NOT YET AGREED
+
+SFX: A soft "click" as each block locks in.
+
+CUT TO:
+
+INT. GOVERNMENT MEETING ROOM - NIGHT (STYLISED)                       [0:43-0:48]
+
+A long, empty table. At its head, a single high-backed chair under a warm spotlight. A faint crown motif glows on the wall above it.
+
+SUPER (HEADLINE): A WOMAN / [AT THE TOP?]
+
+NARRATOR (V.O.)
+If the King picks PAM leader Fatima-Zahra El Mansouri, she'd be the Arab world's second woman to lead a government.
+
+SUPER (small): THE FIRST: NAJLA BOUDEN, TUNISIA
+
+B-ROLL: Licensed photo or footage of Fatima-Zahra El Mansouri (credit the source on screen).
+
+CUT TO:
+
+INT. BEDROOM - NIGHT (STYLISED)                                       [0:48-0:52]
+
+GFX: A phone screen fills the centre of the frame. A feed scrolls fast: #celebrity, #football, #memes... A single GOLD card slides past, "MOROCCO · ELECTION / PAM first, turnout 38%", and disappears off the top before anyone can stop on it.
+
+SUPER (HEADLINE): BARELY / [MADE THE NEWS]
+
+NARRATOR (V.O.)
+Morocco just reshaped its parliament, and it barely made the news. That's the blind spot.
+
+SFX: Rapid scroll ticks, then one soft chime as the gold card passes.
+
+CUT TO:
+
+EXT. AFRICA FROM SPACE - NIGHT                                        [0:52-0:55]
+
+GFX: The dim night map of Africa. From Morocco, gold PAPER PLANES launch in every direction, leaving dotted trails.
+
+SUPER (HEADLINE): SEND THIS TO / [SOMEONE WHO HASN'T HEARD]
+
+NARRATOR (V.O.)
+Send this to someone who hasn't heard.
+
+MUSIC: Lifts, then resolves.
+
+SMASH CUT TO:
+
+BRAND END CARD - BLACK                                                [0:55-0:57]
+
+SUPER: AFRICA BLIND SPOT
+SUPER (small, spaced): FOLLOW FOR THE STORIES OTHERS MISS
+
+FADE OUT.
+
+====
+
+PRODUCTION NOTES
+
+VOICE
+- One narrator: calm, authoritative, documentary tone (ours: ElevenLabs voice "Yusuf Hakeem Kiser").
+- Read party acronyms letter by letter: "R-N-I", "P-J-D". Say "PAM" as a word ("pam").
+- Pace: about 2.6 words per second. Leave about 0.2 s between scenes.
+- Master the voice to -16 LUFS. Keep the music about 12 dB under the voice and duck it when the narrator speaks.
+
+LOOK
+- Palette: near-black backgrounds, warm amber light, gold #D4AA34, off-white #F6F4EE.
+- Font: a heavy geometric sans (we use DejaVu Sans Bold; Montserrat ExtraBold works too).
+- Headlines pop in (fade plus scale from 86% to 100% over 0.3 s) at the start of each scene.
+- 0.2 s crossfades between scenes. A thin gold progress bar runs along the bottom edge.
+- Slow push-in (100% to 110%) on every background.
+
+PARTY COLOURS (graphics only; not official party colours)
+PAM gold · RNI blue · Istiqlal red · PJD green · Popular Movement purple · USFP pink · Constitutional Union light blue · Others grey.
+
+FACT SHEET (for on-screen accuracy)
+- Election day: 23 September 2026. Provisional results announced 24 Sept by Interior Minister Abdelouafi Laftit.
+- 395 seats (305 constituency + 90 women's regional lists). Majority = 198.
+- PAM 97 (2021: 87) · RNI 66 (102) · Istiqlal 65 (81) · PJD 54 (13) · Popular Movement 29 · USFP 26 · Constitutional Union 17 · others ~41.
+- Turnout 38.02% (2021: 50.35%).
+- The coalition in scene 8 is ONE arithmetically possible majority, labelled "not yet agreed". Update it if a real coalition is announced before you post.
+- If the King names a head of government before posting, rewrite scene 9.
+
+SOURCES (put these in the pinned comment)
+Maroc.ma (official results) · Hespress · Al Jazeera · The National · Morocco World News
+
+RIGHTS
+Use only footage and photos you own or have licensed. Credit news footage on screen. The music must be royalty-free or original.
