@@ -223,6 +223,8 @@ def pylons(spec, p, t, base):
     towers = []
     for k in range(8):
         z = 0.72 + k * spacing - drift
+        if z <= 0.05:  # tower passing the camera: skip (avoids divide-by-zero)
+            continue
         s = 1 / z
         x = vx + (330 - vx) * s
         b = vy + (1760 - vy) * s

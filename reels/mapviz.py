@@ -29,6 +29,9 @@ PLACES = {
     "Bibia": (32.08, 3.52),
     "Nimule": (32.06, 3.60),
     "Juba": (31.58, 4.85),
+    "Rabat": (-6.84, 34.02),
+    "Bunia": (30.25, 1.56),
+    "Abuja": (7.49, 9.06),
 }
 ROUTE = ["Olwiyo", "Bibia", "Nimule", "Juba"]
 
