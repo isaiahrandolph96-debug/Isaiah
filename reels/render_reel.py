@@ -98,11 +98,12 @@ def pauses(path, s0, s1):
 LINE_GAP = 0.12  # pause between dialogue lines inside a scene
 
 
-def build_lines(rd, work, idx, sc, default_tempo=1.0):
+def build_lines(rd, work, idx, sc, default_tempo=1.0, read_wps=2.7):
     """Concatenate a scene's dialogue lines (one clip per line) into one clip.
 
     Missing clips become silent placeholders timed from the word count, so the
-    film can be previewed before every voice is recorded. Returns (path, spans).
+    film can be previewed before every voice is recorded, or posted as a text-led
+    reel (script "read_wps" sets the reading pace). Returns (path, spans).
     """
     parts, spans, t = [], [], 0.0
     for k, ln in enumerate(sc["lines"]):
@@ -110,7 +111,7 @@ def build_lines(rd, work, idx, sc, default_tempo=1.0):
         synthetic = not os.path.exists(src)
         out = os.path.join(work, f"line_{idx:02d}_{k}.wav")
         if synthetic:
-            est = (len(ln["say"].split()) / 2.7 + 0.3) / ln.get("tempo", default_tempo)
+            est = (len(ln["say"].split()) / read_wps + 0.3) / ln.get("tempo", default_tempo)
             subprocess.run([FFMPEG, "-v", "error", "-y", "-f", "lavfi", "-i", "anullsrc=r=44100:cl=mono",
                             "-t", f"{est:.2f}", out], check=True)
         else:
@@ -479,7 +480,7 @@ def main():
     for i, sc in enumerate(scenes, 1):
         spans = None
         if "lines" in sc:
-            vo, spans = build_lines(rd, work, i, sc, script.get("tempo", 1.0))
+            vo, spans = build_lines(rd, work, i, sc, script.get("tempo", 1.0), script.get("read_wps", 2.7))
         else:
             vo = os.path.join(rd, "vo", f"{i:02d}.mp3")
         dur = audio_duration(vo)

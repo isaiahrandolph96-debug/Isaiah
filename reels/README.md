@@ -66,3 +66,14 @@ Dialogue scenes use `"lines": [{"who": "narrator|yasmine|haj", "file": "sNN_k.mp
 
 Maps (roundup, quiz, any `"map"`) accept `"view"` as a view name (`africa`, `region`, `east`), a `PLACES` name (centred on it) or `[lon, lat, px_per_degree, screen_y]`. Add new places to `mapviz.PLACES`.
 To add a format, write `def name(spec, u, t, ctx)` in `formats.py` (u = design-clock seconds, 0 to 6.5), register it in `FORMATS`, add a template scene, and re-render the templates preview to check it.
+
+## Text-led reels (no voice)
+When no voice clips exist (or credits are out), write scenes with `"lines"` and leave `vo/` empty. Captions then run as read-along text at the script's `"read_wps"` (words per second; 3.0 to 3.1 suits short punchy lines), over the music bed. Drop the MP3s into `vo/` later and re-render to add the voice. Example: `ethiopia-tigray-30s/`.
+
+## Breaking-news map tools (added for ethiopia-tigray-30s)
+- `"pins"`: events that drop in one by one with a red shock ring and a label: `[{"at": "Mekelle", "start": 0.48, "label": "MEKELLE", "side": "l"}]`.
+- `"rings"` accepts a list, each with an optional `"color"` (e.g. red `[225,70,50]` for conflict).
+- `"tags"`: big faint names for areas with no country polygon: `[{"at": [lon, lat], "text": "TIGRAY"}]`.
+- `"label_max_y"`: keeps country labels above the captions (use 1270 with `--ig-safe`).
+- New views `ethiopia`, `horn`, `tigray`; new places Mekelle, Axum, Shire, Alamata, Addis Ababa, Asmara.
+- `anim` `feed` takes `"card_title"` and `"card_sub"` for the Africa card that scrolls past.

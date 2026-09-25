@@ -358,8 +358,8 @@ def feed(spec, p, t, base):
         if i == gold_i:
             sd.rounded_rectangle((16, y, screen.width - 16, y + ch), radius=18, fill=(40, 32, 14, 255),
                                  outline=(*GOLD, 255), width=3)
-            sd.text((40, y + 50), "AFRICA · NEW POWER LINE", font=_font(30), fill=GOLD, anchor="lm")
-            sd.text((40, y + 100), "Uganda → South Sudan", font=_font(28), fill=(230, 220, 200), anchor="lm")
+            sd.text((40, y + 50), spec.get("card_title", "AFRICA · NEW POWER LINE"), font=_font(30), fill=GOLD, anchor="lm")
+            sd.text((40, y + 100), spec.get("card_sub", "Uganda → South Sudan"), font=_font(28), fill=(230, 220, 200), anchor="lm")
             continue
         c = FEED_COLORS[i % len(FEED_COLORS)]
         sd.rounded_rectangle((16, y, screen.width - 16, y + ch), radius=18, fill=(26, 26, 34, 255))

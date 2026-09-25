@@ -19,6 +19,9 @@ VIEWS = {
     "africa": (18.0, 2.0, 14.5, 980),
     "region": (33.0, 5.5, 46.0, 1000),
     "east":   (32.2, 3.7, 175.0, 1060),
+    "ethiopia": (40.0, 9.4, 62.0, 960),
+    "horn":   (41.0, 10.5, 44.0, 960),
+    "tigray": (38.9, 13.9, 230.0, 930),
 }
 
 # approximate coordinates (lon, lat)
@@ -32,10 +35,16 @@ PLACES = {
     "Rabat": (-6.84, 34.02),
     "Bunia": (30.25, 1.56),
     "Abuja": (7.49, 9.06),
+    "Mekelle": (39.47, 13.50),
+    "Axum": (38.72, 14.12),
+    "Shire": (38.28, 14.10),
+    "Alamata": (39.55, 12.42),
+    "Addis Ababa": (38.76, 9.03),
+    "Asmara": (38.93, 15.33),
 }
 ROUTE = ["Olwiyo", "Bibia", "Nimule", "Juba"]
 
-LABELS = {"Uganda": "UGANDA", "S. Sudan": "SOUTH SUDAN", "Kenya": "KENYA", "Ethiopia": "ETHIOPIA",
+LABELS = {"Eritrea": "ERITREA", "Djibouti": "DJIBOUTI", "Somalia": "SOMALIA", "Uganda": "UGANDA", "S. Sudan": "SOUTH SUDAN", "Kenya": "KENYA", "Ethiopia": "ETHIOPIA",
           "Sudan": "SUDAN", "Dem. Rep. Congo": "DR CONGO", "Tanzania": "TANZANIA"}
 
 _COUNTRIES = None
@@ -168,7 +177,7 @@ def render(spec, p, t):
         for name, rings, rp, bounds in countries():
             if name in LABELS and (name in hl or spec.get("all_labels")):
                 x, y = project(*spec.get("label_pos", {}).get(name, rp), v)
-                if 40 < x < W - 40 and 300 < y < H - 300:
+                if 40 < x < W - 40 and 300 < y < spec.get("label_max_y", H - 300):  # keep clear of captions
                     f = _font(30 if v[2] < 100 else 38)
                     col = GOLD if name in hl else (150, 140, 120)
                     d.text((x, y), LABELS[name], font=f, fill=(*col, 230), anchor="mm",
@@ -237,14 +246,41 @@ def render(spec, p, t):
             d.rounded_rectangle((x - 14, my - 28, x + tw + 14, my + 28), radius=10, fill=(12, 10, 6, 215),
                                 outline=(*GOLD, 255), width=2)
             d.text((x, my), sg["text"], font=f, fill=GOLD, anchor="lm")
-    # pulse rings radiating from a place (e.g. a new connection)
-    rg = spec.get("rings")
-    if rg and p >= rg.get("start", 0.0):
+    # big faint area names with no country polygon, e.g. a region: [{"at": [lon, lat], "text": "TIGRAY"}]
+    for tg in spec.get("tags", []):
+        x, y = project(*tg["at"], v)
+        d.text((x, y), tg["text"], font=_font(tg.get("size", 64)), fill=(*GOLD, tg.get("alpha", 110)), anchor="mm")
+    # pulse rings radiating from a place (e.g. a new connection); one spec or a list
+    rgs = spec.get("rings")
+    for rg in (rgs if isinstance(rgs, list) else [rgs] if rgs else []):
+        if p < rg.get("start", 0.0):
+            continue
         x, y = project(*PLACES[rg["at"]], v)
+        col = tuple(rg.get("color", GOLD))
         for k in range(3):
             ph = (t * 0.7 + k / 3) % 1.0
             r = 24 + ph * rg.get("radius", 300)
-            d.ellipse((x - r, y - r, x + r, y + r), outline=(*GOLD, int(220 * (1 - ph))), width=4)
+            d.ellipse((x - r, y - r, x + r, y + r), outline=(*col, int(220 * (1 - ph))), width=4)
+    # event pins that drop in one by one: [{"at": place, "start": p, "label": "MEKELLE AIRPORT", "side": "r|l"}]
+    for pn in spec.get("pins", []):
+        k = (p - pn.get("start", 0.0)) / 0.06
+        if k <= 0:
+            continue
+        x, y = project(*PLACES[pn["at"]], v)
+        s = min(1.0, k) * (1 + 0.35 * max(0.0, 1 - abs(k - 1) * 2))  # pop with a little overshoot
+        col = tuple(pn.get("color", (225, 70, 50)))
+        if k < 6:  # one strong shock ring as it lands
+            r = 20 + 170 * min(1.0, k / 6)
+            d.ellipse((x - r, y - r, x + r, y + r), outline=(*col, int(230 * (1 - min(1.0, k / 6)))), width=6)
+        d.ellipse((x - 20 * s, y - 20 * s, x + 20 * s, y + 20 * s), fill=(*col, 255), outline=(0, 0, 0), width=3)
+        d.ellipse((x - 7 * s, y - 7 * s, x + 7 * s, y + 7 * s), fill=WHITE)
+        if pn.get("label") and k >= 1:
+            f = _font(pn.get("size", 34))
+            tw = d.textlength(pn["label"], font=f)
+            lx = x + 36 if pn.get("side", "r") == "r" else x - 36 - tw
+            d.rounded_rectangle((lx - 14, y - 27, lx + tw + 14, y + 27), radius=10, fill=(12, 10, 6, 225),
+                                outline=(*col, 255), width=3)
+            d.text((lx, y), pn["label"], font=f, fill=WHITE, anchor="lm")
     # capital markers for orientation
     for name in spec.get("capitals", []):
         x, y = project(*PLACES[name], v)
