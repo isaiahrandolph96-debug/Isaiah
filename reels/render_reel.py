@@ -24,6 +24,8 @@ import sys
 import numpy as np
 from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 W, H, FPS = 1080, 1920, 30
 GOLD = (212, 170, 52)
 WHITE = (246, 244, 238)
@@ -108,6 +110,12 @@ def grade(img, bright=0.58, tint=None, sat=1.0, blur=0):
 
 
 def load_bg(reel_dir, spec):
+    if "map" in spec:
+        return spec  # drawn per frame by mapviz
+    return _load_image_bg(reel_dir, spec)
+
+
+def _load_image_bg(reel_dir, spec):
     """spec: {"src": file, "crop": [x0,y0,x1,y1] fractions, "bright", "tint", "sat", "blur"}"""
     if spec.get("src") is None:
         base = Image.new("RGB", (W, H), tuple(spec.get("color", (10, 10, 14))))
@@ -284,6 +292,30 @@ def ranks_layer(p, spec):
     return layer
 
 
+def grid_layer(p, t, spec):
+    """N light bulbs, `lit` of them glowing: e.g. 1 in 20 people with power."""
+    n, lit, cols = spec.get("grid_n", 20), spec.get("grid_lit", 1), 5
+    layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    d = ImageDraw.Draw(layer)
+    rows = math.ceil(n / cols)
+    gap = 150
+    x0 = W / 2 - gap * (cols - 1) / 2
+    y0 = 990
+    for k in range(n):
+        a = ease_out((p - 0.05 - k * 0.012) / 0.12)
+        if a <= 0:
+            continue
+        cx, cy = x0 + (k % cols) * gap, y0 + (k // cols) * 118
+        on = k < lit and p > 0.35
+        if on:
+            glow = 0.75 + 0.25 * math.sin(t * 4)
+            d.ellipse((cx - 52, cy - 58, cx + 52, cy + 46), fill=(*GOLD, int(60 * glow)))
+        col = (255, 226, 130) if on else (70, 66, 60)
+        d.ellipse((cx - 30, cy - 38, cx + 30, cy + 22), fill=(*col, int(255 * a)))
+        d.rectangle((cx - 15, cy + 18, cx + 15, cy + 38), fill=(*((150, 130, 80) if on else (55, 52, 48)), int(255 * a)))
+    return layer
+
+
 # ---------------------------------------------------------------- main
 
 def main():
@@ -335,7 +367,7 @@ def main():
     cache = {}
     for sc_i, (sc, seg) in enumerate(zip(scenes, timeline)):
         big = load_bg(rd, sc["bg_spec"])
-        head_y = 760 if sc.get("special") else 960
+        head_y = sc.get("head_y", 760 if sc.get("special") else 960)
         head = headline_layer(sc["head"], sc.get("gold", 1), sc.get("cta", False), head_y)
         words = sc["show"].split()
         pages = caption_pages(words, probe, cap_font)
@@ -351,7 +383,11 @@ def main():
         for fr in range(f0, f1):
             lt = fr / FPS - seg["start"]
             p = lt / seg["dur"]
-            frame = bg_frame(big, lt, seg["dur"], zoom_in=sc_i % 2 == 0).convert("RGBA")
+            if isinstance(big, dict):
+                import mapviz
+                frame = mapviz.render(big["map"], p, lt).convert("RGBA")
+            else:
+                frame = bg_frame(big, lt, seg["dur"], zoom_in=sc_i % 2 == 0).convert("RGBA")
             frame.alpha_composite(header)
             # headline pops in over 0.3s
             pop = ease_out(lt / 0.3)
@@ -371,6 +407,8 @@ def main():
                 frame.alpha_composite(chips_layer(p, sc))
             elif special == "ranks":
                 frame.alpha_composite(ranks_layer(p, sc))
+            elif special == "grid":
+                frame.alpha_composite(grid_layer(p, lt, sc))
             # captions
             active = max([i for i, tt in enumerate(times) if lt >= tt] or [-1])
             pi = 0

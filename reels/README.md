@@ -21,3 +21,6 @@ python3 render_reel.py ebola-blindspot-60s --endcard <a reference reel with the 
 - Voice clips: ElevenLabs, voice "Yusuf Hakeem Kiser" (`nJvj5shg2xu1GKGxqfkE`), `eleven_multilingual_v2`. Write numbers out in `say` (TTS) and as digits in `show` (captions).
 - Backgrounds: gpt-image-2 at 9:16, prompt pattern "Vertical cinematic digital painting, dark moody palette … calm dark area across the middle … No text."
 - Data scenes: `"special": "bars" | "chips" | "ranks"` render animated stat graphics.
+
+## Map scenes
+`mapviz.py` draws animated maps with real country borders (Natural Earth via `pip install "geopandas<1.0"`). In `bg_spec`, use `{"map": {"view" | "from"/"to": "africa|region|east", "highlight": [...], "route": {"grow": [start, end], "flow": true, "places": [...]}, "dim": 0.5}}`. Routes and places live in `mapviz.PLACES` / `ROUTE`.
