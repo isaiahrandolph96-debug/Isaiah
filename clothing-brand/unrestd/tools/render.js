@@ -28,10 +28,10 @@ async function ready(page) {
 (async () => {
   const browser = await pw.chromium.launch();
 
-  // 1. one 1200 x 1200 PNG per mockup
-  const mdir = path.join(ROOT, 'mockups');
+  // 1. one 1200 x 1200 PNG per mockup and per label
   const shot = await browser.newPage({ viewport: { width: 1200, height: 1200 } });
   await localFonts(shot);
+  for (const mdir of [path.join(ROOT, 'mockups'), path.join(ROOT, 'labels')])
   for (const f of fs.readdirSync(mdir).filter(f => f.endsWith('.svg'))) {
     const svg = fs.readFileSync(path.join(mdir, f), 'utf8');
     await shot.setContent(`<body style="margin:0;background:${TILE};display:grid;place-items:center;height:100vh">
@@ -60,6 +60,14 @@ async function ready(page) {
   await book.screenshot({ path: path.join(ROOT, 'brand-book.png'), fullPage: true });
   const hero = await book.$('#drop');
   await hero.screenshot({ path: path.join(ROOT, 'drop-01.png') });
+
+  // 4. the Shift Jacket tech pack, as a two-page PDF for factories
+  const tp = await browser.newPage();
+  await localFonts(tp);
+  await tp.goto('file://' + path.join(__dirname, 'tech-pack.html'));
+  await ready(tp);
+  await tp.pdf({ path: path.join(ROOT, 'tech-pack-shift-jacket.pdf'), format: 'Letter', printBackground: true,
+                 margin: { top: '12mm', bottom: '12mm', left: '12mm', right: '12mm' } });
 
   await browser.close();
 })();

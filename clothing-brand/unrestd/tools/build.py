@@ -8,6 +8,8 @@ from pathlib import Path
 
 import build_logos as L
 import garments as G
+import labels as LB
+import techpack as TP
 
 ROOT = Path(__file__).resolve().parent.parent
 TOOLS = Path(__file__).resolve().parent
@@ -46,6 +48,14 @@ CARDS = [
 ]
 
 
+def size_table():
+    head = "".join(f'<th class="num">{z}</th>' for z in TP.SIZES)
+    rows = "".join(f'<tr><td class="mono"><b>{l}</b></td><td>{n}</td><td class="num">{t}</td>'
+                   + "".join(f'<td class="num">{v}</td>' for v in vals) + "</tr>" for l, n, t, vals in TP.POM)
+    return (f'<table><thead><tr><th></th><th>Shift Jacket, inches</th><th class="num">Tol.</th>{head}</tr></thead>'
+            f'<tbody>{rows}</tbody></table>')
+
+
 def cards(shots):
     out = []
     for main, inset, name, price, blurb, spec, feat in CARDS:
@@ -80,6 +90,14 @@ def main():
     for pid, s in shots.items():
         (ROOT / "mockups" / f"{pid}.svg").write_text(s + "\n")
 
+    (ROOT / "labels").mkdir(exist_ok=True)
+    label_cards = []
+    for lid, name, desc, lsvg in LB.all_labels():
+        (ROOT / "labels" / f"{lid}.svg").write_text(lsvg + "\n")
+        label_cards.append(f'<figure class="lbl lbl-{lid}"><div class="lbl-shot">{lsvg}</div>'
+                           f'<figcaption><b>{name}</b><small>{desc}</small></figcaption></figure>')
+    TP.build()
+
     html = (TOOLS / "brand-book.template.html").read_text()
     html = html.replace("</style>", CARD_CSS + "</style>", 1)
     html = html.replace("{{BODY}}", (TOOLS / "brand-book.body.html").read_text())
@@ -90,6 +108,9 @@ def main():
         "{{WORDMARK_BLACK}}": inline("tag-3d-black.svg"),
         "{{MONOGRAM_BONE}}": inline("mark-ud-bone.svg"),
         "{{PRODUCT_CARDS}}": cards(shots),
+        "{{LABELS}}": "".join(label_cards),
+        "{{JACKET_BACK}}": shots["shift-jacket-back"],
+        "{{SIZE_TABLE}}": size_table(),
     }
     for k, v in rep.items():
         html = html.replace(k, v)

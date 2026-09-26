@@ -23,9 +23,10 @@ BLACK, BRASS, BONE = "#121212", "#B58B4C", "#EEEBE3"
 # per-letter hand feel: (lift in px, tilt in degrees, extra gap in px; negative gap = overlap)
 # kept subtle: the approved sketch had none, so this only adds a little hand feel
 FEEL = {
-    "U": (0, 0, 0), "N": (-2, 0, -2), "R": (1, 0, -2), "E": (-2, 0, -2),
-    "S": (1, 0, -2), "T": (-3, 0, -2), "D": (-1, 0, 0),
+    "U": (0, 0, 0), "N": (-2, 0, -5), "R": (1, 0, -5), "E": (-2, 0, -5),
+    "S": (1, 0, -5), "T": (-3, 0, -5), "D": (-1, 0, -2),
 }
+BOLD = 5          # extra weight, drawn as a same-colour stroke: thicker lines embroider cleanly
 SIZE = 170        # font size in px
 LEAN = -6         # whole tag leans up to the right
 
@@ -57,20 +58,21 @@ def tag_body(ink, accent, outline=None, shadow=None, text="UNRESTD"):
         cx, cy = x + (x0 + x1) / 2, (y0 + y1) / 2
         glyphs.append(f'<path d="{d}" transform="translate({x:.1f},{lift}) rotate({tilt} {cx - x:.1f} {cy:.1f})"/>')
     g = "".join(glyphs)
-    # brass underline: a marker swoosh tight under the letters, rising to the right,
-    # with one drip hanging near the end (same geometry as the approved sketch)
-    under = (f'<path d="M10,30 C{width * 0.37:.0f},12 {width * 0.71:.0f},16 {width + 10:.0f},6" '
-             f'fill="none" stroke="{accent}" stroke-width="11" stroke-linecap="round"/>')
+    # brass underline: a tapered marker swoosh tight under the letters, rising to the
+    # right (same line as the approved sketch), with a teardrop drip hanging near the end
+    a1, a2 = width * 0.37, width * 0.71
+    under = (f'<path d="M4,33 C{a1:.0f},2 {a2:.0f},4 {width + 16:.0f},3 '
+             f'C{a2:.0f},26 {a1:.0f},30 4,33 Z" fill="{accent}"/>')
     dx = width * 0.905
-    drip = (f'<path d="M{dx:.0f},12 v34" stroke="{accent}" stroke-width="6" stroke-linecap="round"/>'
-            f'<circle cx="{dx:.0f}" cy="54" r="6" fill="{accent}"/>')
-    ink_drips = ""
+    drip = (f'<path d="M{dx - 3.5:.1f},9 C{dx - 3.5:.1f},26 {dx - 7:.1f},36 {dx - 7:.1f},44 '
+            f'A7,7 0 0 0 {dx + 7:.1f},44 C{dx + 7:.1f},36 {dx + 3.5:.1f},26 {dx + 3.5:.1f},9 Z" fill="{accent}"/>')
+    heavy = f'stroke-width="{BOLD}" stroke-linejoin="round"'
     layers = ""
     if shadow:   # 3D block shadow for big back prints
-        layers += f'<g fill="{shadow}" transform="translate(7,7)">{g}</g>'
+        layers += f'<g fill="{shadow}" stroke="{shadow}" {heavy} transform="translate(8,8)">{g}</g>'
     if outline:
-        layers += f'<g fill="none" stroke="{outline}" stroke-width="10" stroke-linejoin="round">{g}</g>'
-    layers += f'<g fill="{ink}">{g}</g>{ink_drips}'
+        layers += f'<g fill="{outline}" stroke="{outline}" stroke-width="{BOLD + 12}" stroke-linejoin="round">{g}</g>'
+    layers += f'<g fill="{ink}" stroke="{ink}" {heavy}>{g}</g>'
     body = f'<g transform="rotate({LEAN} {width / 2:.0f} {-SIZE * 0.3:.0f})">{layers}{under}{drip}</g>'
     return body, width
 

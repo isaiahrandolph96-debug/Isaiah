@@ -4,6 +4,8 @@ Artwork uses Archivo (condensed, 900) and IBM Plex Mono, so render it in a
 browser (tools/render.js) to get PNGs. Font sizes in fit() calls were measured
 in that browser so each line sets 300 wide without distorting the letters.
 """
+import hashlib
+
 from build_logos import tag, mark, patch, BLACK, FADED, TAN, MOSS, BRASS, BONE, CORD
 
 FONT_CSS = ("@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900"
@@ -67,9 +69,34 @@ SHADE = "rgba(0,0,0,.18)"
 LIGHT = "rgba(255,255,255,.16)"
 
 
+# Texture and light, shared by every garment. The ids are identical in every SVG,
+# so inlining several mockups on one page is safe.
+DEFS = ('<defs>'
+        '<pattern id="ud-twill" width="5" height="5" patternUnits="userSpaceOnUse" patternTransform="rotate(35)">'
+        '<path d="M0,0V5" stroke="rgba(255,255,255,.07)" stroke-width="1.1"/>'
+        '<path d="M2.5,0V5" stroke="rgba(0,0,0,.06)" stroke-width="1.1"/></pattern>'
+        '<linearGradient id="ud-light" x1="0" y1="0" x2="1" y2="0.35">'
+        '<stop offset="0" stop-color="#fff" stop-opacity=".13"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/>'
+        '<stop offset="1" stop-color="#000" stop-opacity=".26"/></linearGradient>'
+        '<filter id="ud-soft" x="-10%" y="-10%" width="120%" height="120%"><feGaussianBlur stdDeviation="3"/></filter>'
+        '</defs>')
+
+
+def finish(d, folds=()):
+    """Canvas grain, a soft key light from the upper left, and blurred fold shadows."""
+    f = "".join(f'<path d="{fd}" fill="none" stroke="rgba(0,0,0,.28)" stroke-width="5" '
+                f'stroke-linecap="round" filter="url(#ud-soft)"/>' for fd in folds)
+    cid = "ud-c" + hashlib.md5(d.encode()).hexdigest()[:8]    # stable across builds
+    return (f'<path d="{d}" fill="url(#ud-twill)"/><path d="{d}" fill="url(#ud-light)"/>'
+            f'<clipPath id="{cid}"><path d="{d}"/></clipPath><g clip-path="url(#{cid})">{f}</g>')
+
+
+SLEEVE_FOLDS = ("M44,250 q24,-10 48,4", "M40,300 q22,-8 44,6", "M396,250 q-24,-10 -48,4", "M400,300 q-22,-8 -44,6")
+
+
 def svg(vb, inner, label):
     return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" role="img" aria-label="{label}">'
-            f'<style>{FONT_CSS}</style>{inner}</svg>')
+            f'<style>{FONT_CSS}</style>{DEFS}{inner}</svg>')
 
 
 def stitch(d, dark):
@@ -91,6 +118,7 @@ def work_jacket(fill, collar, tab_cols, label="Shift Jacket"):
             "L336,186 L360,402 L410,392 L382,114 C378,90 368,74 348,68 L290,52 Z")
     inner = (
         f'<path d="{body}" fill="{fill}" stroke="{LINE}" stroke-width="2" stroke-linejoin="round"/>'
+        + finish(body, SLEEVE_FOLDS + ("M150,300 q30,14 60,4", "M300,280 q-26,16 -52,6")) +
         # waistband and cuffs
         f'<g fill="{fill}" stroke="{LINE}" stroke-width="2">'
         '<rect x="102" y="358" width="236" height="36" rx="2"/>'
@@ -121,6 +149,26 @@ def work_jacket(fill, collar, tab_cols, label="Shift Jacket"):
     return svg("0 30 440 410", inner, label)
 
 
+def work_jacket_back(fill, collar, graphic="", label="Shift Jacket, back"):
+    """Back view: collar band, yoke seam, and room for a chain-stitched back piece."""
+    dark = fill in (BLACK, FADED, MOSS)
+    body = ("M150,52 L92,68 C72,74 62,90 58,114 L30,392 L80,402 L104,186 L104,362 L336,362 "
+            "L336,186 L360,402 L410,392 L382,114 C378,90 368,74 348,68 L290,52 Z")
+    inner = (
+        f'<path d="{body}" fill="{fill}" stroke="{LINE}" stroke-width="2" stroke-linejoin="round"/>'
+        + finish(body, SLEEVE_FOLDS + ("M170,320 q50,14 100,0",)) +
+        f'<g fill="{fill}" stroke="{LINE}" stroke-width="2">'
+        '<rect x="102" y="358" width="236" height="36" rx="2"/>'
+        '<path d="M30,392 L80,402 L76,430 L26,420 Z"/><path d="M410,392 L360,402 L364,430 L414,420 Z"/></g>'
+        f'<path d="M150,50 C180,38 260,38 290,50 L286,74 C256,64 184,64 154,74 Z" fill="{collar}" stroke="{LINE}" stroke-width="2"/>'
+        + stitch("M92,112 C160,126 280,126 348,112", dark) + stitch("M92,118 C160,132 280,132 348,118", dark)
+        + stitch("M106,366 H334", dark) + stitch("M106,386 H334", dark)
+        + stitch("M92,70 Q106,120 104,186", dark) + stitch("M348,70 Q334,120 336,186", dark)
+        + graphic
+    )
+    return svg("0 30 440 410", inner, label)
+
+
 def active_jacket(fill, tab_cols, label="Night Shift Jacket"):
     """Hooded duck canvas jacket: quilted lining, knit cuffs and waistband."""
     dark = fill in (BLACK, FADED, MOSS)
@@ -129,6 +177,7 @@ def active_jacket(fill, tab_cols, label="Night Shift Jacket"):
     ribs = "".join(f'<path d="M{x},376 V404"/>' for x in range(104, 340, 6))
     inner = (
         f'<path d="{body}" fill="{fill}" stroke="{LINE}" stroke-width="2" stroke-linejoin="round"/>'
+        + finish(body, SLEEVE_FOLDS) +
         # hood, with the quilted lining showing inside
         f'<path d="M150,62 C136,-6 304,-6 290,62 C282,102 158,102 150,62 Z" fill="{fill}" stroke="{LINE}" stroke-width="2"/>'
         '<path d="M170,60 C176,16 264,16 270,60 C260,90 180,90 170,60 Z" fill="#2B2B2B"/>'
@@ -168,6 +217,7 @@ def tee(fill, graphic="", back=False, label="T-shirt"):
              '<path d="M13,127 L61,158" stroke-dasharray="4 4"/><path d="M387,127 L339,158" stroke-dasharray="4 4"/>'
              '<path d="M86,414 C160,422 240,422 314,414" stroke-dasharray="4 4"/></g>')
     inner = (f'<path d="{body}" fill="{fill}" stroke="{LINE}" stroke-width="2" stroke-linejoin="round"/>'
+             + finish(body, ("M110,380 q40,12 80,2", "M300,200 q-20,40 -6,90")) +
              f'{neck}{rib}{seams}{graphic}')
     return svg("-10 0 420 440", inner, label)
 
@@ -183,6 +233,7 @@ def zip_hoodie(fill, graphic="", back=False, label="Zip hoodie"):
     hood = ('<path d="M150,60 C138,-4 302,-4 290,60 C280,40 160,40 150,60 Z"/>' if back else
             '<path d="M150,60 C138,-4 302,-4 290,60 C280,102 160,102 150,60 Z"/>')
     inner = (f'<path d="{body}" fill="{fill}" stroke="{LINE}" stroke-width="2" stroke-linejoin="round"/>'
+             + finish(body, SLEEVE_FOLDS) +
              f'<g fill="{fill}" stroke="{LINE}" stroke-width="2">'
              '<path d="M18,400 L70,410 L66,442 L14,432 Z"/><path d="M422,400 L370,410 L374,442 L426,432 Z"/>'
              f'<rect x="98" y="448" width="244" height="28"/>{hood}</g>'
@@ -211,6 +262,7 @@ TAB_TAN = (TAN, BLACK, BRASS, BLACK)
 def products():
     return [
         dict(id="shift-jacket-black", svg=work_jacket(BLACK, "#1E1E1E", TAB_BLACK, "Shift Jacket, black")),
+        dict(id="shift-jacket-back", svg=work_jacket_back(BLACK, "#1E1E1E", placed_svg(tag(BONE), 118, 150, 204))),
         dict(id="shift-jacket-tan", svg=work_jacket(TAN, CORD, TAB_BLACK, "Shift Jacket, duck tan")),
         dict(id="shift-jacket-faded", svg=work_jacket(FADED, "#2A2A29", TAB_BLACK, "Shift Jacket, faded black")),
         dict(id="night-shift-jacket", svg=active_jacket(BLACK, TAB_BLACK, "Night Shift Jacket, black")),

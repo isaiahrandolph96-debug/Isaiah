@@ -4,12 +4,20 @@
 
 UNRESTD is UNRESTED with the E taken out, because we didn't stop for it. The logo is a graffiti tag with a brass swoosh that ends in a drip: the paint's still wet.
 
-The full brand book is `brand-book.html` (open it in a browser), and the same content is rendered as `brand-book.png`.
+The full brand book is `brand-book.html` (open it in a browser), and the same content is rendered as `brand-book.png`. This is **v4**.
+
+## What's new in v4
+- **Logo:** heavier letters that embroider cleanly at small sizes, tighter joins, a tapered brass swoosh and a teardrop drip. Usage rules cover clear space, minimum sizes and what never to do.
+- **Mockups:** canvas grain, light and fold shadows, plus a new back view of the Shift Jacket with an optional chain-stitched tag.
+- **Labels and packaging:** woven neck label, care label (with the legally required details), numbered lot label, kraft hang tag, slap sticker and mailer box.
+- **Production:** a two-page factory tech pack (`tech-pack-shift-jacket.pdf`) and a ready-to-send quote email (`factory-quote-email.md`).
+- **Pricing:** a price check against Carhartt WIP ($265 to $358) and Dickies (about $60).
+- **Launch:** the first nine Instagram posts, planned.
 
 ## Name status (checked 26 Sept 2026)
 - **Domains available** (Vercel registrar check): `unrestd.com`, `wearunrestd.com`, `unrestd.co` and `unrestd.shop`. `unrested.com` is taken. Buy `unrestd.com` soon, because "available" only means nobody owns it right now.
 - **Risk:** a small brand called **Unrest Clothing** exists (`unrestclothing.com`, @unrestclth). A name this close can cause a trademark conflict in Class 25 (clothing). Get a USPTO search done, ideally by a trademark attorney, before you order stock.
-- **Handles:** not checked yet. Try @unrestd, then @wearunrestd.
+- **Handles:** Instagram and TikTok block automated checks, so I couldn't confirm them. A web search found no public @unrestd profile. Check in the apps and claim it the day you buy the domain, or fall back to @wearunrestd.
 
 ## The brand in five lines
 - **Idea:** restless, not reckless. UNRESTD is about never settling, not about never sleeping. The brand never glamorises burnout or makes fun of rest.
@@ -35,6 +43,8 @@ The full brand book is `brand-book.html` (open it in a browser), and the same co
 
 "You keep" is after Shopify's 2.9% + 30¢ card fee. Every cost except the $15.29 Printful tee is an estimate, so get three factory quotes and check Printful's calculator before you set prices.
 
+**Price check:** Dickies Eisenhower is about $60, Carhartt WIP Detroit (Winter) is $265, and Carhartt WIP OG Detroit is $318 to $358. The Shift Jacket at $165 is $100 under Carhartt WIP with the same 12 oz duck.
+
 **Budget:** about $1,060–2,270 before the first batch. The first batch of 40 Shift Jackets costs another $1,520–2,920. Selling those 40 jackets at $165 brings in about $6,400 after fees, which covers everything.
 
 ## Files
@@ -45,8 +55,11 @@ The full brand book is `brand-book.html` (open it in a browser), and the same co
 | `print/` | Back-print artwork at 4500 × 5400 px on a transparent background: `shift-tee-back.png` and `split-zip-hoodie-back.png` |
 | `mockups/` | Flat drawings of every Drop 01 piece, including all three Shift Jacket colours, as SVG and 1200 px PNG. These are the starting point for the tech packs |
 | `drop-01.png` | The Drop 01 line-up on one page |
+| `labels/` | Neck label, care label, hang tag, slap sticker and mailer box, as SVG and PNG |
+| `tech-pack-shift-jacket.pdf` | Two-page factory tech pack: flats with measurement points, colourways, size chart, bill of materials, construction and first order |
+| `factory-quote-email.md` | The quote-request email to send with the tech pack |
 | `fonts/` | Archivo, IBM Plex Mono, Sedgwick Ave Display and the other concept faces (all SIL Open Font License, licence files included) |
-| `tools/` | Generators: `build_tag.py` draws the tag, `build.py` makes the logos, mockups and brand book, and `render.js` renders the PNGs (needs `pip install fonttools brotli`) |
+| `tools/` | Generators: `build_tag.py` draws the tag, `labels.py` the labels, `techpack.py` the tech pack, and `build.py` makes everything, including the brand book. `render.js` renders the PNGs and the tech pack PDF (needs `pip install fonttools brotli`) |
 
 ## Rebuild
 ```
