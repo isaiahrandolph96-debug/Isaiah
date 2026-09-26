@@ -21,10 +21,8 @@ def inline(path):
 
 
 def hero_wordmark():
-    body, w, _ = L.wordmark("currentColor", "SPLIT")
-    body = body.replace('fill="SPLIT"', 'style="fill:var(--split)"')
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -16 {w + 4} {L.H + 32}" '
-            f'aria-hidden="true">{body}</svg>')
+    body, w, h = L.tag("currentColor")
+    return f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.0f} {h:.0f}" aria-hidden="true">{body}</svg>'
 
 
 CARDS = [
@@ -37,11 +35,10 @@ CARDS = [
      "A hooded duck canvas jacket with a quilted lining and knit cuffs, for the coldest shifts.",
      "Small batch · pre-order · black", False),
     ("split-zip-hoodie", "split-zip-hoodie-back", "Split Zip Hoodie", "$95",
-     "U on one side of the zip and D on the other, so the zipper stands in for the missing E. "
-     "NOT DONE YET. runs across the back.",
+     "The tag on the chest, and the big 3D tag across the back over NOT DONE YET.",
      "Duck tan · heavyweight full zip · print-on-demand", False),
     ("shift-tee-black", "shift-tee-bone-back", "Shift Tee", "$42",
-     "The tee under the jacket. Black with a tonal monogram, or bone with the back print.",
+     "The tee under the jacket. Black with a tonal UD tag, or bone with WHILE YOU SLEPT. on the back.",
      "Comfort Colors 1717 · print-on-demand", False),
     ("watch-beanie", None, "Watch Beanie", "$32",
      "A black rib knit with the tab on the cuff. It's embroidered at launch, and becomes woven once you order patches.",
@@ -90,8 +87,8 @@ def main():
         "{{WORDMARK_HERO}}": hero_wordmark(),
         "{{TAB_BLACK}}": inline("woven-tab-black.svg"),
         "{{TAB_TAN}}": inline("woven-tab-tan.svg"),
-        "{{WORDMARK_BLACK}}": inline("wordmark-black.svg"),
-        "{{MONOGRAM_BONE}}": inline("monogram-bone.svg"),
+        "{{WORDMARK_BLACK}}": inline("tag-3d-black.svg"),
+        "{{MONOGRAM_BONE}}": inline("mark-ud-bone.svg"),
         "{{PRODUCT_CARDS}}": cards(shots),
     }
     for k, v in rep.items():

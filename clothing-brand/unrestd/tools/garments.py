@@ -4,7 +4,7 @@ Artwork uses Archivo (condensed, 900) and IBM Plex Mono, so render it in a
 browser (tools/render.js) to get PNGs. Font sizes in fit() calls were measured
 in that browser so each line sets 300 wide without distorting the letters.
 """
-from build_logos import wordmark, monogram, patch, H, BLACK, FADED, TAN, MOSS, BRASS, BONE, CORD
+from build_logos import tag, mark, patch, BLACK, FADED, TAN, MOSS, BRASS, BONE, CORD
 
 FONT_CSS = ("@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900"
             "&family=IBM+Plex+Mono:wght@500;600&display=swap');"
@@ -25,19 +25,21 @@ def rules(y, ink, n=3):
 
 
 def art_tee_back(ink=BLACK, accent=BRASS):
-    """Bone Shift Tee, back: the night-shift line."""
+    """Bone Shift Tee, back: the night-shift line, signed with the tag."""
     return (fit("WHILE YOU", 74.6, 56, ink) + fit("SLEPT.", 120.9, 157, ink)
             + rules(180, accent)
             + f'<text class="m" x="0" y="238" font-size="15" fill="{ink}">FIRST SHIFT / DROP 01</text>'
-            + f'<text class="m" x="300" y="238" font-size="15" fill="{ink}" text-anchor="end">UNRESTD</text>')
+            + placed_svg(tag(ink), 196, 250, 104))
 
 
 def art_hoodie_back(ink=BLACK, accent=BRASS):
-    """Split Zip Hoodie, back: the tagline, stacked."""
-    return (fit("NOT DONE", 82.0, 61, ink) + fit("YET.", 188.6, 211, ink)
-            + rules(234, accent)
-            + f'<text class="m" x="0" y="292" font-size="15" fill="{ink}">REST LATER</text>'
-            + f'<text class="m" x="300" y="292" font-size="15" fill="{ink}" text-anchor="end">UNRESTD</text>')
+    """Split Zip Hoodie, back: the big 3D tag over the tagline."""
+    body, w, h = tag(ink, outline=BONE, shadow=BRASS)
+    th = h * 300 / w
+    return (placed_svg((body, w, h), 0, 0, 300)
+            + rules(th - 10, accent)
+            + f'<text class="m" x="0" y="{th + 46:.0f}" font-size="17" fill="{ink}">NOT DONE YET</text>'
+            + f'<text class="m" x="300" y="{th + 46:.0f}" font-size="17" fill="{ink}" text-anchor="end">REST LATER</text>')
 
 
 # ---------- placing marks ----------
@@ -47,22 +49,15 @@ def placed(art, x, y, w):
     return f'<g transform="translate({x},{y}) scale({w / 300})">{art}</g>'
 
 
-def placed_logo(fn, cols, x, y, w):
-    body, lw = fn(*cols)[:2]
+def placed_svg(res, x, y, w):
+    """Place a (body, width, height) logo at (x, y) scaled to width w."""
+    body, lw, _ = res
     return f'<g transform="translate({x},{y}) scale({w / lw})">{body}</g>'
 
 
 def placed_tab(cols, x, y, w):
     body, tw, _ = patch(*cols)
     return f'<g transform="translate({x},{y}) scale({w / tw})">{body}</g>'
-
-
-def split_monogram(ink, cx, y, w):
-    """U|D sized so the brass-bar gap sits exactly on a zipper at x = cx:
-    U on one side of the zip, D on the other."""
-    body, ww, bar = wordmark(ink, "none", "U|D")
-    s = w / ww
-    return f'<g transform="translate({cx - bar * s},{y}) scale({s})">{body}</g>'
 
 
 # ---------- garments ----------
@@ -219,11 +214,11 @@ def products():
         dict(id="shift-jacket-tan", svg=work_jacket(TAN, CORD, TAB_BLACK, "Shift Jacket, duck tan")),
         dict(id="shift-jacket-faded", svg=work_jacket(FADED, "#2A2A29", TAB_BLACK, "Shift Jacket, faded black")),
         dict(id="night-shift-jacket", svg=active_jacket(BLACK, TAB_BLACK, "Night Shift Jacket, black")),
-        dict(id="split-zip-hoodie", svg=zip_hoodie(TAN, split_monogram(BLACK, 220, 140, 110), label="Split Zip Hoodie, front")),
+        dict(id="split-zip-hoodie", svg=zip_hoodie(TAN, placed_svg(tag(BLACK), 232, 128, 96), label="Split Zip Hoodie, front")),
         dict(id="split-zip-hoodie-back", svg=zip_hoodie(TAN, placed(art_hoodie_back(), 130, 96, 180), back=True,
                                                          label="Split Zip Hoodie, back")),
-        dict(id="shift-tee-black", svg=tee(BLACK, placed_logo(monogram, (FADED, FADED), 240, 96, 42),
-                                           label="Shift Tee, black, tonal monogram")),
+        dict(id="shift-tee-black", svg=tee(BLACK, placed_svg(mark(FADED, FADED), 236, 90, 50),
+                                           label="Shift Tee, black, tonal UD mark")),
         dict(id="shift-tee-bone-back", svg=tee(BONE, placed(art_tee_back(), 110, 92, 180), back=True,
                                                label="Shift Tee, bone, back")),
         dict(id="watch-beanie", svg=beanie(BLACK, placed_tab(TAB_BLACK, 110, 180, 80), label="Watch Beanie")),

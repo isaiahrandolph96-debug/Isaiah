@@ -1,12 +1,15 @@
-"""Build the UNRESTD logo SVGs from pure geometry (no fonts needed).
+"""Build the UNRESTD logo files: the graffiti tag, the short UD mark and the woven tabs.
 
 Run:  python3 clothing-brand/unrestd/tools/build_logos.py
-Writes clothing-brand/unrestd/logo/*.svg and prints nothing on success.
+Writes clothing-brand/unrestd/logo/*.svg (transparent backgrounds, pure vector).
 
-The name is UNRESTED with the E taken out. The wordmark marks the spot: a
-brass bar stands where the missing E would be, between the T and the D.
+The tag itself is drawn in build_tag.py. Every function here returns
+(svg body, width, height) with the origin at the top-left corner, so garments
+and pages can place it like an image.
 """
 from pathlib import Path
+
+from build_tag import tag_body, box
 
 OUT = Path(__file__).resolve().parent.parent / "logo"
 
@@ -14,110 +17,58 @@ OUT = Path(__file__).resolve().parent.parent / "logo"
 BLACK, FADED, TAN, MOSS, BRASS, BONE, CORD = (
     "#121212", "#3B3B39", "#C2A878", "#4A4F36", "#B58B4C", "#EEEBE3", "#5A3E2B")
 
-H, S, W, GAP = 100, 24, 62, 10   # cap height, stroke, letter width, letter gap
-C = 22                           # chamfer size
-NAME = "UNREST|D"                # "|" is where the brass bar goes
+
+def _boxed(body, width):
+    x, y, w, h = box(width)
+    return f'<g transform="translate({-x:.1f},{-y:.1f})">{body}</g>', w, h
 
 
-def rects(*rs):
-    return "".join(f"M{x},{y}h{w}v{h}h{-w}z" for x, y, w, h in rs)
+def tag(ink, accent=BRASS, outline=None, shadow=None):
+    """The full UNRESTD tag with the brass swoosh and drip."""
+    return _boxed(*tag_body(ink, accent, outline, shadow))
 
 
-def letter(ch):
-    """Return (path data, fill rule, advance width) for one squared capital.
-    Rect unions use nonzero; shapes with a counter use evenodd."""
-    if ch == "U":
-        return (f"M0,0H{S}V{H - S}H{W - S}V0H{W}V{H - C}L{W - C},{H}H{C}L0,{H - C}z", "nonzero", W)
-    if ch == "N":
-        nw, t = 84, 18            # wider than the rest so the diagonal has room
-        d = rects((0, 0, S, H), (nw - S, 0, S, H)) + \
-            f"M{S - 2},0H{S + t}L{nw - S + 2},{H}H{nw - S - t}z"
-        return d, "nonzero", nw
-    if ch == "R":
-        d = (f"M0,{H}V0H{W - C}L{W},{C}V50L{W - 10},58L{W},66V{H}H{W - S}V70H{S}V{H}z"
-             f"M{S},{S}V46H{W - S}V{S}z")
-        return d, "evenodd", W
-    if ch == "E":
-        return rects((0, 0, S, H), (0, 0, W - 2, S), (0, 40, W - 10, 21), (0, H - S, W - 2, S)), "nonzero", W - 2
-    if ch == "S":
-        d = (f"M{C},0H{W}V{S}H{S}V38H{W - C}L{W},{38 + C}V{H}H0V{H - S}H{W - S}V62H{C}L0,{62 - C}V{C}z")
-        return d, "nonzero", W
-    if ch == "T":
-        return rects((0, 0, W, S), (W / 2 - S / 2, 0, S, H)), "nonzero", W
-    if ch == "D":
-        d = (f"M0,0H{W - C}L{W},{C}V{H - C}L{W - C},{H}H0z"
-             f"M{S},{S}V{H - S}H{W - S}V{S}z")
-        return d, "evenodd", W
-    raise ValueError(ch)
+def mark(ink, accent=BRASS):
+    """UD: the short tag for tee chests, beanie cuffs and inside collars."""
+    return _boxed(*tag_body(ink, accent, text="UD"))
 
 
-def glyph(ch, x):
-    d, rule, w = letter(ch)
-    return f'<path transform="translate({x},0)" d="{d}" fill-rule="{rule}"/>', w
-
-
-def wordmark(ink, split, text=NAME):
-    """Return (svg body, width, x of the bar's centre)."""
-    parts, x, bar = [], 0, None
-    for ch in text:
-        if ch == "|":
-            bar = x + 4
-            x = bar + 6 + 14
-            continue
-        p, w = glyph(ch, x)
-        parts.append(p)
-        x += w + GAP
-    body = f'<g fill="{ink}">{"".join(parts)}</g>'
-    if bar is not None:
-        body += f'<rect x="{bar}" y="-14" width="6" height="{H + 28}" fill="{split}"/>'
-    return body, x - GAP, (bar + 3 if bar is not None else None)
-
-
-def monogram(ink, split):
-    """U|D: the first and last letters around the brass bar. For tee chests,
-    beanie cuffs and inside collars."""
-    body, w, _ = wordmark(ink, split, "U|D")
-    return body, w
-
-
-def patch(bg, ink, split, stitch):
-    """The woven tab: a wide stitched rectangle carrying the wordmark.
-    Deliberately wide (about 3:1), never square."""
-    body, w, _ = wordmark(ink, split)
-    px, py = 70, 46
-    W2, H2 = w + 2 * px, H + 2 * py
-    return (f'<rect x="0" y="0" width="{W2}" height="{H2}" rx="10" fill="{bg}"/>'
-            f'<rect x="16" y="16" width="{W2 - 32}" height="{H2 - 32}" rx="4" fill="none" '
-            f'stroke="{stitch}" stroke-width="5" stroke-dasharray="16 10"/>'
+def patch(bg, ink, accent, stitch):
+    """The woven tab: a wide stitched rectangle carrying the tag.
+    Deliberately wide (about 2.5:1), never square."""
+    body, w, h = tag(ink, accent)
+    px, py = 50, 20
+    W2, H2 = w + 2 * px, h + 2 * py
+    return (f'<rect x="0" y="0" width="{W2:.0f}" height="{H2:.0f}" rx="14" fill="{bg}"/>'
+            f'<rect x="20" y="20" width="{W2 - 40:.0f}" height="{H2 - 40:.0f}" rx="6" fill="none" '
+            f'stroke="{stitch}" stroke-width="6" stroke-dasharray="18 12"/>'
             f'<g transform="translate({px},{py})">{body}</g>'), W2, H2
 
 
-def svg(inner, w, h, pad, title="UNRESTD"):
-    vb = f"{-pad} {-pad} {w + 2 * pad} {h + 2 * pad}"
-    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="{vb}" '
-            f'width="{(w + 2 * pad) * 2:.0f}" height="{(h + 2 * pad) * 2:.0f}" role="img">'
-            f"<title>{title}</title>{inner}</svg>\n")
+def svg(inner, w, h, title):
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w:.0f} {h:.0f}" '
+            f'width="{w * 2:.0f}" height="{h * 2:.0f}" role="img"><title>{title}</title>{inner}</svg>\n')
 
 
 def main():
     OUT.mkdir(exist_ok=True)
     for old in OUT.glob("*.svg"):
         old.unlink()
-    # transparent backgrounds, so every file can go straight to a printer or embroiderer
-    variants = {
-        "bone": (BONE, BRASS),       # for black, faded black and moss garments
-        "black": (BLACK, BRASS),     # for bone and tan garments
-        "mono-black": (BLACK, BLACK),
-        "mono-bone": (BONE, BONE),
+    tags = {
+        "bone": dict(ink=BONE),                                   # on black, faded black, moss
+        "black": dict(ink=BLACK),                                 # on bone and duck tan
+        "mono-bone": dict(ink=BONE, accent=BONE),
+        "mono-black": dict(ink=BLACK, accent=BLACK),
+        "3d-bone": dict(ink=BONE, outline=BLACK, shadow=BRASS),   # big back prints on black
+        "3d-black": dict(ink=BLACK, outline=BONE, shadow=BRASS),  # big back prints on tan and bone
     }
-    for name, (ink, split) in variants.items():
-        body, w, _ = wordmark(ink, split)
-        (OUT / f"wordmark-{name}.svg").write_text(svg(body, w, H, 24, "UNRESTD wordmark"))
-        body, w = monogram(ink, split)
-        (OUT / f"monogram-{name}.svg").write_text(svg(body, w, H, 20, "UNRESTD monogram"))
+    for name, kw in tags.items():
+        (OUT / f"tag-{name}.svg").write_text(svg(*tag(**kw), "UNRESTD tag"))
+    for name, kw in {"bone": dict(ink=BONE), "black": dict(ink=BLACK),
+                     "tonal-faded": dict(ink=FADED, accent=FADED)}.items():
+        (OUT / f"mark-ud-{name}.svg").write_text(svg(*mark(**kw), "UNRESTD UD mark"))
     for name, cols in {"black": (BLACK, BONE, BRASS, BONE), "tan": (TAN, BLACK, BRASS, BLACK)}.items():
-        body, w, h = patch(*cols)
-        (OUT / f"woven-tab-{name}.svg").write_text(svg(body, w, h, 0, "UNRESTD woven tab"))
+        (OUT / f"woven-tab-{name}.svg").write_text(svg(*patch(*cols), "UNRESTD woven tab"))
 
 
 if __name__ == "__main__":
