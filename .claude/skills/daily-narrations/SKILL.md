@@ -32,6 +32,7 @@ The owner needs **five narrations every day**, one per top story from the daily 
 | **5: HUMAN INTEREST** | Sport, culture, people | Warm and lively, but respectful, especially when there's a darker thread. | Bright voice at 1.0–1.05×. Upbeat bed. |
 
 ## 3. Structure of every narration (150–230 words, about 60–90 s)
+Answer who, what, when, where, why and how naturally, the way a BBC or Reuters script would, without announcing the structure. The steps below are the order of ideas, not labels to read out.
 1. **Hook (1–2 sentences):** the stake or the most striking fact. No "Hello" and no intro.
 2. **What happened:** who, what, where and when, with dates. Name the country *and* where it is ("Mali, in West Africa's Sahel").
 3. **Context for first-time readers:** explain every group, acronym and place the first time ("JNIM, an armed group linked to al-Qaeda"). No jargon.

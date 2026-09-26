@@ -8,7 +8,7 @@ description: Write the Africa Blind Spot Field Report, the owner's daily briefin
 The owner wants briefings so detailed **the reader feels they are there**, and **only the best, ready-to-go stories**. The model to copy is `briefings/2026-09-26-field-report.md`.
 
 ## Owner's standing rules (apply to every story and briefing)
-1. **Each story represents something different.** The five stories must not repeat the same angle. Give each one a distinct **"What this story represents"** line, for example "a peace deal collapsing", "a city under siege", "a state losing control", "a disease being pushed back", "a community demanding safety". Two conflict stories must show two different sides of Africa's reality.
+1. **Each story represents something different.** The five stories must not repeat the same angle. Decide what each one represents (in the editor's note, not in the story text), for example "a peace deal collapsing", "a city under siege", "a state losing control", "a disease being pushed back", "a community demanding safety". Two conflict stories must show two different sides of Africa's reality.
 2. **Always framed as Africa Blind Spot.** Every story shows why it's a blind spot: what the world is missing and why it matters. It carries the brand's voice ("the stories others miss").
 3. **Informed, never confused. No jargon.** Write for a smart 15-year-old reading about Africa for the first time.
    - Explain every group, acronym and place the first time it appears, in plain words ("the RSF, a paramilitary force at war with Sudan's army").
@@ -28,15 +28,19 @@ The owner wants briefings so detailed **the reader feels they are there**, and *
 - Use the present tense for the scene and the past tense for events. Use short sentences and specific nouns. Give place names with the region and the country.
 - Leave out graphic violence beyond what's needed to understand the story. Give dignity to victims. Never use propaganda footage or quotes from captives.
 
-## 3. Structure of each story (500–800 words)
-1. **Headline and location line:** `## N · COUNTRY: A headline with a human angle`, then **City, region, where in Africa**.
-   Add **What this story represents:** in one line, and **Why it's a blind spot:** in one line.
-2. **THE SCENE** (150–250 words): open on a moment. Put a person, a place or a sound in the first line.
-3. **WHAT HAPPENED:** dated bullets with numbers and sources. Give disputed figures as a range, saying who says what.
-4. **Context** (THE WEIGHT OF HISTORY, THE SIEGE BEHIND IT, THE BIG PICTURE…): what a first-time reader needs to know.
-5. **BOTH SIDES:** the government's or the other party's position, in their own words where possible.
-6. **WHAT'S NEXT:** two or three concrete things to watch.
-7. **READY TO POST:** a one-line **Hook**, a **Caption line** in a tone that matches severity (no emojis beyond a flag on tier 1–2 stories), **Sources** (outlet and date), plus a ⚠️ line for anything the owner must re-check (helplines, fast-moving numbers, previews).
+## 3. Write it like a BBC or Reuters reporter: the structure stays invisible
+The story must answer **who, what, when, where, why and how**, but naturally, inside the prose. **No visible scaffolding in the story text:** no labels like "THE SCENE", "WHAT HAPPENED", "BOTH SIDES", "Objective" or "What this story represents".
+- **Headline:** `## Country: a headline with a human angle`, then an italic place line (*City, where in Africa*).
+- **Opening (1–2 short paragraphs):** a real, reported moment: a person, a place, a sound.
+- **Then the news:** by the third or fourth paragraph the reader knows what happened, to whom, where and when, and the numbers with their sources. Give disputed figures as a range, saying who says what.
+- **Then the why and how:** context and history, woven in and not lectured.
+- **Both sides in their own words**, as ordinary paragraphs.
+- **End on what happens next,** or on a closing line that lands. No labelled summary.
+- **Length:** 500–800 words. Occasional plain subheads are fine if they read like a newspaper, not a form.
+
+After each story, add an **Editor's note (for you only)** blockquote. It's the planning and isn't for publishing:
+- **Objective**, **Represents**, **Blind spot**, **Hook**, **Caption** (tone matched to severity; no emojis beyond a flag on tier 1–2 stories), **Sources** (outlet and date),
+- and a ⚠️ line for anything to re-check.
 
 ## 4. Sources
 - Mix wire services (Reuters, AP, AFP) with **African outlets** (Addis Standard, Daily Maverick, Premium Times, Nation, Sudan Tribune, Radio Okapi, Hespress, Sunday Times, IOL) and with humanitarian and rights sources (UN, WHO, MSF, HRW, Amnesty).
