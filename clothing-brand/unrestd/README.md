@@ -72,6 +72,7 @@ The full brand book is `brand-book.html` (open it in a browser), and the same co
 | `labels/` | Neck label, care label, hang tag, slap sticker and mailer box, as SVG and PNG |
 | `tech-pack-shift-jacket.pdf` | Two-page factory tech pack: flats with measurement points, colourways, size chart, bill of materials, construction and first order |
 | `factory-quote-email.md` | The quote-request email to send with the tech pack |
+| `factories.md` | Shortlist of real factories for the jackets and heavy pieces, with minimums, lead times, contacts and a vetting checklist |
 | `fonts/` | Archivo, IBM Plex Mono, Sedgwick Ave Display and the other concept faces (all SIL Open Font License, licence files included) |
 | `tools/` | Generators: `build_tag.py` draws the tag, `labels.py` the labels, `techpack.py` the tech pack, and `build.py` makes everything, including the brand book. `render.js` renders the PNGs and the tech pack PDF (needs `pip install fonttools brotli`) |
 
