@@ -1,16 +1,16 @@
 ---
 name: daily-narrations
-description: Produce Africa Blind Spot's ten daily narrations (voiceover scripts for CapCut) from the day's top ten Africa stories. Use when asked for the daily narrations, the day's scripts, or "narrations from today's briefing".
+description: Produce Africa Blind Spot's five daily narrations (voiceover scripts for CapCut) from the day's top five Africa stories. Use when asked for the daily narrations, the day's scripts, or "narrations from today's briefing".
 ---
 
-# Africa Blind Spot: the ten daily narrations
+# Africa Blind Spot: the five daily narrations
 
-The owner needs **ten narrations every day**, one per top story from the daily briefing. They paste them into CapCut (text-to-speech or their own voice). Each must be **informative, clear to a first-time reader, and match the severity of the story in tone**.
+The owner needs **five narrations every day**, one per top story from the daily briefing. They paste them into CapCut (text-to-speech or their own voice). Each must be **informative, clear to a first-time reader, and match the severity of the story in tone**.
 
-## 1. Pick the day's top ten
+## 1. Pick the day's top five
 - Start from today's briefing in `briefings/` (write or refresh it first if it's stale). Research with web search, and prefer items dated today or the last 48 h.
 - Rank by **human stakes first** (lives, displacement, rights), then **reach** (how many people are affected), then **newness**, then **the blind-spot factor** (big but under-covered).
-- Spread the list across regions (North, West, Central, East, Southern Africa, the Horn) and across topics (conflict, health, climate, politics, economy, culture or sport). Aim for **no more than 4 conflict stories**, and **at least one** hopeful, economic or culture story.
+- Spread the list across regions (North, West, Central, East, Southern Africa, the Horn) and across topics (conflict, health, climate, politics, economy, culture or sport). Aim for **no more than 2 conflict stories**, and **at least one** hopeful, economic or culture story. Cover at least 3 different regions.
 - For a continuing story, only include it if something **new** happened. Lead with the new development.
 
 ## 2. Assign a severity tier (it sets the tone)
@@ -45,6 +45,6 @@ The owner needs **ten narrations every day**, one per top story from the daily b
 - State "as of <date>" in the file header. If a story is still unfolding (a match, a vote count), label it **PREVIEW** or **DEVELOPING** and say what to update.
 
 ## 6. Output
-- Write `narrations/YYYY-MM-DD/NARRATIONS.md` in the format of `narrations/2026-09-26/NARRATIONS.md`. Each story is a `## N. Title` block with metadata bullets (Tier, Tone, Length, Voice/music, On-screen title, Pronunciation, Sources) and the narration between `<<<` and `>>>` lines.
-- Run `python3 narrations/split.py narrations/YYYY-MM-DD` to write clean `01-*.txt` … `10-*.txt` files, ready to paste into CapCut. It also prints word counts and flags symbols that TTS reads badly.
-- Commit and push. Send the owner `NARRATIONS.md` and the folder's txt files, and list the ten with their tiers in chat.
+- Write `narrations/YYYY-MM-DD/NARRATIONS.md` in the format of `narrations/2026-09-26/NARRATIONS.md` (that day had ten stories; from 27 Sept 2026 onward there are five). Each story is a `## N. Title` block with metadata bullets (Tier, Tone, Length, Voice/music, On-screen title, Pronunciation, Sources) and the narration between `<<<` and `>>>` lines.
+- Run `python3 narrations/split.py narrations/YYYY-MM-DD` to write clean `01-*.txt` … `05-*.txt` files, ready to paste into CapCut. It also prints word counts and flags symbols that TTS reads badly.
+- Commit and push. Send the owner `NARRATIONS.md` and the folder's txt files, and list the five with their tiers in chat.
