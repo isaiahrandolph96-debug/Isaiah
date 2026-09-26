@@ -77,3 +77,8 @@ When no voice clips exist (or credits are out), write scenes with `"lines"` and 
 - `"label_max_y"`: keeps country labels above the captions (use 1270 with `--ig-safe`).
 - New views `ethiopia`, `horn`, `tigray`; new places Mekelle, Axum, Shire, Alamata, Addis Ababa, Asmara.
 - `anim` `feed` takes `"card_title"` and `"card_sub"` for the Africa card that scrolls past.
+
+## Flight paths (added for congo-plane-crash-35s)
+- `"flight"` in a map spec: a plane glyph flies a leg, and can divert to circle a place. For example: `{"from": "Kikwit", "to": "Kinshasa", "divert": "Kenge", "fly": [0.25, 0.95], "circle_from": 0.96, "radius": 120, "size": 44, "planned": true, "label_side": {"Kenge": "t"}}`. `planned` draws the intended route dashed; `circle_from` (scene progress) starts the circling; `fade_at` fades the plane out.
+- New views: `drc` and `drc_sw`. New places: Kinshasa, Kikwit, Kenge, Goma.
+- CTA headlines now shrink to fit, so long lines like "WHY DOES THIS KEEP HAPPENING?" never run off the screen.

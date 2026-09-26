@@ -1,0 +1,301 @@
+{
+ "title": "The plane that circled Kenge (DR Congo)",
+ "date": "2026-09-26",
+ "facts_as_of": "26 Sept 2026",
+ "voice": "Text-led: vo/ empty (ElevenLabs credits at 0). Record 01-07.mp3 from the 'say' lines with voice nJvj5shg2xu1GKGxqfkE and re-render.",
+ "gap": 0.12,
+ "read_wps": 3.0,
+ "scenes": [
+  {
+   "head": [
+    "THEY WATCHED IT",
+    "CIRCLE"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "map": {
+     "view": "drc_sw",
+     "highlight": [
+      "Dem. Rep. Congo"
+     ],
+     "labels": false,
+     "label_max_y": 1270,
+     "flight": {
+      "from": "Kikwit",
+      "to": "Kinshasa",
+      "divert": "Kenge",
+      "circle_from": 0.0,
+      "radius": 120,
+      "planned": false,
+      "label_side": {
+       "Kenge": "b",
+       "Kikwit": "b",
+       "Kinshasa": "b"
+      },
+      "size": 44
+     },
+     "rings": [
+      {
+       "at": "Kenge",
+       "start": 0.0,
+       "radius": 170
+      }
+     ]
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "01.mp3",
+     "say": "People in Kenge watched the plane circle their town, again and again.",
+     "show": "People in Kenge watched the plane circle their town, again and again."
+    }
+   ]
+  },
+  {
+   "head": [
+    "KIKWIT → KINSHASA",
+    "A TECHNICAL FAULT"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "map": {
+     "view": "drc_sw",
+     "highlight": [
+      "Dem. Rep. Congo"
+     ],
+     "labels": false,
+     "label_max_y": 1270,
+     "from": "drc",
+     "to": "drc_sw",
+     "flight": {
+      "from": "Kikwit",
+      "to": "Kinshasa",
+      "divert": "Kenge",
+      "fly": [
+       0.25,
+       0.95
+      ],
+      "circle_from": 0.96,
+      "radius": 120,
+      "label_side": {
+       "Kenge": "b",
+       "Kikwit": "b",
+       "Kinshasa": "b"
+      },
+      "size": 44
+     },
+     "capitals": []
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "02.mp3",
+     "say": "The plane was flying to Congo's capital when a technical fault struck.",
+     "show": "The plane was flying to Congo's capital when a technical fault struck."
+    }
+   ]
+  },
+  {
+   "head": [
+    "KENGE HAS",
+    "NO RUNWAY"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "map": {
+     "view": "drc_sw",
+     "highlight": [
+      "Dem. Rep. Congo"
+     ],
+     "labels": false,
+     "label_max_y": 1270,
+     "flight": {
+      "from": "Kikwit",
+      "to": "Kinshasa",
+      "divert": "Kenge",
+      "circle_from": 0.0,
+      "radius": 120,
+      "planned": true,
+      "label_side": {
+       "Kenge": "t",
+       "Kikwit": "b",
+       "Kinshasa": "b"
+      },
+      "size": 44
+     },
+     "rings": [
+      {
+       "at": "Kenge",
+       "start": 0.35,
+       "radius": 200,
+       "color": [
+        225,
+        70,
+        50
+       ]
+      }
+     ]
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "03.mp3",
+     "say": "The pilot turned towards Kenge, a town with no landing strip.",
+     "show": "The pilot turned towards Kenge, a town with no landing strip."
+    }
+   ]
+  },
+  {
+   "head": [
+    "NO ONE ON BOARD",
+    "SURVIVED"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "map": {
+     "view": "drc_sw",
+     "highlight": [
+      "Dem. Rep. Congo"
+     ],
+     "labels": false,
+     "label_max_y": 1270,
+     "dim": 0.6,
+     "pins": [
+      {
+       "at": "Kenge",
+       "start": 0.05,
+       "label": "KENGE · 25 SEPT",
+       "side": "r"
+      }
+     ]
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "04.mp3",
+     "say": "It crashed into a residential plot and caught fire. No one on board survived.",
+     "show": "It crashed into a residential plot and caught fire. No one on board survived."
+    }
+   ]
+  },
+  {
+   "head": [
+    "13–14 DEAD",
+    "INCLUDING A TOP GENERAL"
+   ],
+   "gold": 0,
+   "head_y": 420,
+   "special": "chips",
+   "chips": [
+    {
+     "label": "CONGO'S ARMY",
+     "value": "14 DEAD",
+     "hi": true
+    },
+    {
+     "label": "REUTERS",
+     "value": "13 DEAD"
+    }
+   ],
+   "bg_spec": {
+    "map": {
+     "view": "drc_sw",
+     "highlight": [
+      "Dem. Rep. Congo"
+     ],
+     "labels": false,
+     "label_max_y": 1270,
+     "dim": 0.45
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "05.mp3",
+     "say": "The army says fourteen died. Reuters reports thirteen. Among them, a top army general.",
+     "show": "The army says 14 died. Reuters reports 13. Among them, a top army general."
+    }
+   ]
+  },
+  {
+   "head": [
+    "ONE OF THE WORST",
+    "AIR-SAFETY RECORDS"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "timeline",
+    "events": [
+     [
+      "1996",
+      "Kinshasa: plane crashes into a market, about 300 killed"
+     ],
+     [
+      "2008",
+      "Goma: passenger jet crashes into homes"
+     ],
+     [
+      "25 SEPT 2026",
+      "Kenge: 13 to 14 killed"
+     ]
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "06.mp3",
+     "say": "Congo depends on small planes, yet has one of the world's worst air-safety records.",
+     "show": "Congo depends on small planes, yet has one of the world's worst air-safety records."
+    }
+   ]
+  },
+  {
+   "head": [
+    "WHY DOES THIS KEEP HAPPENING?",
+    "SEND THIS TO SOMEONE WHO HASN'T HEARD"
+   ],
+   "gold": 1,
+   "cta": true,
+   "hold": 0.6,
+   "bg_spec": {
+    "map": {
+     "view": "africa",
+     "highlight": [
+      "Dem. Rep. Congo"
+     ],
+     "dim": 0.4,
+     "labels": false
+    },
+    "anim": "planes",
+    "origin": [
+     620,
+     1052
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "07.mp3",
+     "say": "Why does this keep happening? Send this to someone who hasn't heard.",
+     "show": "Why does this keep happening? Send this to someone who hasn't heard."
+    }
+   ]
+  }
+ ],
+ "sources": [
+  "https://www.aljazeera.com/news/2026/9/26/plane-crash-in-dr-congo-kills-more-than-a-dozen",
+  "https://abcnews.com/International/wireStory/congo-plane-crash-kills-14-including-2-senior-136769427",
+  "https://www.usnews.com/news/world/articles/2026-09-25/congo-military-plane-crash-kills-13-including-three-officers-official-says",
+  "https://www.aerotime.aero/articles/tracep-l410-crash-dr-congo-kenge-13-killed",
+  "https://www.sabcnews.com/sabcnews/13-killed-in-congo-military-plane-crash-official/",
+  "Past crashes (1996 Kinshasa market; 2008 Goma): Al Jazeera archive; IATA/EU air safety list on Congo's record"
+ ]
+}

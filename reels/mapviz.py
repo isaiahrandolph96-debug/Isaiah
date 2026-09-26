@@ -22,6 +22,8 @@ VIEWS = {
     "ethiopia": (40.0, 9.4, 62.0, 960),
     "horn":   (41.0, 10.5, 44.0, 960),
     "tigray": (38.9, 13.9, 230.0, 930),
+    "drc": (23.5, -3.0, 58.0, 900),
+    "drc_sw": (17.05, -4.7, 190.0, 900),
 }
 
 # approximate coordinates (lon, lat)
@@ -41,10 +43,14 @@ PLACES = {
     "Alamata": (39.55, 12.42),
     "Addis Ababa": (38.76, 9.03),
     "Asmara": (38.93, 15.33),
+    "Kinshasa": (15.31, -4.32),
+    "Kikwit": (18.82, -5.04),
+    "Kenge": (16.90, -4.81),
+    "Goma": (29.22, -1.68),
 }
 ROUTE = ["Olwiyo", "Bibia", "Nimule", "Juba"]
 
-LABELS = {"Eritrea": "ERITREA", "Djibouti": "DJIBOUTI", "Somalia": "SOMALIA", "Uganda": "UGANDA", "S. Sudan": "SOUTH SUDAN", "Kenya": "KENYA", "Ethiopia": "ETHIOPIA",
+LABELS = {"Dem. Rep. Congo": "DR CONGO", "Angola": "ANGOLA", "Congo": "CONGO", "Eritrea": "ERITREA", "Djibouti": "DJIBOUTI", "Somalia": "SOMALIA", "Uganda": "UGANDA", "S. Sudan": "SOUTH SUDAN", "Kenya": "KENYA", "Ethiopia": "ETHIOPIA",
           "Sudan": "SUDAN", "Dem. Rep. Congo": "DR CONGO", "Tanzania": "TANZANIA"}
 
 _COUNTRIES = None
@@ -281,6 +287,51 @@ def render(spec, p, t):
             d.rounded_rectangle((lx - 14, y - 27, lx + tw + 14, y + 27), radius=10, fill=(12, 10, 6, 225),
                                 outline=(*col, 255), width=3)
             d.text((lx, y), pn["label"], font=f, fill=WHITE, anchor="lm")
+    # a plane flying a leg, then (optionally) diverting to circle a place:
+    # {"from": "Kikwit", "to": "Kinshasa", "divert": "Kenge", "fly": [p0, p1], "circle_from": p, "radius": px,
+    #  "planned": true, "fade_at": p}
+    fl = spec.get("flight")
+    if fl:
+        a = project(*PLACES[fl["from"]], v)
+        b = project(*PLACES[fl["to"]], v)
+        if fl.get("planned", True):  # the intended route, dashed
+            n = 40
+            for k in range(0, n, 2):
+                p0 = (a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n)
+                p1 = (a[0] + (b[0] - a[0]) * (k + 1) / n, a[1] + (b[1] - a[1]) * (k + 1) / n)
+                d.line([p0, p1], fill=(230, 220, 200, 150), width=4)
+        tgt = project(*PLACES[fl["divert"]], v) if fl.get("divert") else b
+        f0, f1 = fl.get("fly", [0.0, 0.5])
+        cf = fl.get("circle_from")
+        r = fl.get("radius", 90)
+        if cf is not None and p >= cf:  # circling the diversion point
+            ang = -(t - 0) * 2.2
+            x, y = tgt[0] + r * math.cos(ang), tgt[1] + r * math.sin(ang)
+            heading = ang - math.pi / 2
+            trail = [(tgt[0] + r * math.cos(ang + k * 0.12), tgt[1] + r * math.sin(ang + k * 0.12)) for k in range(0, 18)]
+            d.line(trail, fill=(255, 236, 170, 110), width=3)
+        else:
+            q = ease(max(0.0, min(1.0, (p - f0) / max(0.01, f1 - f0))))
+            stop = tgt if cf is not None else b
+            x, y = a[0] + (stop[0] - a[0]) * q, a[1] + (stop[1] - a[1]) * q
+            heading = math.atan2(stop[1] - a[1], stop[0] - a[0])
+            d.line([a, (x, y)], fill=(255, 236, 170, 230), width=5)
+        alpha = 255
+        if fl.get("fade_at") is not None and p > fl["fade_at"]:
+            alpha = int(255 * max(0.0, 1 - (p - fl["fade_at"]) / 0.08))
+        if alpha > 0:  # plane glyph pointing along its heading
+            s = fl.get("size", 26)
+            ca, sa = math.cos(heading), math.sin(heading)
+            pts = [(1.0, 0), (-0.6, 0.55), (-0.3, 0), (-0.6, -0.55)]
+            poly = [(x + s * (px * ca - py * sa), y + s * (px * sa + py * ca)) for px, py in pts]
+            d.polygon(poly, fill=(255, 250, 235, alpha), outline=(0, 0, 0, alpha))
+        for name in {fl["from"], fl["to"], fl.get("divert")} - {None}:  # endpoint dots + names
+            px_, py_ = project(*PLACES[name], v)
+            d.ellipse((px_ - 9, py_ - 9, px_ + 9, py_ + 9), fill=WHITE, outline=(0, 0, 0), width=2)
+            side = fl.get("label_side", {}).get(name, "b")
+            f = _font(32)
+            pos = {"b": (px_, py_ + 36, "mm"), "t": (px_, py_ - 36, "mm"), "r": (px_ + 22, py_, "lm"), "l": (px_ - 22, py_, "rm")}[side]
+            d.text(pos[:2], name.upper(), font=f, fill=WHITE, anchor=pos[2], stroke_width=3, stroke_fill=(0, 0, 0))
     # capital markers for orientation
     for name in spec.get("capitals", []):
         x, y = project(*PLACES[name], v)

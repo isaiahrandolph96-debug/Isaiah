@@ -305,7 +305,8 @@ def headline_layer(lines, gold_idx, cta=False, cy=960):
     layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(layer)
     if cta:
-        f1, f2 = font(50), font(46)
+        f1 = fit_font(d, [lines[0]], W - 120, start=50, floor=34)  # shrink long CTA lines to fit
+        f2 = fit_font(d, [lines[1]], W - 120, start=46, floor=30)
         draw_text(d, (W / 2, 900), lines[0], f1, WHITE, stroke=3)
         draw_text(d, (W / 2, 962), lines[1], f2, GOLD, stroke=3)
         return layer
