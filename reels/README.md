@@ -82,3 +82,16 @@ When no voice clips exist (or credits are out), write scenes with `"lines"` and 
 - `"flight"` in a map spec: a plane glyph flies a leg, and can divert to circle a place. For example: `{"from": "Kikwit", "to": "Kinshasa", "divert": "Kenge", "fly": [0.25, 0.95], "circle_from": 0.96, "radius": 120, "size": 44, "planned": true, "label_side": {"Kenge": "t"}}`. `planned` draws the intended route dashed; `circle_from` (scene progress) starts the circling; `fade_at` fades the plane out.
 - New views: `drc` and `drc_sw`. New places: Kinshasa, Kikwit, Kenge, Goma.
 - CTA headlines now shrink to fit, so long lines like "WHY DOES THIS KEEP HAPPENING?" never run off the screen.
+
+## Real footage and photos (added for congo-plane-crash-v2)
+- `bg_spec: {"video": "clip.mp4", "start": 1.0, "speed": 0.85, "bright": 0.55, "sat": 0.9}` plays a clip from the reel's `bg/` folder behind the scene. It's cover-cropped to 9:16, graded dark to the house look, and looped if it's shorter than the scene. Photos use `{"src": "photo.jpg", "crop": [x0, y0, x1, y1]}` with a slow push-in.
+- **Stock via Adobe:**
+  1. Search with `asset_search` (`entityScope: "StockAsset"`, `filters.pricing: "free"`).
+  2. License with `asset_license_and_download_stock`.
+  3. `curl` the URL. Downloads from S3 work.
+  4. Convert to a 1080×1920 30 fps proxy with ffmpeg, and delete the original.
+- **Rules:**
+  - Label every stock scene with `"note": "Illustrative footage", "note_secs": 99`.
+  - Never present stock as the real event.
+  - Never use footage that misrepresents the place. For example, no snowy pine forests for Congo, and no hut villages for a provincial capital.
+  - Record the asset IDs in `script.json` under `"stock"`.

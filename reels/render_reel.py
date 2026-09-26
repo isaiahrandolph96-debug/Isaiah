@@ -231,7 +231,42 @@ def grade(img, bright=0.58, tint=None, sat=1.0, blur=0):
     return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8))
 
 
+class VideoBG:
+    """Stock/own footage as a scene background: cover-cropped to 9:16, graded dark, looped if short.
+    spec: {"video": "file.mov" (in bg/), "start": s, "speed": 1.0, "bright": 0.55, "sat": 0.9}"""
+
+    def __init__(self, reel_dir, spec):
+        self.path = os.path.join(reel_dir, "bg", spec["video"])
+        self.spec = spec
+        self.proc = None
+
+    def _open(self):
+        sp = self.spec
+        vf = (f"setpts=PTS/{sp.get('speed', 1.0)},scale={W}:{H}:force_original_aspect_ratio=increase,"
+              f"crop={W}:{H},fps={FPS}")
+        self.proc = subprocess.Popen([FFMPEG, "-v", "error", "-ss", str(sp.get("start", 0)), "-i", self.path,
+                                      "-vf", vf, "-f", "rawvideo", "-pix_fmt", "rgb24", "-"], stdout=subprocess.PIPE)
+
+    def next(self):
+        for _ in range(2):
+            if self.proc is None:
+                self._open()
+            buf = self.proc.stdout.read(W * H * 3)
+            if len(buf) == W * H * 3:
+                img = Image.fromarray(np.frombuffer(buf, np.uint8).reshape(H, W, 3))
+                return grade(img, self.spec.get("bright", 0.55), self.spec.get("tint"), self.spec.get("sat", 0.9))
+            self.proc.kill()
+            self.proc = None  # clip ended: loop it
+        raise RuntimeError(f"cannot read video {self.path}")
+
+    def close(self):
+        if self.proc:
+            self.proc.kill()
+
+
 def load_bg(reel_dir, spec):
+    if "video" in spec:
+        return VideoBG(reel_dir, spec)
     if "map" in spec or "anim" in spec or "format" in spec:
         return spec  # drawn per frame by mapviz / anim / formats
     return _load_image_bg(reel_dir, spec)
@@ -572,7 +607,9 @@ def main():
         for fr in range(f0, f1):
             lt = fr / FPS - seg["start"]
             p = lt / seg["dur"]
-            if isinstance(big, dict):
+            if isinstance(big, VideoBG):
+                frame = big.next().convert("RGBA")
+            elif isinstance(big, dict):
                 import anim
                 import mapviz
                 ctx = None
@@ -665,6 +702,8 @@ def main():
             if fr == f1 - 1:
                 prev_last = frame.copy()
             enc.stdin.write(frame.convert("RGB").tobytes())
+        if isinstance(big, VideoBG):
+            big.close()
         print(f"scene {sc_i + 1}/{len(scenes)} done", file=sys.stderr)
     enc.stdin.close()
     enc.wait()
