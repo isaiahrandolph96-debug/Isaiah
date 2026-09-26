@@ -7,7 +7,7 @@ them on the first proto sample, adjust once, then lock them.
 from pathlib import Path
 
 import garments as G
-from build_logos import tag, BLACK, BONE, TAN, FADED, CORD, BRASS
+from build_logos import tag, BLACK, BONE, TAN, FADED, CORD, BRASS, GREY, CHOC
 from garments import placed_svg
 
 TOOLS = Path(__file__).resolve().parent
@@ -22,10 +22,10 @@ POM = [  # letter, point of measure, tolerance, S..XXL (inches)
     ("F", "Collar length, along neck seam", "±¼", ["18", "18½", "19", "19½", "20"]),
 ]
 BOM = [  # item, specification, placement, colour by colourway
-    ("Shell", "12 oz (about 400 gsm) 100% cotton duck canvas, pre-shrunk", "Body, sleeves, pockets", "Black · Faded Black (garment washed) · Duck Tan"),
+    ("Shell", "12 oz (about 400 gsm) 100% cotton duck canvas, pre-shrunk", "Body, sleeves, pockets", "Black · Faded Black and Washed Grey (garment washed) · Duck Tan · Chocolate"),
     ("Body lining", "Blanket lining, 100% acrylic, striped", "Body", "Red and black stripe, all colourways"),
     ("Sleeve lining", "Quilted nylon taffeta, light poly fill", "Sleeves", "Black"),
-    ("Collar", "8-wale cotton corduroy", "Collar", "Black · Black · Brown"),
+    ("Collar", "8-wale cotton corduroy", "Collar", "Black · Black · Charcoal · Brown · Dark brown"),
     ("Main zip", "#5 brass, antique finish, separating, one-way", "Centre front", "Brass"),
     ("Chest zip", "#3 brass, antique finish", "Left chest welt pocket", "Brass"),
     ("Snaps", "15 mm brass snaps", "Waistband side tabs (2), cuffs (2)", "Antique brass"),
@@ -35,7 +35,6 @@ BOM = [  # item, specification, placement, colour by colourway
     ("Care label", "Printed satin (artwork: labels/care-label.svg)", "Left inside side seam, 10 cm above hem", "White"),
     ("Lot label", "Printed satin, \"LOT ___ / 040\", numbered in sequence", "Inside left facing, chest height", "White"),
     ("Hang tag", "350 gsm kraft, brass eyelet, black cotton string", "Through the main zip pull", "Kraft"),
-    ("Back embroidery (optional)", "Chain-stitched tag, about 26 cm wide (artwork: tag-bone.svg)", "Centre back, 8 cm below collar seam", "Bone and brass thread"),
 ]
 BUILD = [
     "Cropped, boxy body. Set-in sleeve with a 2 cm dropped shoulder.",
@@ -70,7 +69,7 @@ def with_overlay(svg, overlay):
 
 def build():
     front = with_overlay(G.work_jacket(BLACK, "#1E1E1E", G.TAB_BLACK, "Shift Jacket front, measurement points"), pom_overlay())
-    back = G.work_jacket_back(BLACK, "#1E1E1E", placed_svg(tag(BONE), 118, 150, 204))
+    back = G.work_jacket_back(BLACK, "#1E1E1E")
     tan = G.work_jacket(TAN, CORD, G.TAB_BLACK, "Duck Tan")
     faded = G.work_jacket(FADED, "#2A2A29", G.TAB_BLACK, "Faded Black")
     logo = placed_svg(tag(BLACK), 0, 0, 220)
@@ -93,8 +92,8 @@ h2{{font-stretch:62%;font-variation-settings:'wdth' 62;font-weight:900;font-size
 .flats{{display:grid;grid-template-columns:1fr 1fr;gap:10px}}
 .flat{{background:#E4E0D6;padding:6px}} .flat svg{{width:100%;height:auto;display:block}}
 .cap{{font-family:'IBM Plex Mono',monospace;font-size:9.5px;margin-top:3px}}
-.ways{{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}}
-.ways .flat svg{{height:150px}}
+.ways{{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}}
+.ways .flat svg{{height:110px}}
 table{{border-collapse:collapse;width:100%}}
 th,td{{border:1px solid #BDB8AC;padding:4px 6px;text-align:left;vertical-align:top}}
 th{{background:#121212;color:#EEEBE3;font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:500}}
@@ -109,13 +108,15 @@ ul{{margin:4px 0;padding-left:16px}} li{{margin:2px 0}}
     <div class="meta">TECH PACK · STYLE UD-J01<br>VERSION 1 · 26 SEPT 2026<br>DROP 01 “FIRST SHIFT”<br>BRAND: UNRESTD · unrestd.com</div></div>
   <div class="flats">
     <div class="flat">{front}<div class="cap">FRONT · measurement points A–F (see size chart)</div></div>
-    <div class="flat">{back}<div class="cap">BACK · optional chain-stitched tag, centre back</div></div>
+    <div class="flat">{back}<div class="cap">BACK · clean: no print, no embroidery, no labels outside</div></div>
   </div>
   <h2>Colourways</h2>
   <div class="ways">
-    <div class="flat">{G.work_jacket(BLACK, "#1E1E1E", G.TAB_BLACK)}<div class="cap">01 BLACK · black cord collar · 24 units</div></div>
-    <div class="flat">{faded}<div class="cap">02 FADED BLACK · garment washed · pre-order only</div></div>
-    <div class="flat">{tan}<div class="cap">03 DUCK TAN · brown cord collar · 16 units</div></div>
+    <div class="flat">{G.work_jacket(BLACK, "#1E1E1E", G.TAB_BLACK)}<div class="cap">01 BLACK · black cord · 24 units</div></div>
+    <div class="flat">{faded}<div class="cap">02 FADED BLACK · washed · pre-order</div></div>
+    <div class="flat">{G.work_jacket(GREY, "#3E3F3C", G.TAB_BLACK)}<div class="cap">03 WASHED GREY · charcoal cord · pre-order</div></div>
+    <div class="flat">{tan}<div class="cap">04 DUCK TAN · brown cord · 16 units</div></div>
+    <div class="flat">{G.work_jacket(CHOC, "#3A2A1F", G.TAB_BLACK)}<div class="cap">05 CHOCOLATE · dark brown cord · pre-order</div></div>
   </div>
   <h2>Size chart (inches, garment measurements)</h2>
   <table><tr><th></th><th>Point of measure</th><th>Tol.</th>{''.join(f'<th>{s}</th>' for s in SIZES)}</tr>{rows}</table>
@@ -131,7 +132,7 @@ ul{{margin:4px 0;padding-left:16px}} li{{margin:2px 0}}
   <table><tr><th>Stage</th>{''.join(f'<th>{s}</th>' for s in SIZES)}<th>Total</th></tr>
     <tr><td>Proto sample</td><td class=c>–</td><td class=c>–</td><td class=c>1 per colour</td><td class=c>–</td><td class=c>–</td><td class=c>3</td></tr>
     <tr><td>Bulk, lot 001, all colours (Black 24, Duck Tan 16)</td>{order}<td class=c>40</td></tr></table>
-  <p class="note">Please quote: sample price, per-unit price at 40 and at 100 units, lead time for samples and for bulk, and shipping to the US. Every jacket gets a numbered lot label, 001 to 040.</p>
+  <p class="note">The back of the jacket stays clean: no print or embroidery. Please quote: sample price, per-unit price at 40 and at 100 units, lead time for samples and for bulk, and shipping to the US. Every jacket gets a numbered lot label, 001 to 040.</p>
   <div class="sign"><div>Brand approval</div><div>Factory approval</div><div>Date</div></div>
 </div>"""
     (TOOLS / "tech-pack.html").write_text(html)

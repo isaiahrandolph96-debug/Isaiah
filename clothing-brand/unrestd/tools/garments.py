@@ -6,7 +6,7 @@ in that browser so each line sets 300 wide without distorting the letters.
 """
 import hashlib
 
-from build_logos import tag, mark, patch, BLACK, FADED, TAN, MOSS, BRASS, BONE, CORD
+from build_logos import tag, mark, patch, BLACK, FADED, TAN, MOSS, BRASS, BONE, CORD, GREY, CHOC
 
 FONT_CSS = ("@import url('https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900"
             "&family=IBM+Plex+Mono:wght@500;600&display=swap');"
@@ -113,7 +113,7 @@ def zipper(x, y1, y2):
 
 def work_jacket(fill, collar, tab_cols, label="Shift Jacket"):
     """Cropped duck canvas work jacket: cord collar, brass zip, blanket lining."""
-    dark = fill in (BLACK, FADED, MOSS)
+    dark = fill in (BLACK, FADED, MOSS, GREY, CHOC)
     body = ("M150,52 L92,68 C72,74 62,90 58,114 L30,392 L80,402 L104,186 L104,362 L336,362 "
             "L336,186 L360,402 L410,392 L382,114 C378,90 368,74 348,68 L290,52 Z")
     inner = (
@@ -150,8 +150,8 @@ def work_jacket(fill, collar, tab_cols, label="Shift Jacket"):
 
 
 def work_jacket_back(fill, collar, graphic="", label="Shift Jacket, back"):
-    """Back view: collar band, yoke seam, and room for a chain-stitched back piece."""
-    dark = fill in (BLACK, FADED, MOSS)
+    """Back view: collar band and yoke seam. The back stays clean: no print, no embroidery."""
+    dark = fill in (BLACK, FADED, MOSS, GREY, CHOC)
     body = ("M150,52 L92,68 C72,74 62,90 58,114 L30,392 L80,402 L104,186 L104,362 L336,362 "
             "L336,186 L360,402 L410,392 L382,114 C378,90 368,74 348,68 L290,52 Z")
     inner = (
@@ -171,7 +171,7 @@ def work_jacket_back(fill, collar, graphic="", label="Shift Jacket, back"):
 
 def active_jacket(fill, tab_cols, label="Night Shift Jacket"):
     """Hooded duck canvas jacket: quilted lining, knit cuffs and waistband."""
-    dark = fill in (BLACK, FADED, MOSS)
+    dark = fill in (BLACK, FADED, MOSS, GREY, CHOC)
     body = ("M150,62 L86,84 C62,92 50,110 46,140 L20,396 L72,406 L98,200 L98,372 L342,372 "
             "L342,200 L368,406 L420,396 L394,140 C390,110 378,92 354,84 L290,62 Z")
     ribs = "".join(f'<path d="M{x},376 V404"/>' for x in range(104, 340, 6))
@@ -262,9 +262,11 @@ TAB_TAN = (TAN, BLACK, BRASS, BLACK)
 def products():
     return [
         dict(id="shift-jacket-black", svg=work_jacket(BLACK, "#1E1E1E", TAB_BLACK, "Shift Jacket, black")),
-        dict(id="shift-jacket-back", svg=work_jacket_back(BLACK, "#1E1E1E", placed_svg(tag(BONE), 118, 150, 204))),
+        dict(id="shift-jacket-back", svg=work_jacket_back(BLACK, "#1E1E1E")),
         dict(id="shift-jacket-tan", svg=work_jacket(TAN, CORD, TAB_BLACK, "Shift Jacket, duck tan")),
         dict(id="shift-jacket-faded", svg=work_jacket(FADED, "#2A2A29", TAB_BLACK, "Shift Jacket, faded black")),
+        dict(id="shift-jacket-grey", svg=work_jacket(GREY, "#3E3F3C", TAB_BLACK, "Shift Jacket, washed grey")),
+        dict(id="shift-jacket-choc", svg=work_jacket(CHOC, "#3A2A1F", TAB_BLACK, "Shift Jacket, chocolate")),
         dict(id="night-shift-jacket", svg=active_jacket(BLACK, TAB_BLACK, "Night Shift Jacket, black")),
         dict(id="split-zip-hoodie", svg=zip_hoodie(TAN, placed_svg(tag(BLACK), 232, 128, 96), label="Split Zip Hoodie, front")),
         dict(id="split-zip-hoodie-back", svg=zip_hoodie(TAN, placed(art_hoodie_back(), 130, 96, 180), back=True,

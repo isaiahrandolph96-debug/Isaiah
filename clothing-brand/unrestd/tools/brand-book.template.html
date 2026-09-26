@@ -125,6 +125,18 @@ tr.total td{font-weight:700;border-bottom:2px solid var(--ink)}
 .sources ol{padding-left:20px;margin:8px 0 0;display:grid;gap:4px}
 @media (prefers-reduced-motion:no-preference){.shot svg{transition:transform .25s ease}.card:hover .shot svg{transform:scale(1.03)}}
 
+/* v5: colourways, money streams */
+.ways{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.ways figure{margin:0;display:grid;gap:6px}.ways figcaption{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.ways .shot{padding:6%}
+@media (max-width:700px){.ways{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.streams{list-style:none;margin:0;padding:0;display:grid;gap:0;counter-reset:s}
+.streams li{display:grid;grid-template-columns:130px minmax(0,1fr);gap:4px 18px;align-items:start;padding:14px 0;border-top:1px solid var(--rule);font-size:15.5px}
+.streams li:last-child{border-bottom:1px solid var(--rule)}
+.streams .fmt{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);padding-top:5px}
+.streams p{margin:4px 0 0}
+.streams b.h{display:block;font-family:var(--display);font-stretch:62%;font-variation-settings:"wdth" 62;font-weight:900;font-size:22px;text-transform:uppercase;line-height:1}
+@media (max-width:600px){.streams li{grid-template-columns:1fr}}
 /* v4: contents, labels, production, launch grid */
 .toc{display:flex;flex-wrap:wrap;gap:6px 18px;padding-block:14px;border-bottom:1px solid var(--rule);font-family:var(--mono);font-size:13px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--ground);z-index:2}
 .toc a{color:var(--ink);text-decoration:none;padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap}

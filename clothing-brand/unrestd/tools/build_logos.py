@@ -16,6 +16,7 @@ OUT = Path(__file__).resolve().parent.parent / "logo"
 # Workwear palette: duck canvas, brass hardware, a bone tee underneath
 BLACK, FADED, TAN, MOSS, BRASS, BONE, CORD = (
     "#121212", "#3B3B39", "#C2A878", "#4A4F36", "#B58B4C", "#EEEBE3", "#5A3E2B")
+GREY, CHOC = "#6B6C68", "#5B4432"          # washed grey duck, chocolate brown duck
 
 
 def _boxed(body, width):

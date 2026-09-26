@@ -31,7 +31,7 @@ CARDS = [
     # id of main shot, id of inset shot (or None), name, price, blurb, spec, featured
     ("shift-jacket-black", "shift-jacket-tan", "Shift Jacket", "$165",
      "The hero piece. A cropped 12 oz duck canvas work jacket with a cord collar, blanket lining and "
-     "a brass zip. Comes in black, faded black and duck tan.",
+     "a brass zip, and a clean back. Five colours: black, faded black, washed grey, duck tan and chocolate.",
      "Small batch · pre-order · 12 oz cotton duck", True),
     ("night-shift-jacket", None, "Night Shift Jacket", "$185",
      "A hooded duck canvas jacket with a quilted lining and knit cuffs, for the coldest shifts.",
@@ -111,6 +111,10 @@ def main():
         "{{LABELS}}": "".join(label_cards),
         "{{JACKET_BACK}}": shots["shift-jacket-back"],
         "{{SIZE_TABLE}}": size_table(),
+        "{{COLOURWAYS}}": "".join(f'<figure><div class="shot">{shots[k]}</div><figcaption>{n}</figcaption></figure>'
+                                  for k, n in [("shift-jacket-black", "Black · lot 001"), ("shift-jacket-faded", "Faded Black"),
+                                               ("shift-jacket-grey", "Washed Grey"), ("shift-jacket-tan", "Duck Tan · lot 001"),
+                                               ("shift-jacket-choc", "Chocolate")]),
     }
     for k, v in rep.items():
         html = html.replace(k, v)

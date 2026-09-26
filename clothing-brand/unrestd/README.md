@@ -4,11 +4,17 @@
 
 UNRESTD is UNRESTED with the E taken out, because we didn't stop for it. The logo is a graffiti tag with a brass swoosh that ends in a drip: the paint's still wet.
 
-The full brand book is `brand-book.html` (open it in a browser), and the same content is rendered as `brand-book.png`. This is **v4**.
+The full brand book is `brand-book.html` (open it in a browser), and the same content is rendered as `brand-book.png`. This is **v5**.
 
-## What's new in v4
+## What's new in v5
+- **Clean jacket backs:** no print, no embroidery, no text. The brand lives on the chest tab, the brass zip and the lot label inside.
+- **Two new colours** from the latest references: **Washed Grey** `#6B6C68` and **Chocolate** `#5B4432`. The Shift Jacket now comes in five colours. Black and Duck Tan are made in lot 001, and the other three are pre-order only.
+- **How this makes money:** five income streams (jacket pre-orders, print-on-demand basics, crew orders for local businesses, vintage flips for starter cash, shoppable content) and three profit scenarios.
+- **Drop 02 plan:** a cropped canvas trucker jacket, plus carpenter pants and cargos.
+
+## What was new in v4
 - **Logo:** heavier letters that embroider cleanly at small sizes, tighter joins, a tapered brass swoosh and a teardrop drip. Usage rules cover clear space, minimum sizes and what never to do.
-- **Mockups:** canvas grain, light and fold shadows, plus a new back view of the Shift Jacket with an optional chain-stitched tag.
+- **Mockups:** canvas grain, light and fold shadows, plus a back view of the Shift Jacket.
 - **Labels and packaging:** woven neck label, care label (with the legally required details), numbered lot label, kraft hang tag, slap sticker and mailer box.
 - **Production:** a two-page factory tech pack (`tech-pack-shift-jacket.pdf`) and a ready-to-send quote email (`factory-quote-email.md`).
 - **Pricing:** a price check against Carhartt WIP ($265 to $358) and Dickies (about $60).
@@ -35,13 +41,21 @@ The full brand book is `brand-book.html` (open it in a browser), and the same co
 ## Drop 01 "First Shift" (doors open early November 2026)
 | Piece | Made by | Price | Cost | You keep |
 |---|---|---:|---:|---:|
-| Shift Jacket (black, faded black, duck tan) | small batch | $165 | ~$38–73 landed | ~$87–122 |
+| Shift Jacket (black, faded black, washed grey, duck tan, chocolate; clean back) | small batch | $165 | ~$38–73 landed | ~$87–122 |
 | Night Shift Jacket (hooded) | small batch | $185 | ~$43–83 landed | ~$96–136 |
 | Split Zip Hoodie (tag on the chest; big 3D tag over NOT DONE YET on the back) | Printful | $95 | ~$38 | ~$54 |
 | Shift Tee (black with a tonal UD tag, or bone with WHILE YOU SLEPT. on the back) | Printful | $42 | ~$15–21 | ~$19–25 |
 | Watch Beanie | Printful | $32 | ~$14 | ~$17 |
 
 "You keep" is after Shopify's 2.9% + 30¢ card fee. Every cost except the $15.29 Printful tee is an estimate, so get three factory quotes and check Printful's calculator before you set prices.
+
+**How it makes money:**
+
+| Scenario | Jackets | Basics | Gross profit |
+|---|---:|---:|---:|
+| Lot 001, Nov to Jan | 40 × ~$100 | 60 × ~$25 | ~$5,500 (about $3,200–4,400 left after setup) |
+| Crew orders, one a month | 20 × ~$60–100 | – | ~$18,000 a year, paid up front |
+| Year one if it catches on (4 drops of 100) | 400 | 800 | ~$60,000 before ads |
 
 **Price check:** Dickies Eisenhower is about $60, Carhartt WIP Detroit (Winter) is $265, and Carhartt WIP OG Detroit is $318 to $358. The Shift Jacket at $165 is $100 under Carhartt WIP with the same 12 oz duck.
 
