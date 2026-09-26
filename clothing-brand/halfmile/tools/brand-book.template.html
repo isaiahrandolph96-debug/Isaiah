@@ -4,20 +4,20 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <style>
 :root{
-  --ground:#F2F1EC; --surface:#E8E7E1; --ink:#1C1E20; --muted:#5B6064; --rule:#CFCEC7;
-  --accent:#2F4FD8; --accent-ink:#2A44B8; --split:#2F4FD8; --tile:#D6D5CE;
+  --ground:#EEEBE3; --surface:#E4E0D6; --ink:#121212; --muted:#5C5850; --rule:#CFCABE;
+  --accent:#B58B4C; --accent-ink:#7F5C28; --split:#B58B4C; --tile:#D8D4CA;
   --display:"Archivo","Arial Narrow",sans-serif; --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
   color-scheme:light;
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
-    --ground:#151719; --surface:#1D2023; --ink:#F2F1EC; --muted:#A2A7AC; --rule:#30343A;
-    --accent:#7B91FF; --accent-ink:#9AABFF; --split:#F2C230; --tile:#CFCEC7; color-scheme:dark;
+    --ground:#131312; --surface:#1C1C1A; --ink:#EEEBE3; --muted:#A8A396; --rule:#2F2E2B;
+    --accent:#C9A064; --accent-ink:#D4AE74; --split:#C9A064; --tile:#D8D4CA; color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
-  --ground:#151719; --surface:#1D2023; --ink:#F2F1EC; --muted:#A2A7AC; --rule:#30343A;
-  --accent:#7B91FF; --accent-ink:#9AABFF; --split:#F2C230; --tile:#CFCEC7; color-scheme:dark;
+  --ground:#131312; --surface:#1C1C1A; --ink:#EEEBE3; --muted:#A8A396; --rule:#2F2E2B;
+    --accent:#C9A064; --accent-ink:#D4AE74; --split:#C9A064; --tile:#D8D4CA; color-scheme:dark;
 }
 *{box-sizing:border-box}
 body{background:var(--ground);color:var(--ink);font-family:var(--display);font-stretch:100%;
@@ -46,7 +46,7 @@ small,.note{font-size:14px;color:var(--muted)}
 .facts{display:grid;grid-template-columns:auto auto;gap:4px 18px;font-family:var(--mono);font-size:13px}
 .facts dt{color:var(--muted)} .facts dd{margin:0}
 
-/* split sections: the page runs like a race, 0.0 to 0.5 */
+/* sections are numbered like mile markers, 0.0 to 0.5 */
 .split{display:grid;grid-template-columns:120px minmax(0,1fr);gap:0 36px;padding-block:56px;border-bottom:1px solid var(--rule)}
 .rail{position:relative}
 .rail .split-no{position:sticky;top:calc(env(safe-area-inset-top,0px) + 20px);display:block;font-size:40px;font-weight:600;line-height:1;letter-spacing:-.02em}
@@ -72,10 +72,10 @@ small,.note{font-size:14px;color:var(--muted)}
 /* identity */
 .logo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}
 @media (max-width:600px){.logo-grid{grid-template-columns:1fr}}
-.logo-tile{aspect-ratio:3/2;max-width:100%;display:grid;place-items:center;padding:12%}
+.logo-tile{aspect-ratio:2/1;max-width:100%;display:grid;place-items:center;padding:12%}
 .logo-tile svg{width:100%;height:auto;max-height:100%}
 .logo-cap{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:12.5px;color:var(--muted);padding-top:6px}
-.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
 .sw{border:1px solid var(--rule)}
 .sw .chip{height:96px}
 .sw .meta{padding:10px 12px;display:grid;gap:2px;font-size:14px}
@@ -125,255 +125,4 @@ tr.total td{font-weight:700;border-bottom:2px solid var(--ink)}
 .sources ol{padding-left:20px;margin:8px 0 0;display:grid;gap:4px}
 @media (prefers-reduced-motion:no-preference){.shot svg{transition:transform .25s ease}.card:hover .shot svg{transform:scale(1.03)}}
 </style>
-
-<div class="wrap">
-
-<header class="hero">
-  <div class="eyebrow">Brand book · v1 · 26 September 2026</div>
-  <div class="wm" aria-label="Halfmile">{{WORDMARK_HERO}}</div>
-  <div class="hero-row">
-    <div style="display:grid;gap:14px">
-      <div class="tagline">For the middle of the race.</div>
-      <p class="lede">Everyone films the start and the finish. Nobody films the half mile, the stretch where the crowd goes quiet and you decide if you're really doing this. Halfmile makes heavyweight everyday clothes for that stretch.</p>
-    </div>
-    <dl class="facts">
-      <dt>Category</dt><dd>Heavyweight streetwear basics</dd>
-      <dt>First drop</dt><dd>Drop 01 “Mile 0.5”, 5 pieces</dd>
-      <dt>Price band</dt><dd>$30 – $85</dd>
-      <dt>Model</dt><dd>Print-on-demand first</dd>
-      <dt>Launch</dt><dd>Mid-November 2026</dd>
-    </dl>
-  </div>
-</header>
-
-<section class="split" id="idea">
-  <div class="rail"><span class="split-no">0.0<small>THE IDEA</small></span></div>
-  <div class="body">
-    <h2>Sell the middle</h2>
-    <div class="cols">
-      <p>Gym brands sell the finish line: the personal best, the physique. Luxury basics sell the look of having already arrived. Nobody is selling the part in between, and that is where most people actually are.</p>
-      <p>Halfmile is for people in the middle of something: month eight of a business, week six of a training block, the second year of an apprenticeship. The clothes are quiet on the outside and heavyweight, made to be worn hard and washed often. The story is one people recognise from their own life.</p>
-    </div>
-    <div class="quote">Nobody films <em>the half mile.</em></div>
-    <div class="cols">
-      <div>
-        <div class="eyebrow">Who it's for</div>
-        <ul class="lane-list">
-          <li><b>Runners and gym regulars</b> in the middle of a training block</li>
-          <li><b>First-time founders and creators</b> building with a small audience</li>
-          <li><b>Students, apprentices and tradespeople</b> in the long middle years</li>
-          <li><b>Age 18 to 34</b>, US first. They buy fewer, better pieces</li>
-        </ul>
-      </div>
-      <div>
-        <div class="eyebrow">Three promises</div>
-        <ul class="lane-list">
-          <li><b>Built for repeat.</b> Heavyweight cotton that softens with washing instead of wearing out.</li>
-          <li><b>Quiet outside, loud inside.</b> Small marks on the front and the message on the back or inside the neck.</li>
-          <li><b>The middle matters.</b> Every campaign shows people mid-effort, never on the podium.</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="split" id="name">
-  <div class="rail"><span class="split-no">0.1<small>NAME &amp; VOICE</small></span></div>
-  <div class="body">
-    <h2>Halfmile</h2>
-    <div class="cols">
-      <p>One word, said the way you'd say it out loud. A half mile is 800 metres, or two laps of a track: long enough to hurt and short enough that you can't pace your way out of it. The name says the brand's idea without needing a tagline.</p>
-      <div>
-        <div class="eyebrow">Name check, 26 Sept 2026</div>
-        <ul class="lane-list">
-          <li>No clothing brand called Halfmile showed up in web searches.</li>
-          <li>The name is used by businesses in logistics, video production and games, and <span class="mono">halfmile.com</span> is taken.</li>
-          <li><b>Before spending money:</b> search USPTO for HALFMILE and HALF MILE in Class 25 (clothing) and check the Instagram and TikTok handles.</li>
-          <li>Domains to try: <span class="mono">wearhalfmile.com</span>, <span class="mono">halfmile.co</span>, <span class="mono">halfmileclub.com</span>. I haven't checked if they're free.</li>
-        </ul>
-      </div>
-    </div>
-    <div class="dodont">
-      <div>
-        <h3>The voice</h3>
-        <p>Talk like a training partner: short sentences, real numbers (splits, days, distances), and credit for the effort, not the result. Plain words, said calmly.</p>
-      </div>
-      <div>
-        <h3>Never</h3>
-        <p>Hype words like “beast mode” or “grind never stops”, fake countdown timers, making fun of rest, strings of emoji. The brand is the calm voice at mile 13.</p>
-      </div>
-    </div>
-    <div>
-      <div class="eyebrow" style="margin-bottom:10px">Lines that sound like Halfmile</div>
-      <div class="lines">
-        <span>Nobody films the half mile.</span><span>Still here.</span><span>Keep going.</span>
-        <span>Day 212. Nobody's clapping. Good.</span><span>Softer every wash. That's the point.</span><span>Built for the long middle.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="split" id="identity">
-  <div class="rail"><span class="split-no">0.2<small>IDENTITY</small></span></div>
-  <div class="body">
-    <h2>The look</h2>
-    <p>The letters of the wordmark are drawn from squared athletic lettering, and every one of them is custom geometry rather than a font, so Halfmile owns the logo outright. A thin split line sits between HALF and MILE, at the halfway point. The mark, called the Split, is a running track seen from above: the left half is solid for the distance you've covered and the right half is only outlined for the distance still to go.</p>
-    <div class="logo-grid">
-      <div><div class="logo-tile" style="background:#1C1E20">{{LOCKUP_DARK}}</div>
-        <div class="logo-cap"><span>Primary lockup, on Asphalt</span><span>lockup-on-dark.svg</span></div></div>
-      <div><div class="logo-tile" style="background:#F2F1EC;border:1px solid var(--rule)">{{WORDMARK_LIGHT}}</div>
-        <div class="logo-cap"><span>Wordmark, on Chalk</span><span>wordmark-on-light.svg</span></div></div>
-      <div><div class="logo-tile" style="background:#2F4FD8">{{MARK_BLUE}}</div>
-        <div class="logo-cap"><span>The Split, on Mondo Blue</span><span>mark-mono-white.svg</span></div></div>
-      <div><div class="logo-tile" style="background:#F2C230">{{MARK_YELLOW}}</div>
-        <div class="logo-cap"><span>The Split, one colour</span><span>mark-mono-black.svg</span></div></div>
-    </div>
-    <div>
-      <div class="eyebrow" style="margin-bottom:10px">Palette, taken from the track</div>
-      <div class="swatches">
-        <div class="sw"><div class="chip" style="background:#1C1E20"></div><div class="meta"><b>Asphalt</b><code>#1C1E20</code><span>Main garment colour and type</span></div></div>
-        <div class="sw"><div class="chip" style="background:#F2F1EC;border-bottom:1px solid var(--rule)"></div><div class="meta"><b>Chalk</b><code>#F2F1EC</code><span>Lane-line white, the second garment colour</span></div></div>
-        <div class="sw"><div class="chip" style="background:#2F4FD8"></div><div class="meta"><b>Mondo Blue</b><code>#2F4FD8</code><span>A blue track surface. The brand colour</span></div></div>
-        <div class="sw"><div class="chip" style="background:#3E5B45"></div><div class="meta"><b>Infield</b><code>#3E5B45</code><span>Grass inside the track. Seasonal pieces</span></div></div>
-        <div class="sw"><div class="chip" style="background:#F2C230"></div><div class="meta"><b>Timer</b><code>#F2C230</code><span>Race-clock yellow. Only for the split line</span></div></div>
-      </div>
-    </div>
-    <div class="type-spec">
-      <div class="eyebrow">Type (both free on Google Fonts)</div>
-      <div class="spec"><span class="mono muted" style="font-size:13px">Archivo, 62% width, weight 900. Headlines and graphics</span><span class="sample-d">Keep going.</span></div>
-      <div class="spec"><span class="mono muted" style="font-size:13px">Archivo, 100% width, weight 400. Body and product copy</span><span class="sample-b">6.1 oz garment-dyed cotton, cut boxy. It gets softer every time you wash it.</span></div>
-      <div class="spec"><span class="mono muted" style="font-size:13px">IBM Plex Mono, weight 600. Splits, sizes, specs</span><span class="sample-m">0.5 MI · 04:12 · DROP 01 · SIZE M</span></div>
-    </div>
-    <div>
-      <div class="eyebrow" style="margin-bottom:10px">Graphic devices</div>
-      <div class="devices">
-        <div class="device"><svg viewBox="0 0 220 64" aria-hidden="true"><g style="fill:var(--accent)"><rect y="14" width="220" height="6"/><rect y="29" width="220" height="6"/><rect y="44" width="220" height="6"/></g></svg><b>Lane lines</b><small>Three thin stripes. Used under headlines and on sleeves and hems.</small></div>
-        <div class="device"><svg viewBox="0 0 220 64" aria-hidden="true"><text x="0" y="28" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="18" style="fill:var(--ink)">0.4 MI  QUIET</text><text x="0" y="54" font-family="IBM Plex Mono, monospace" font-weight="600" font-size="18" style="fill:var(--accent)">0.5 MI  KEEP GOING</text></svg><b>Split times</b><small>Mono lists of distances and words. The brand's way of telling a story.</small></div>
-        <div class="device"><svg viewBox="0 0 220 64" aria-hidden="true"><rect x="107" y="0" width="6" height="64" style="fill:var(--split)"/><rect x="0" y="30" width="96" height="4" style="fill:var(--ink)"/><rect x="124" y="30" width="96" height="4" style="fill:var(--ink)" opacity=".35"/></svg><b>The split line</b><small>One accent stroke that marks the halfway point. Never more than one per piece.</small></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="split" id="drop">
-  <div class="rail"><span class="split-no">0.3<small>DROP 01</small></span></div>
-  <div class="body">
-    <h2>Mile 0.5</h2>
-    <p>Drop 01 has five pieces, chosen to cover a whole cold season. They launch in November, just in time for holiday gifting. Every piece uses a heavyweight blank that print-on-demand services already stock, so nothing is made until someone orders it.</p>
-    <div class="drop">{{PRODUCT_CARDS}}</div>
-    <small>These are flat mockups drawn for this book. Photograph real samples before launch, and never sell a piece you haven't worn and washed.</small>
-  </div>
-</section>
-
-<section class="split" id="money">
-  <div class="rail"><span class="split-no">0.4<small>THE MONEY</small></span></div>
-  <div class="body">
-    <h2>What it costs</h2>
-    <div class="tbl"><table>
-      <thead><tr><th>Piece</th><th>Blank</th><th class="num">Price</th><th class="num">Maker cost</th><th class="num">Card fee</th><th class="num">You keep</th></tr></thead>
-      <tbody>
-        <tr><td>Split Tee</td><td>Comfort Colors 1717, front and back print</td><td class="num">$40</td><td class="num">~$20.79</td><td class="num">$1.46</td><td class="num">~$17.75</td></tr>
-        <tr><td>Splits Tee</td><td>Comfort Colors 1717, front print</td><td class="num">$40</td><td class="num">$15.29</td><td class="num">$1.46</td><td class="num">$23.25</td></tr>
-        <tr><td>Middle Hoodie</td><td>Cotton Heritage M2580, front and back</td><td class="num">$85</td><td class="num">~$32.45</td><td class="num">$2.77</td><td class="num">~$49.78</td></tr>
-        <tr><td>Split Cap</td><td>Yupoong 6245CM dad hat, embroidered</td><td class="num">$34</td><td class="num">~$15</td><td class="num">$1.29</td><td class="num">~$17.70</td></tr>
-        <tr><td>Lane Beanie</td><td>Cuffed knit beanie, embroidered</td><td class="num">$30</td><td class="num">~$14</td><td class="num">$1.17</td><td class="num">~$14.83</td></tr>
-      </tbody>
-    </table></div>
-    <small>Maker costs are Printful prices for size M. The tee price is $15.29 and the hoodie is $26.95. A back print is estimated at about $5.50 more. The cap and beanie are estimates, so check all of them in Printful's calculator before you set prices. The card fee is Shopify's 2.9% + 30¢. These figures assume the customer pays shipping, which is about $4.69 for one tee in the US. If you offer free shipping, set a minimum order of $75.</small>
-
-    <h3 style="margin-top:12px">Print-on-demand or a small batch?</h3>
-    <div class="tbl"><table>
-      <thead><tr><th></th><th>Print-on-demand (Printful / Printify)</th><th>Small batch (screen printing, ~100 tees)</th></tr></thead>
-      <tbody>
-        <tr><td><b>Money up front</b></td><td>$0 on stock. About $150 to $250 on samples</td><td>About $1,100 to $1,600 for 100 tees</td></tr>
-        <tr><td><b>Heavyweight tee, front and back</b></td><td>About $21 at Printful, and less at Printify (from $12.65 for the blank)</td><td>About $11 to $16 each: a $6 to $9 blank, $5 to $8 for printing, and $25 to $75 setup per colour</td></tr>
-        <tr><td><b>Minimum order</b></td><td>1</td><td>50 to 100 or more per design</td></tr>
-        <tr><td><b>Getting orders to customers</b></td><td>Made to order in 2 to 6 business days, then shipped</td><td>You ship the same day from your stock</td></tr>
-        <tr><td><b>Quality control</b></td><td>You only see your samples</td><td>You check every piece</td></tr>
-        <tr><td><b>Custom labels and fit</b></td><td>Limited, though an inside-neck print is possible</td><td>Yes</td></tr>
-        <tr><td><b>Risk</b></td><td>Almost none</td><td>Money tied up in unsold stock</td></tr>
-      </tbody>
-    </table></div>
-    <div class="verdict">
-      <div class="eyebrow">Recommendation</div>
-      <p><b>Start with print-on-demand through Printful.</b> Printful prints everything in its own facilities, so quality is more consistent than on Printify's network of independent printers. It also stocks the heavyweight blanks the brand promises. You risk nothing on stock while you find out which designs sell.</p>
-      <p><b>Move a design to screen printing once it sells about 100 units per run.</b> Factory data puts the break-even between screen printing and print-on-demand (DTG) at around 80 to 120 units. Only after two small batches sell out should you invest in a custom fit and your own labels.</p>
-    </div>
-
-    <h3 style="margin-top:12px">Budget for the first 90 days</h3>
-    <div class="tbl"><table>
-      <thead><tr><th>Item</th><th class="num">Cost</th></tr></thead>
-      <tbody>
-        <tr><td>Samples of all 5 pieces, plus spares for photos</td><td class="num">$150 – $250</td></tr>
-        <tr><td>Shopify Basic, 3 months ($29/mo if you pay yearly)</td><td class="num">$117</td></tr>
-        <tr><td>Domain, 1 year</td><td class="num">~$20</td></tr>
-        <tr><td>USPTO trademark filing, Class 25 (clothing)</td><td class="num">$350</td></tr>
-        <tr><td>LLC registration (the fee depends on your state)</td><td class="num">varies</td></tr>
-        <tr class="total"><td>Lean total before ads</td><td class="num">~$640 – $740</td></tr>
-        <tr><td>Optional ad test at launch</td><td class="num">$200 – $500</td></tr>
-      </tbody>
-    </table></div>
-    <p><b>Break-even:</b> at about $18 to $23 profit per tee, selling around 35 tees pays back the setup costs.</p>
-  </div>
-</section>
-
-<section class="split" id="launch">
-  <div class="rail"><span class="split-no">0.5<small>LAUNCH</small></span></div>
-  <div class="body">
-    <h2>The first 90 days</h2>
-    <ol class="timeline">
-      <li><div class="when"><b>Weeks 1–2</b>28 Sep – 11 Oct</div><div><h3>Lock the name</h3><p>Run the USPTO search, buy the domain and claim the handles. Set up the business and open Shopify and Printful. Order one sample of every piece.</p></div></li>
-      <li><div class="when"><b>Weeks 3–4</b>12 – 25 Oct</div><div><h3>Wear-test and shoot</h3><p>Wash every sample five times and look for fading, shrinking and cracked prints. Photograph the pieces on real people in the middle of something: mid-run, mid-shift, mid-build. Launch a waitlist page that says “Get Drop 01 first”.</p></div></li>
-      <li><div class="when"><b>Weeks 5–6</b>26 Oct – 8 Nov</div><div><h3>Nobody films the half mile</h3><p>Post ten short videos of people at the middle of something: mile 13 of a marathon, month 8 of a business. Ask followers to post their own with #MyHalfMile. Give free tees to the leaders of two or three local run clubs.</p></div></li>
-      <li><div class="when"><b>Week 7</b>9 – 15 Nov</div><div><h3>Drop 01 opens</h3><p>Open a 10-day sales window, with 24 hours of early access for the waitlist. With print-on-demand you could sell forever, so the scarcity is honest and based on time: the window closes and the designs change.</p></div></li>
-      <li><div class="when"><b>Weeks 8–13</b>16 Nov – 27 Dec</div><div><h3>Holidays, then Drop 02</h3><p>Push the cap and beanie as gifts. Email every buyer and ask for a photo. Plan Drop 02 around what sold, not what you like most.</p></div></li>
-    </ol>
-    <div class="cols">
-      <div><div class="eyebrow">Goals to aim for</div>
-        <ul class="lane-list">
-          <li><b>300</b> waitlist sign-ups before the drop opens</li>
-          <li><b>10%</b> of the waitlist buying in the first week</li>
-          <li><b>Under 3%</b> of orders with a return or quality complaint</li>
-          <li>Sales per design, which decides what moves to screen printing</li>
-        </ul></div>
-      <div><div class="eyebrow">Legal basics</div>
-        <ul class="lane-list">
-          <li>Register an LLC, get an EIN and turn on sales tax in Shopify.</li>
-          <li>File the trademark once the search comes back clear.</li>
-          <li>Print-on-demand blanks keep the manufacturer's label, which lists fibre, origin and care. If you replace it later, your label must carry the same information to meet the FTC's textile and care-label rules.</li>
-        </ul></div>
-    </div>
-  </div>
-</section>
-
-<section class="split" id="finish">
-  <div class="rail"><span class="split-no">FIN<small>NEXT STEPS</small></span></div>
-  <div class="body">
-    <h2>Your move</h2>
-    <div class="next">
-      <ul class="lane-list">
-        <li><b>1. Say yes to the name,</b> or ask for another round of names.</li>
-        <li><b>2. Run the USPTO and handle checks.</b> I can walk you through them.</li>
-        <li><b>3. Pick Printful or Printify.</b> I recommend Printful.</li>
-      </ul>
-      <p>After that, I can write the product pages, make print-ready files for every design, and set up the Shopify products and the waitlist. The artwork files, logos and mockups are in <span class="mono">clothing-brand/halfmile/</span> in your repo.</p>
-    </div>
-    <div class="sources">
-      <b>Sources (costs as of September 2026)</b>
-      <ol>
-        <li><a href="https://www.printful.com/blog/how-much-money-can-custom-t-shirts-make">Printful: Comfort Colors 1717 at $15.29, size M, 2026</a></li>
-        <li><a href="https://printify.com/app/brand/47/comfort-colors">Printify: Comfort Colors 1717 from $12.65 ($10.93 with Premium)</a></li>
-        <li><a href="https://printify.com/printify-vs-printful">Printify vs Printful: US shipping of $3.99 and $4.69 for one tee, January 2026</a></li>
-        <li><a href="https://www.youtube.com/watch?v=MWJVsoYm3TE">Hoodie review: Cotton Heritage M2580 at $26.95 at Printful</a></li>
-        <li><a href="https://www.cottonheritage.com/product/M2580/Unisex-Premium-Pullover-Hoodie.html">Cotton Heritage M2580 specs: 8.5 oz, 3-end fleece</a></li>
-        <li><a href="https://shirt.co/how-much-does-screen-printing-cost">Shirt.co: screen printing price by quantity, 2026</a></li>
-        <li><a href="https://arklavo.com/blogs/custom-apparel-guide/custom-tshirt-pricing-guide">Arklavo: $25 to $75 screen setup per colour</a></li>
-        <li><a href="https://www.portugalclothingfactory.com/blog/screen-printing-vs-dtg-streetwear">Portugal Clothing Factory: screen printing and DTG break even at 80 to 120 units</a></li>
-        <li><a href="https://pagefly.io/blogs/shopify/shopify-pricing-plans">PageFly: Shopify Basic at $39/mo ($29 yearly), 2.9% + 30¢, checked July 2026</a></li>
-        <li><a href="https://tmarkmetric.com/insights/how-much-does-a-trademark-cost">USPTO base application fee: $350 per class, 2026</a></li>
-      </ol>
-    </div>
-  </div>
-</section>
-
-</div>
+{{BODY}}

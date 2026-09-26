@@ -7,7 +7,9 @@ from pathlib import Path
 
 OUT = Path(__file__).resolve().parent.parent / "logo"
 
-CHALK, ASPHALT, BLUE, YELLOW = "#F2F1EC", "#1C1E20", "#2F4FD8", "#F2C230"
+# Workwear palette (v2): duck canvas, brass hardware, a bone tee underneath
+BLACK, FADED, TAN, MOSS, BRASS, BONE, CORD = (
+    "#121212", "#3B3B39", "#C2A878", "#4A4F36", "#B58B4C", "#EEEBE3", "#5A3E2B")
 
 H, S, W, GAP = 100, 24, 62, 10   # cap height, stroke, letter width, letter gap
 C = 22                           # chamfer on the tops of A and M
@@ -69,28 +71,27 @@ def wordmark(ink, split):
     return body, total
 
 
-def mark(ink, split, size=64):
-    """The Split: a running track seen from above. The left half of the track
-    is solid (distance covered), the right half is drawn as lane edges only
-    (distance to go), and the accent line marks the halfway point."""
-    h = size
-    w = h * 2.1
-    t = h * 0.24                     # track width
-    lw = h * 0.055                   # lane-edge line weight
-    r = h / 2
-    ri = r - t
-    half = w / 2
-    ring = (f"M{r},0H{w - r}A{r},{r} 0 0 1 {w - r},{h}H{r}A{r},{r} 0 0 1 {r},0z"
-            f"M{r},{t}A{ri},{ri} 0 0 0 {r},{h - t}H{w - r}A{ri},{ri} 0 0 0 {w - r},{t}z")
-    return (f'<defs><clipPath id="hmL"><rect x="0" y="0" width="{half}" height="{h}"/></clipPath>'
-            f'<clipPath id="hmR"><rect x="{half}" y="0" width="{half}" height="{h}"/></clipPath></defs>'
-            f'<path d="{ring}" fill="{ink}" fill-rule="evenodd" clip-path="url(#hmL)"/>'
-            f'<g clip-path="url(#hmR)" fill="none" stroke="{ink}" stroke-width="{lw}">'
-            f'<rect x="{lw / 2}" y="{lw / 2}" width="{w - lw}" height="{h - lw}" rx="{r - lw / 2}"/>'
-            f'<rect x="{t - lw / 2}" y="{t - lw / 2}" width="{w - 2 * t + lw}" height="{h - 2 * t + lw}" rx="{ri + lw / 2}"/>'
-            f'</g>'
-            f'<rect x="{half - lw}" y="0" width="{lw * 2}" height="{t}" fill="{split}"/>'
-            f'<rect x="{half - lw}" y="{h - t}" width="{lw * 2}" height="{t}" fill="{split}"/>'), w, h
+def monogram(ink, split):
+    """H | M: the two outer letters of the wordmark around the split line.
+    Small enough to embroider on a tee chest or a beanie cuff."""
+    h, hw = letter("H", 0)
+    m, mw = letter("M", 0)
+    sx = hw + 12
+    body = (f'<g fill="{ink}">{h}<g transform="translate({sx + 6 + 12},0)">{m}</g></g>'
+            f'<rect x="{sx}" y="-12" width="6" height="{H + 24}" fill="{split}"/>')
+    return body, sx + 6 + 12 + mw
+
+
+def patch(bg, ink, split, stitch):
+    """The woven tab: a wide stitched rectangle carrying the wordmark.
+    Deliberately wide (about 3:1), never square."""
+    body, w = wordmark(ink, split)
+    px, py = 70, 46
+    W2, H2 = w + 2 * px, H + 2 * py
+    return (f'<rect x="0" y="0" width="{W2}" height="{H2}" rx="10" fill="{bg}"/>'
+            f'<rect x="16" y="16" width="{W2 - 32}" height="{H2 - 32}" rx="4" fill="none" '
+            f'stroke="{stitch}" stroke-width="5" stroke-dasharray="16 10"/>'
+            f'<g transform="translate({px},{py})">{body}</g>'), W2, H2
 
 
 def svg(inner, w, h, pad, bg=None, title="Halfmile"):
@@ -103,25 +104,23 @@ def svg(inner, w, h, pad, bg=None, title="Halfmile"):
 
 def main():
     OUT.mkdir(exist_ok=True)
+    for old in OUT.glob("*.svg"):
+        old.unlink()
+    # transparent backgrounds, so every file can go straight to a printer or embroiderer
     variants = {
-        # transparent backgrounds, so every file can go straight to a printer
-        "on-dark": (CHALK, YELLOW, None),
-        "on-light": (ASPHALT, BLUE, None),
-        "mono-black": (ASPHALT, ASPHALT, None),
-        "mono-white": (CHALK, CHALK, None),
+        "bone": (BONE, BRASS),       # for black, faded black and moss garments
+        "black": (BLACK, BRASS),     # for bone and tan garments
+        "mono-black": (BLACK, BLACK),
+        "mono-bone": (BONE, BONE),
     }
-    for name, (ink, split, bg) in variants.items():
+    for name, (ink, split) in variants.items():
         body, w = wordmark(ink, split)
-        (OUT / f"wordmark-{name}.svg").write_text(svg(body, w, H, 24, bg, "Halfmile wordmark"))
-        m, mw, mh = mark(ink, split)
-        (OUT / f"mark-{name}.svg").write_text(svg(m, mw, mh, 12, bg, "Halfmile Split mark"))
-        # stacked lockup: mark centred over the wordmark
-        scale = 0.9
-        mw2 = mw * scale
-        lock = (f'<g transform="translate({(w - mw2 * 1.6) / 2},0) scale({scale * 1.6})">{m}</g>'
-                f'<g transform="translate(0,{mh * scale * 1.6 + 36})">{body}</g>')
-        lh = mh * scale * 1.6 + 36 + H
-        (OUT / f"lockup-{name}.svg").write_text(svg(lock, w, lh, 32, bg, "Halfmile lockup"))
+        (OUT / f"wordmark-{name}.svg").write_text(svg(body, w, H, 24, None, "Halfmile wordmark"))
+        body, w = monogram(ink, split)
+        (OUT / f"monogram-{name}.svg").write_text(svg(body, w, H, 20, None, "Halfmile monogram"))
+    for name, cols in {"black": (BLACK, BONE, BRASS, BONE), "tan": (TAN, BLACK, BRASS, BLACK)}.items():
+        body, w, h = patch(*cols)
+        (OUT / f"woven-tab-{name}.svg").write_text(svg(body, w, h, 0, None, "Halfmile woven tab"))
 
 
 if __name__ == "__main__":

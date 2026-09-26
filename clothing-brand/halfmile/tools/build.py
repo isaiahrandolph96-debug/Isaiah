@@ -1,6 +1,6 @@
 """Build everything for the Halfmile brand kit.
 
-    python3 clothing-brand/halfmile/tools/build.py   # logos, mockup SVGs, brand-book.html, print.html
+    python3 clothing-brand/halfmile/tools/build.py   # logos, mockup SVGs, brand-book.html (template + body), print.html
     node    clothing-brand/halfmile/tools/render.js  # PNG mockups, print files, brand sheet
 """
 import re
@@ -29,21 +29,23 @@ def hero_wordmark():
 
 CARDS = [
     # id of main shot, id of inset shot (or None), name, price, blurb, spec, featured
-    ("split-tee-back", "split-tee-front", "Split Tee", "$40",
-     "The flagship. A small Split mark on the chest, and the whole idea of the brand across the back.",
-     "Chalk · Comfort Colors 1717 · 6.1 oz garment-dyed cotton", True),
-    ("splits-tee", None, "Splits Tee", "$40",
-     "Five split times from start to “keep going”, set in mono like a race printout.",
-     "Asphalt · Comfort Colors 1717", False),
-    ("middle-hoodie-back", "middle-hoodie", "Middle Hoodie", "$85",
-     "The wordmark on the chest and STILL HERE. on the back. The hero piece for cold months.",
-     "Asphalt · Cotton Heritage M2580 · 8.5 oz fleece", False),
-    ("split-cap", None, "Split Cap", "$34",
-     "A low-profile dad hat with the Split embroidered on the front.",
-     "Mondo Blue · Yupoong 6245CM · embroidered", False),
-    ("lane-beanie", None, "Lane Beanie", "$30",
-     "A cuffed knit beanie with a small woven 0.5 label. The gift pick.",
-     "Infield · cuffed knit · embroidered", False),
+    ("shift-jacket-black", "shift-jacket-tan", "Shift Jacket", "$165",
+     "The hero piece. A cropped 12 oz duck canvas work jacket with a cord collar, blanket lining and "
+     "a brass zip. Comes in black, faded black and duck tan.",
+     "Small batch · pre-order · 12 oz cotton duck", True),
+    ("night-shift-jacket", None, "Night Shift Jacket", "$185",
+     "A hooded duck canvas jacket with a quilted lining and knit cuffs, for the coldest shifts.",
+     "Small batch · pre-order · black", False),
+    ("split-zip-hoodie", "split-zip-hoodie-back", "Split Zip Hoodie", "$95",
+     "HALF on one side of the zip and MILE on the other, so the zipper is the split line. "
+     "BUILT FOR THE LONG MIDDLE. runs across the back.",
+     "Duck tan · heavyweight full zip · print-on-demand", False),
+    ("shift-tee-black", "shift-tee-bone-back", "Shift Tee", "$42",
+     "The tee under the jacket. Black with a tonal monogram, or bone with the back print.",
+     "Comfort Colors 1717 · print-on-demand", False),
+    ("watch-beanie", None, "Watch Beanie", "$32",
+     "A black rib knit with the tab on the cuff. It's embroidered at launch, and becomes woven once you order patches.",
+     "Black · print-on-demand embroidery", False),
 ]
 
 
@@ -76,17 +78,20 @@ def main():
     L.main()
     shots = {p["id"]: p["svg"] for p in G.products()}
     (ROOT / "mockups").mkdir(exist_ok=True)
+    for old in (ROOT / "mockups").glob("*.*"):
+        old.unlink()
     for pid, s in shots.items():
         (ROOT / "mockups" / f"{pid}.svg").write_text(s + "\n")
 
     html = (TOOLS / "brand-book.template.html").read_text()
     html = html.replace("</style>", CARD_CSS + "</style>", 1)
+    html = html.replace("{{BODY}}", (TOOLS / "brand-book.body.html").read_text())
     rep = {
         "{{WORDMARK_HERO}}": hero_wordmark(),
-        "{{LOCKUP_DARK}}": inline("lockup-on-dark.svg"),
-        "{{WORDMARK_LIGHT}}": inline("wordmark-on-light.svg"),
-        "{{MARK_BLUE}}": inline("mark-mono-white.svg"),
-        "{{MARK_YELLOW}}": inline("mark-mono-black.svg"),
+        "{{TAB_BLACK}}": inline("woven-tab-black.svg"),
+        "{{TAB_TAN}}": inline("woven-tab-tan.svg"),
+        "{{WORDMARK_BLACK}}": inline("wordmark-black.svg"),
+        "{{MONOGRAM_BONE}}": inline("monogram-bone.svg"),
         "{{PRODUCT_CARDS}}": cards(shots),
     }
     for k, v in rep.items():
