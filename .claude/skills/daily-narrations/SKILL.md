@@ -8,7 +8,7 @@ description: Produce Africa Blind Spot's five daily narrations (voiceover script
 The owner needs **five narrations every day**, one per top story from the daily briefing. They paste them into CapCut (text-to-speech or their own voice). Each must be **informative, clear to a first-time reader, and match the severity of the story in tone**.
 
 ## 1. Pick the day's top five
-- Start from today's briefing in `briefings/` (write or refresh it first if it's stale). Research with web search, and prefer items dated today or the last 48 h.
+- Start from today's **Field Report** (`briefings/YYYY-MM-DD-field-report.md`, written with the `field-report` skill). The five narrations cover the same five stories. Open each one with the report's strongest reported scene detail, attributed. Research with web search, and prefer items dated today or the last 48 h.
 - Rank by **human stakes first** (lives, displacement, rights), then **reach** (how many people are affected), then **newness**, then **the blind-spot factor** (big but under-covered).
 - Spread the list across regions (North, West, Central, East, Southern Africa, the Horn) and across topics (conflict, health, climate, politics, economy, culture or sport). Aim for **no more than 2 conflict stories**, and **at least one** hopeful, economic or culture story. Cover at least 3 different regions.
 - For a continuing story, only include it if something **new** happened. Lead with the new development.

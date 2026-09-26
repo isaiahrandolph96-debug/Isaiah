@@ -32,7 +32,7 @@ Central Mali is where the country's three worlds meet:
 | Date (2026) | Place | What happened |
 |---|---|---|
 | **9 Aug** | **San** (Ségou) | JNIM attacked a garrison: 10 soldiers killed (40 militants reported killed). |
-| **10 Sept** | **Dioura** (Ségou) | The deadliest blow in years. Soldiers killed: about 120 (diplomatic source) or 130 (security source); JNIM claims 150, including two colonels. JNIM claims 93 soldiers captured; a security source says more than 100 were taken hostage. **Five Russian Africa Corps personnel** were reportedly killed. |
+| **10 Sept** | **Dioura** (Mopti) | The deadliest blow in years. Soldiers killed: about 120 (diplomatic source) or 130 (security source); JNIM claims 150, including two colonels. JNIM claims 93 soldiers captured; a security source says more than 100 were taken hostage. **Five Russian Africa Corps personnel** were reportedly killed. |
 | **Sept** | **Sévaré and Konna** (Mopti) | JNIM claims it struck **air-defence systems at Sévaré airport** and killed 33 pro-government fighters. |
 | **Sun, 13 Sept (reported 16 Sept)** | **Ke-Macina** (Ségou) | Sources say an army unit **executed 11 civilians** and threw their bodies into the river in sacks. |
 

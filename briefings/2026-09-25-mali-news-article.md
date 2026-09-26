@@ -8,7 +8,7 @@
 
 An al-Qaeda-linked group killed at least 100 Malian soldiers in an attack on an army camp in central Mali this month, according to security and diplomatic sources. It was one of the deadliest single blows to the country's military in years, and it deepens doubts about the ruling junta's promise to restore security.
 
-The attack on the camp at Dioura, in the Ségou region, took place on 10 September. A security source told Reuters that 130 soldiers died and more than 100 were taken hostage. A diplomatic source put the death toll at around 120. Jama'at Nusrat al-Islam wal-Muslimin (JNIM), which claimed the attack, said it killed 150 soldiers, including two colonels, and captured 93. The group released videos of dozens of men it said were captured Malian soldiers.
+The attack on the camp at Dioura, in the Mopti region, took place on 10 September. A security source told Reuters that 130 soldiers died and more than 100 were taken hostage. A diplomatic source put the death toll at around 120. Jama'at Nusrat al-Islam wal-Muslimin (JNIM), which claimed the attack, said it killed 150 soldiers, including two colonels, and captured 93. The group released videos of dozens of men it said were captured Malian soldiers.
 
 The Associated Press said it could not verify the figures. A spokesperson for Mali's army declined to comment. Mali's government has not published a death toll.
 

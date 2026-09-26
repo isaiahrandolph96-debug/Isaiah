@@ -17,7 +17,7 @@
 ### PART 1: The attack (≈1:50)
 | Narration beat | On-screen text | Visuals |
 |---|---|---|
-| "On the tenth of September…" | **10 SEPTEMBER 2026 · DIOURA, MALI** | Map zooming from Africa to Mali, then a pin on Dioura (Ségou) |
+| "On the tenth of September…" | **10 SEPTEMBER 2026 · DIOURA, MALI** | Map zooming from Africa to Mali, then a pin on Dioura (Mopti region) |
 | Inner Niger Delta | **CENTRAL MALI: WHERE NORTH MEETS SOUTH** | Map with the Niger river highlighted |
 | The death toll | **130 KILLED (security source) · ~120 (diplomatic source) · 150 (JNIM claim)** | Three cards side by side, each labelled with its source |
 | Hostages and videos | **93+ CAPTURED (JNIM claim)** | Dark frame with a slow push-in. **Do not use JNIM's propaganda footage.** |

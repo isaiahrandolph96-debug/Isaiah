@@ -7,6 +7,8 @@ Africa news and stories for social media ("The stories others miss"). This repo 
 
 Reusable formats (data race, roundup, quiz, myth vs reality, timeline, then vs now, kinetic quote, whiteboard, carousel, audiogram, plus the explainer and map story) live in `reels/formats.py`; copy a scene from `reels/format-templates/script.json` to use one in any story.
 
+Daily briefing: the **Field Report** (`.claude/skills/field-report/SKILL.md`): the five best Africa stories, written so vividly the reader feels they are there. Every scene detail comes from attributed reporting and nothing is invented. Each story is ready to post.
+
 Daily output: five narrations (CapCut voiceover scripts) from the day's top five stories, following `.claude/skills/daily-narrations/SKILL.md`, saved in `narrations/YYYY-MM-DD/`. The tone matches the severity of each story, and every narration must be clear to a first-time reader.
 
 Non-negotiables for every reel:
