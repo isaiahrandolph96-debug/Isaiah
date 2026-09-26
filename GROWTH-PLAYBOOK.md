@@ -56,3 +56,18 @@ Metricool is connected, so I can pull these each week and tell you which series 
 ## 7. Production pipeline (already built)
 `briefings/` (daily research) → pick the most under-covered story → `reels/<slug>/script.json` → ElevenLabs backgrounds and voice → `render_reel.py` → MP4, cover and `POST.md`.
 Can be automated as a daily scheduled task: briefing plus one Reel draft for you to review each morning.
+
+## 8. Newsletter — deferred until there's an audience to migrate
+Decision (2026-09-26): build the newsletter *after* growing the audience, not before. A newsletter converts existing reach; it doesn't create it. Right now the daily reels and the Field Report are the growth engine — put the effort there first.
+
+**Trigger to revisit:** once any one of these holds for 2+ consecutive weeks, it's time to build it:
+- 5,000+ combined followers across IG/TikTok/YouTube, or
+- 1,000+ WhatsApp Channel subscribers, or
+- a sponsor or partner specifically asks for an email list.
+
+**When that trigger hits, the plan is:**
+- Repurpose the daily Field Report (already publish-ready, already vivid) as the newsletter's core content — no new writing system needed.
+- Free weekly digest (top 5 stories of the week) to build the list; paid daily edition ($5–8/mo) for the full Field Report, sources included.
+- Platform: Substack or Beehiiv (creator-friendly, easy paid tiers, no separate site to maintain).
+- Convert existing audience via: link in bio, a Story CTA ("get tomorrow's Field Report by email — free"), and a pinned comment on the Friday "Africa This Week" reel.
+- Reuse `briefings/*-field-report.md` output directly — the daily briefing pipeline already produces the newsletter's content as a byproduct.
