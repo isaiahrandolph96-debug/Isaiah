@@ -7,6 +7,8 @@ Africa news and stories for social media ("The stories others miss"). This repo 
 
 Reusable formats (data race, roundup, quiz, myth vs reality, timeline, then vs now, kinetic quote, whiteboard, carousel, audiogram, plus the explainer and map story) live in `reels/formats.py`; copy a scene from `reels/format-templates/script.json` to use one in any story.
 
+Daily output: ten narrations (CapCut voiceover scripts) from the day's top ten stories, following `.claude/skills/daily-narrations/SKILL.md`, saved in `narrations/YYYY-MM-DD/`. The tone matches the severity of each story, and every narration must be clear to a first-time reader.
+
 Non-negotiables for every reel:
 1. **Facts first.** Every number has a source listed in `script.json` → `sources` and in the post's pinned comment. Check superlatives ("largest", "first") against two sources. State "as of <date>".
 2. **Hook in frame 1.** No intro bumper before the hook. Lead with the stake or the surprising number.
