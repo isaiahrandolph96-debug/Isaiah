@@ -7,6 +7,15 @@ description: Write the Africa Blind Spot Field Report, the owner's daily briefin
 
 The owner wants briefings so detailed **the reader feels they are there**, and **only the best, ready-to-go stories**. The model to copy is `briefings/2026-09-26-field-report.md`.
 
+## Owner's standing rules (apply to every story and briefing)
+1. **Each story represents something different.** The five stories must not repeat the same angle. Give each one a distinct **"What this story represents"** line, for example "a peace deal collapsing", "a city under siege", "a state losing control", "a disease being pushed back", "a community demanding safety". Two conflict stories must show two different sides of Africa's reality.
+2. **Always framed as Africa Blind Spot.** Every story shows why it's a blind spot: what the world is missing and why it matters. It carries the brand's voice ("the stories others miss").
+3. **Informed, never confused. No jargon.** Write for a smart 15-year-old reading about Africa for the first time.
+   - Explain every group, acronym and place the first time it appears, in plain words ("the RSF, a paramilitary force at war with Sudan's army").
+   - Replace jargon: "IDPs" → "people forced from their homes"; "humanitarian corridor" → "a safe route for aid"; "junta" → "military government"; "insurgency" → "armed uprising"; "epicentre" → "centre of the outbreak"; "sovereignty" → "control over their own country". Don't use "kinetic", "stakeholders", "escalation dynamics" or "trajectory".
+   - One idea per sentence. Numbers in context ("half a million people, about the size of a large city").
+   - If a term can't be avoided, define it in the same sentence.
+
 ## 1. Only the best five
 - Five stories a day, no filler. Rank by human stakes, then newness, then the blind-spot factor.
 - Conflict and major news come first. Include at least one non-conflict story, from health, rights, economy or culture.
@@ -21,6 +30,7 @@ The owner wants briefings so detailed **the reader feels they are there**, and *
 
 ## 3. Structure of each story (500–800 words)
 1. **Headline and location line:** `## N · COUNTRY: A headline with a human angle`, then **City, region, where in Africa**.
+   Add **What this story represents:** in one line, and **Why it's a blind spot:** in one line.
 2. **THE SCENE** (150–250 words): open on a moment. Put a person, a place or a sound in the first line.
 3. **WHAT HAPPENED:** dated bullets with numbers and sources. Give disputed figures as a range, saying who says what.
 4. **Context** (THE WEIGHT OF HISTORY, THE SIEGE BEHIND IT, THE BIG PICTURE…): what a first-time reader needs to know.

@@ -7,6 +7,15 @@ description: Produce Africa Blind Spot's five daily narrations (voiceover script
 
 The owner needs **five narrations every day**, one per top story from the daily briefing. They paste them into CapCut (text-to-speech or their own voice). Each must be **informative, clear to a first-time reader, and match the severity of the story in tone**.
 
+## Owner's standing rules (apply to every story and briefing)
+1. **Each story represents something different.** The five stories must not repeat the same angle. Give each one a distinct **"What this story represents"** line, for example "a peace deal collapsing", "a city under siege", "a state losing control", "a disease being pushed back", "a community demanding safety". Two conflict stories must show two different sides of Africa's reality.
+2. **Always framed as Africa Blind Spot.** Every story shows why it's a blind spot: what the world is missing and why it matters. It carries the brand's voice ("the stories others miss").
+3. **Informed, never confused. No jargon.** Write for a smart 15-year-old reading about Africa for the first time.
+   - Explain every group, acronym and place the first time it appears, in plain words ("the RSF, a paramilitary force at war with Sudan's army").
+   - Replace jargon: "IDPs" → "people forced from their homes"; "humanitarian corridor" → "a safe route for aid"; "junta" → "military government"; "insurgency" → "armed uprising"; "epicentre" → "centre of the outbreak"; "sovereignty" → "control over their own country". Don't use "kinetic", "stakeholders", "escalation dynamics" or "trajectory".
+   - One idea per sentence. Numbers in context ("half a million people, about the size of a large city").
+   - If a term can't be avoided, define it in the same sentence.
+
 ## 1. Pick the day's top five
 - Start from today's **Field Report** (`briefings/YYYY-MM-DD-field-report.md`, written with the `field-report` skill). The five narrations cover the same five stories. Open each one with the report's strongest reported scene detail, attributed. Research with web search, and prefer items dated today or the last 48 h.
 - Rank by **human stakes first** (lives, displacement, rights), then **reach** (how many people are affected), then **newness**, then **the blind-spot factor** (big but under-covered).

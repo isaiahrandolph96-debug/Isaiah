@@ -8,6 +8,9 @@
 ## 1 · ETHIOPIA: The night Tigray went dark
 **Mekelle, Tigray region, northern Ethiopia**
 
+*What this story represents:* a peace deal collapsing, and a region cut off from the world again.
+*Why it's a blind spot:* The last war here may have killed up to 600,000 people behind a communications blackout, and most of the world noticed too late. The lines went dead again on Thursday.
+
 **THE SCENE**
 
 On Thursday night, the phones in Mekelle stopped working.
@@ -44,13 +47,16 @@ The TPLF calls its war "defensive" and says government troops fired first. The f
 ## 2 · SUDAN: A city watching the sky
 **El Obeid, North Kordofan, central Sudan**
 
+*What this story represents:* a city of half a million living under a sky full of drones.
+*Why it's a blind spot:* The world's attention is on the diplomatic row over a visa. The people of El Obeid, where UN experts warn of a possible massacre, get far less of it.
+
 **THE SCENE**
 
 In El Obeid, people have learned to watch the sky.
 
 Residents describe days when as many as 40 drones hang over the city at once. "You cannot hide from a drone strike," residents told CNN. A strike can find you asleep at home, on the way to school, or in the market.
 
-This is a city of about half a million people. Nearly 100,000 of them already fled violence elsewhere and came here for safety. For about 18 months, according to UN officials, El Obeid has lived under siege-like conditions. Fighters from the Rapid Support Forces (RSF), a paramilitary group at war with Sudan's army, hold most of the roads around it.
+This is a city of about half a million people. Nearly 100,000 of them already fled violence elsewhere and came here for safety. For about 18 months, according to UN officials, El Obeid has been almost completely surrounded. Fighters from the Rapid Support Forces, or RSF, an armed force separate from Sudan's army and now at war with it, hold most of the roads around the city.
 
 Inside, UN officials report shortages of food, water, fuel and medicine, and a worsening cholera outbreak. Women and girls are reporting high rates of sexual violence.
 
@@ -76,13 +82,16 @@ Sudan's war began in April 2023, between the army and the RSF. It has forced mil
 ## 3 · MALI: The camp no one came to save
 **Dioura, Mopti region, central Mali**
 
+*What this story represents:* a government losing control of its own country, and silencing those who say so.
+*Why it's a blind spot:* Journalists who describe the war are jailed, so one of Africa's deadliest conflicts goes largely unreported.
+
 **THE SCENE**
 
 Dioura is an army camp on the edge of Mali's Inner Niger Delta, the flood plain of rivers and cattle routes in the country's centre.
 
 On the tenth of September, fighters from JNIM, an armed group linked to al-Qaeda, attacked it. According to security, military and local sources cited by AFP, the fighters came back the next day, and the army did not send reinforcements.
 
-When it was over, at least 100 Malian soldiers were dead. A security source told Reuters the toll was 130, with more than 100 taken hostage. Five members of Russia's Africa Corps, the Kremlin-run force fighting beside Mali's army, were killed too. JNIM claims 150 dead and 93 captured, and it has released videos of dozens of young men it says are captured Malian soldiers.
+When it was over, at least 100 Malian soldiers were dead. A security source told Reuters the toll was 130, with more than 100 taken hostage. Five members of Russia's Africa Corps, a force controlled by the Russian government that fights beside Mali's army, were killed too. JNIM claims 150 dead and 93 captured, and it has released videos of dozens of young men it says are captured Malian soldiers.
 
 The army has declined to comment, and the government has not released a death toll.
 
@@ -115,6 +124,9 @@ Mali's military leader, General Assimi Goïta, used Independence Day on 22 Septe
 ## 4 · DR CONGO: Inside the Ebola fight
 **Bunia, Ituri province, north-eastern DR Congo**
 
+*What this story represents:* a disease being pushed back, and the people risking their lives to do it.
+*Why it's a blind spot:* Ebola headlines focus on case counts. The burial teams, nurses and grieving families who decide whether the outbreak ends rarely make the news.
+
 **THE SCENE**
 
 In Bunia, the burial teams go out nearly every day.
@@ -140,7 +152,7 @@ The World Health Organization says that over the last three weeks:
 
 Congo is also running short of health workers to staff treatment centres, especially in North Kivu.
 
-**WHAT'S NEXT:** Whether Ituri's decline holds, and whether North Kivu, already scarred by conflict, becomes the new epicentre.
+**WHAT'S NEXT:** Whether Ituri's decline holds, and whether North Kivu, already scarred by conflict, becomes the new centre of the outbreak.
 
 **READY TO POST**
 - **Hook:** *In Bunia, the burial teams go out nearly every day. For the first time in months, there are fewer graves to dig.*
@@ -151,6 +163,9 @@ Congo is also running short of health workers to staff treatment centres, especi
 
 ## 5 · SOUTH AFRICA: The women of Kempton Park
 **Kempton Park, Ekurhuleni, east of Johannesburg**
+
+*What this story represents:* a community of women demanding the right to feel safe.
+*Why it's a blind spot:* Violence against women in South Africa is so common it often goes unreported abroad. Nine killings in nine weeks shows how deep the crisis runs.
 
 **THE SCENE**
 
