@@ -12,7 +12,7 @@ The reference reel is `reels/belgium-rwanda-ties-60s/` (see its `storyboard.jpg`
 - Cross-check every superlative and headline number against a second source. Note "as of" dates.
 - Look for a relatable human-scale number for the hook (e.g. "only 1 in 20 has electricity").
 
-## 2. Script: 9–10 scenes, 45–60 s
+## 2. Script: 9–10 scenes, 60–75 s
 Arc: **hook stat → what happened → the money → the scale (map) → the key spec → who wins / why it matters → bigger picture → timeline → "why isn't this on your feed?" blind-spot line → "Send this to someone who hasn't heard."**
 - `reels/<slug>/script.json`, one scene per beat: `head` (2 short lines, one gold), `say` (TTS: numbers written out), `show` (captions: digits), `bg_spec`.
 - One idea per scene, about 8–16 spoken words (the voice reads slowly, so keep the total near 170 words for about 60–75 s). Add `"gap": 0.18`. The CTA scene gets `"hold": 1.2` and is the last paragraph of the voice take.
@@ -20,8 +20,8 @@ Arc: **hook stat → what happened → the money → the scale (map) → the key
 
 ## 3. A story-driven animated background for every scene
 Pick from, or add to, `reels/anim.py` and `reels/mapviz.py`:
-- Maps: `{"map": {"from"/"to"/"view", "highlight", "route": {"grow", "flow", "places", "segments"}, "rings", "capitals", "dim"}}`. Add new places and routes to `mapviz.PLACES` and `ROUTE`.
-- Scenes: `village`, `coins`, `pylons`, `whowins`, `build`, `feed`, `planes`. Overlays: `ranks` (with `ranks_y`), `chips`, `bars`, `count`.
+- Maps: `{"map": {"from"/"to"/"view", "highlight", "route": {"path", "arc", "grow", "flow", "places", "segments"}, "rings", "pins", "tags", "capitals", "dim"}}`. Views include `eurafrica` (Europe, Africa and the Gulf) and `greatlakes`. Add new places to `mapviz.PLACES`.
+- Scenes: `ties` (two capitals as flag discs joined by a cable that snaps or mends; use it for any diplomatic story), `village`, `coins`, `pylons`, `whowins`, `build`, `feed`, `planes`. Overlays: `ranks` (with `ranks_y`), `chips`, `bars`, `count`.
 - **Formats** (`reels/formats.py`, `bg_spec: {"format": ...}`): `race`, `roundup`, `quiz`, `myth`, `timeline`, `thenvsnow`, `kinetic`, `whiteboard`, `carousel`, `audiogram`. Copy the matching scene from `reels/format-templates/script.json` and swap in the story's data (schemas are in `reels/README.md` → "Format library"). Mix formats inside one reel, e.g. a map for the scale, `race` for results, `kinetic` for the key quote, `myth` for the blind-spot line.
 - If no existing animation fits the story, **write a new one in `anim.py`** (drawn per frame, in the reel palette) instead of using a static background. Record it in `reels/README.md`.
 
