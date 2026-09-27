@@ -18,7 +18,8 @@ Each folder is one reel: `script.json` (scenes, headlines, narration, captions, 
 pip install pillow numpy imageio-ffmpeg
 python3 render_reel.py ebola-blindspot-60s --endcard <a reference reel with the brand end card>.mp4
 ```
-- Voice clips: ElevenLabs, voice "Yusuf Hakeem Kiser" (`nJvj5shg2xu1GKGxqfkE`), `eleven_multilingual_v2`. Write numbers out in `say` (TTS) and as digits in `show` (captions).
+- **Reference reel:** `belgium-rwanda-ties-60s/` (the standard since 27 Sept 2026).
+- Voice: "Daniel – Steady Broadcaster" (`onwK4e9ZLuTAKqWW03F9`) via vidIQ `vidiq_voiceover_generate` (or ElevenLabs with the same ID), recorded as one take and split with `split_vo.py` (below). Write numbers out in `say` (TTS) and as digits in `show` (captions).
 - Backgrounds: gpt-image-2 at 9:16, prompt pattern "Vertical cinematic digital painting, dark moody palette … calm dark area across the middle … No text."
 - Data scenes: `"special": "bars" | "chips" | "ranks"` render animated stat graphics.
 
@@ -101,3 +102,8 @@ When no voice clips exist (or credits are out), write scenes with `"lines"` and 
 - Maps now include **Europe** and support **custom routes**: `"route": {"path": ["Kigali", "Doha", "Brussels"], "arc": 0.16, ...}` (`path` overrides the default `ROUTE`; `arc` bows long-haul legs; `segments` use the same path).
 - New views `eurafrica` (Europe + Africa + the Gulf) and `greatlakes` (Rwanda and the Kivus); new places Kigali, Bukavu, Brussels, Doha, New York.
 - `render_reel.py --storyboard` writes `storyboard.jpg` from the real timeline: one frame per scene at its exact midpoint, with the Reels UI zones outlined in red.
+
+## One-take voiceover (`split_vo.py`, added with the new standard)
+1. `python3 split_vo.py <reel> --print-script` prints the script to record.
+2. Save the take as `<reel>/vo/full.mp3`.
+3. `python3 split_vo.py <reel> [--tempo 1.1 --pause 0.32]` finds the paragraph pauses nearest each scene boundary (the estimate comes from the character count and is re-anchored after every cut), cuts `vo/01.mp3`…, trims internal pauses longer than `--pause`, and applies `atempo`. It then prints each clip's speaking rate; clips far from the median are flagged as likely mis-cuts.

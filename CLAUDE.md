@@ -3,7 +3,7 @@
 Africa news and stories for social media ("The stories others miss"). This repo holds daily briefings (`briefings/`), reels (`reels/`) and the growth playbook (`GROWTH-PLAYBOOK.md`).
 
 ## The standard
-`reels/uganda-southsudan-power-60s/` is the **reference reel**. The owner approved it as the baseline: every new reel must match or exceed it, never fall below it. See `reels/uganda-southsudan-power-60s/storyboard.jpg`. To make a reel, follow `.claude/skills/africa-reel/SKILL.md` (`/africa-reel`).
+`reels/belgium-rwanda-ties-60s/` is the **reference reel** (approved by the owner on 27 Sept 2026, replacing `uganda-southsudan-power-60s`). It is the baseline: every new reel must match or exceed it, never fall below it. That covers the voice, the story-driven animations (including the flags-and-cable `ties` scene and the Europe–Africa route maps), the mix of formats (map, whiteboard, then-vs-now, carousel, feed) and the verified storyboard. See `reels/belgium-rwanda-ties-60s/storyboard.jpg`. To make a reel, follow `.claude/skills/africa-reel/SKILL.md` (`/africa-reel`).
 
 Reusable formats (data race, roundup, quiz, myth vs reality, timeline, then vs now, kinetic quote, whiteboard, carousel, audiogram, plus the explainer and map story) live in `reels/formats.py`; copy a scene from `reels/format-templates/script.json` to use one in any story.
 
@@ -29,4 +29,4 @@ Non-negotiables for every reel:
 - The Python tools need `pip install pillow numpy imageio-ffmpeg "geopandas<1.0"`. ffmpeg comes from `imageio_ffmpeg.get_ffmpeg_exe()`.
 - The brand end card is taken from the owner's reference reels (the last ~2.2 s). Ask for one if it isn't in the session.
 - ElevenLabs is on the free plan: voice clips allow at most 2 concurrent requests, images have a daily cap, and credits can run out. The music bed is made locally with `reels/music_bed.py`. Media downloads only work from storage.googleapis.com; Canva, Unsplash and Wikipedia downloads are blocked.
-- The voice is "Yusuf Hakeem Kiser" (`nJvj5shg2xu1GKGxqfkE`, `eleven_multilingual_v2`). Reuse identical lines, such as the CTA clip, instead of regenerating them.
+- **The house voice is "Daniel – Steady Broadcaster"** (ElevenLabs voice `onwK4e9ZLuTAKqWW03F9`), generated through vidIQ's `vidiq_voiceover_generate` (14 credits per 1,000 characters, about 28 per reel; vidIQ has 150 credits a month). Record the whole script as ONE take, then split it with `python3 reels/split_vo.py <reel>` (see the reel skill). If vidIQ is out of credits, the same voice ID works in ElevenLabs `creative_generate_speech`. The earlier voice, "Yusuf Hakeem Kiser" (`nJvj5shg2xu1GKGxqfkE`), is retired for new reels.
