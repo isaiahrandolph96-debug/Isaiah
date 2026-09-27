@@ -486,6 +486,33 @@ def grid_layer(p, t, spec):
 
 # ---------------------------------------------------------------- main
 
+def storyboard(video, timeline, scenes, path, cols=5):
+    """One frame per scene at its exact midpoint, in a labelled grid, with the
+    Instagram Reels UI zones outlined in red so safe-zone problems jump out."""
+    tiles, tw, th = [], 324, 576
+    for i, (seg, sc) in enumerate(zip(timeline, scenes)):
+        mid = seg["start"] + seg["dur"] / 2
+        png = os.path.join(os.path.dirname(path), f".sb_{i:02d}.png")
+        subprocess.run([FFMPEG, "-v", "error", "-y", "-ss", f"{mid:.2f}", "-i", video, "-frames:v", "1", png], check=True)
+        im = Image.open(png).convert("RGB")
+        os.remove(png)
+        d = ImageDraw.Draw(im, "RGBA")
+        for box in ((0, 0, W, 140), (W - 120, 1020, W, 1760), (0, 1560, W, H)):  # Reels UI overlays
+            d.rectangle(box, outline=(230, 40, 40, 200), width=4)
+        im = im.resize((tw, th))
+        lab = Image.new("RGB", (tw, th + 44), (14, 12, 10))
+        lab.paste(im, (0, 44))
+        ImageDraw.Draw(lab).text((8, 22), f"{i + 1:02d} · {mid:4.1f}s · {' '.join(sc.get('head', []))}"[:40],
+                                 font=font(17), fill=GOLD, anchor="lm")
+        tiles.append(lab)
+    rows = (len(tiles) + cols - 1) // cols
+    sheet = Image.new("RGB", (cols * (tw + 8) + 8, rows * (th + 52) + 8), (0, 0, 0))
+    for i, tl in enumerate(tiles):
+        sheet.paste(tl, (8 + (i % cols) * (tw + 8), 8 + (i // cols) * (th + 52)))
+    sheet.save(path, quality=88)
+    return path
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("reel_dir")
@@ -497,6 +524,8 @@ def main():
     ap.add_argument("--sfx", help="transition sound played at each scene change")
     ap.add_argument("--sfx-vol", type=float, default=0.35)
     ap.add_argument("--endcard-len", type=float, default=2.2)
+    ap.add_argument("--storyboard", action="store_true",
+                    help="also write storyboard.jpg: one frame per scene at its exact midpoint")
     ap.add_argument("--ig-safe", action="store_true",
                     help="Instagram Reels export: captions inside the safe zone, higher-quality encode")
     args = ap.parse_args()
@@ -725,6 +754,8 @@ def main():
                        check=True)
     else:
         os.replace(silent, out)
+    if args.storyboard:
+        print(storyboard(out, timeline, scenes, os.path.join(rd, "storyboard.jpg")))
     print(out)
 
 

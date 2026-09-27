@@ -407,8 +407,118 @@ def planes(spec, p, t, base):
     return img
 
 
+# ---------------------------------------------------------------- diplomatic ties
+FLAGS = {  # simplified flags, drawn as bands: ("h"|"v", [colours]), optional sun
+    "rwanda": ("h", [(0, 161, 222), (0, 161, 222), (250, 210, 1), (32, 96, 61)], "sun"),
+    "belgium": ("v", [(24, 24, 24), (253, 218, 36), (239, 51, 64)], None),
+    "drc": ("h", [(0, 127, 255), (0, 127, 255), (0, 127, 255)], None),
+    "uganda": ("h", [(20, 20, 20), (252, 220, 4), (217, 0, 0)] * 2, None),
+    "qatar": ("v", [(240, 240, 240), (138, 21, 56), (138, 21, 56), (138, 21, 56)], None),
+}
+
+
+@lru_cache(maxsize=8)
+def flag_disc(name, r):
+    """A country flag cropped to a gold-rimmed disc (RGBA, 2r x 2r)."""
+    kind, cols, extra = FLAGS[name]
+    s = 2 * r
+    f = Image.new("RGBA", (s, s))
+    d = ImageDraw.Draw(f)
+    n = len(cols)
+    for i, c in enumerate(cols):
+        c = tuple(int(v * 0.82) for v in c)  # knock back to the reel palette
+        if kind == "h":
+            d.rectangle((0, s * i / n, s, s * (i + 1) / n), fill=c)
+        else:
+            d.rectangle((s * i / n, 0, s * (i + 1) / n, s), fill=c)
+    if extra == "sun":
+        cx, cy, rr = s * 0.72, s * 0.24, s * 0.08
+        for k in range(24):
+            a = k * math.pi / 12
+            d.line([(cx, cy), (cx + math.cos(a) * rr * 1.9, cy + math.sin(a) * rr * 1.9)], fill=(215, 180, 1), width=3)
+        d.ellipse((cx - rr, cy - rr, cx + rr, cy + rr), fill=(215, 180, 1))
+    mask = Image.new("L", (s, s), 0)
+    ImageDraw.Draw(mask).ellipse((0, 0, s - 1, s - 1), fill=255)
+    out = Image.new("RGBA", (s, s), (0, 0, 0, 0))
+    out.paste(f, (0, 0), mask)
+    ImageDraw.Draw(out).ellipse((2, 2, s - 3, s - 3), outline=(*GOLD, 255), width=7)
+    return out
+
+
+def ties(spec, p, t, base):
+    """Diplomatic ties between two capitals as a live cable.
+    {"anim": "ties", "mode": "cut"|"mend", "at": 0.45, "left": ["rwanda", "KIGALI"],
+     "right": ["belgium", "BRUSSELS"], "stamp": "TIES CUT"}
+    cut: the cable is live, then snaps with sparks and the two sides drift apart.
+    mend: the frayed ends reach out, join in a gold burst and pulses flow both ways."""
+    mode, at = spec.get("mode", "mend"), spec.get("at", 0.45)
+    img = gradient((7, 7, 9), (16, 12, 8)).copy()
+    stars(img, t, n=70, top=560, bottom=1350, seed=11)
+    d = ImageDraw.Draw(img, "RGBA")
+    k = (p - at) / 0.12  # 0 -> 1 across the snap / join
+    broken = (mode == "cut" and k >= 0) or (mode == "mend" and k < 1)
+    apart = 60 * ease(k / 3) if mode == "cut" else 60 * (1 - ease(k))  # extra distance while broken
+    cy, r = 960, 128
+    lx, rx = 250 - apart, 830 + apart
+    col_live = (255, 236, 170, 255)
+    a, b = (lx + r - 6, cy), (rx - r + 6, cy)
+    if not broken:
+        pts = sag(a, b, 0.05, 30)
+        put_glow(img, 540, cy + 10, 300, (140, 100, 24), 0.35 + (0.4 * max(0.0, 1 - (k - 1) / 2) if mode == "mend" and k >= 1 else 0))
+        d.line(pts, fill=(*GOLD, 90), width=20, joint="curve")
+        d.line(pts, fill=col_live, width=6, joint="curve")
+        for j in range(5):  # messages flowing both ways
+            for dirn in (1, -1):
+                q = (t * 0.35 * dirn + j / 5) % 1.0
+                x, y = along(pts, q)
+                d.ellipse((x - 8, y - 8, x + 8, y + 8), fill=(255, 250, 225, 255) if dirn > 0 else (*GOLD, 255))
+        if mode == "mend" and 1 <= k < 4:  # the join: a burst at the midpoint
+            q = (k - 1) / 3
+            rr = 30 + 260 * q
+            d.ellipse((540 - rr, cy - rr, 540 + rr, cy + rr), outline=(*GOLD, int(255 * (1 - q))), width=8)
+            put_glow(img, 540, cy, 160, (255, 230, 150), 1 - q)
+    else:
+        # two frayed halves hanging from each side; mending ends reach for each other
+        reach = ease(k) if mode == "mend" else 0.0
+        for side, anchor in ((1, a), (-1, b)):
+            swing = math.sin(t * 2.2 + side) * 10
+            tip = (anchor[0] + side * (150 + 190 * reach), cy + 150 * (1 - reach) + swing * (1 - reach))
+            pts = sag(anchor, tip, 0.06, 18)
+            d.line(pts, fill=(150, 130, 90, 255), width=6, joint="curve")
+            for m in range(3):  # frayed strands
+                ang = (0.6 + m * 0.5) * side
+                d.line([tip, (tip[0] + side * 16 * math.cos(ang), tip[1] + 16 * math.sin(abs(ang)) + m * 3)],
+                       fill=(200, 180, 130, 255), width=3)
+        if mode == "cut" and k < 3:  # the snap: sparks and a red flash
+            q = k / 3
+            put_glow(img, 540, cy, 220, (230, 70, 40), 0.9 * (1 - q))
+            rng = np.random.default_rng(5)
+            for s_ in range(26):
+                ang, sp = rng.uniform(0, 6.28), rng.uniform(120, 380)
+                x, y = 540 + math.cos(ang) * sp * q, cy + math.sin(ang) * sp * q + 260 * q * q
+                d.ellipse((x - 5, y - 5, x + 5, y + 5), fill=(255, 200, 120, int(255 * (1 - q))))
+    # the two capitals
+    for (flag, label), x in ((spec.get("left", ["rwanda", "KIGALI"]), lx), (spec.get("right", ["belgium", "BRUSSELS"]), rx)):
+        put_glow(img, x, cy, r + 70, (120, 90, 30), 0.5)
+        img.alpha_composite(flag_disc(flag, r), (int(x - r), int(cy - r)))
+        d.text((x, cy + r + 52), label, font=_font(40), fill=(240, 236, 226), anchor="mm", stroke_width=3,
+               stroke_fill=(0, 0, 0))
+    st = spec.get("stamp")
+    if st and k >= 0.6:  # a stamp slams down once the event has happened
+        q = min(1.0, (k - 0.6) / 0.8)
+        sc = 1 + 0.6 * (1 - ease(q))
+        colr = (225, 70, 50) if mode == "cut" else GOLD
+        f = _font(int(66 * sc))
+        tw = d.textlength(st, font=f)
+        y = 1235
+        d.rounded_rectangle((540 - tw / 2 - 30, y - 50 * sc, 540 + tw / 2 + 30, y + 50 * sc), radius=14,
+                            outline=(*colr, int(255 * q)), width=7, fill=(10, 8, 6, int(170 * q)))
+        d.text((540, y), st, font=f, fill=(*colr, int(255 * q)), anchor="mm")
+    return img
+
+
 SCENES = {"village": village, "coins": coins, "pylons": pylons, "whowins": whowins,
-          "build": build, "feed": feed, "planes": planes}
+          "build": build, "feed": feed, "planes": planes, "ties": ties}
 
 
 def render(spec, p, t, base=None, ctx=None):

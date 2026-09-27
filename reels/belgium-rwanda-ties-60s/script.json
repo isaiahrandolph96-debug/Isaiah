@@ -1,0 +1,466 @@
+{
+ "title": "Rwanda and Belgium are talking again",
+ "date": "2026-09-27",
+ "facts_as_of": "27 Sept 2026",
+ "series": "Africa Blind Spot",
+ "voice": "Text-led: vo/ empty (ElevenLabs credits at 0 on 27 Sept 2026). Record 01-09.mp3 from the 'say' lines with voice nJvj5shg2xu1GKGxqfkE (eleven_multilingual_v2), copy ../ebola-blindspot-60s/vo/10.mp3 for the CTA, and re-render.",
+ "gap": 0.12,
+ "scenes": [
+  {
+   "head": [
+    "18 MONTHS",
+    "OF SILENCE"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "anim": "ties",
+    "mode": "mend",
+    "at": 0.62,
+    "stamp": "TIES RESTORED"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "01.mp3",
+     "say": "For eighteen months, Rwanda and Belgium had no diplomatic ties at all. This week, that changed.",
+     "show": "For 18 months, Rwanda and Belgium had no diplomatic ties at all. This week, that changed."
+    }
+   ]
+  },
+  {
+   "head": [
+    "EMBASSIES",
+    "REOPENING"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "map": {
+     "view": "eurafrica",
+     "labels": false,
+     "highlight": [
+      "Rwanda",
+      "Belgium"
+     ],
+     "route": {
+      "path": [
+       "Kigali",
+       "Brussels"
+      ],
+      "arc": 0.16,
+      "grow": [
+       0.1,
+       0.5
+      ],
+      "flow": true,
+      "places": [
+       "Kigali",
+       "Brussels"
+      ],
+      "label_side": {
+       "Kigali": "r",
+       "Brussels": "r"
+      }
+     },
+     "rings": {
+      "at": "Kigali",
+      "start": 0.72,
+      "radius": 170
+     }
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "02.mp3",
+     "say": "On September twenty-second, the two countries agreed to restore relations and reopen their embassies.",
+     "show": "On September 22, the two countries agreed to restore relations and reopen their embassies."
+    }
+   ]
+  },
+  {
+   "head": [
+    "THE WAR",
+    "NEXT DOOR"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "map": {
+     "view": "greatlakes",
+     "labels": false,
+     "highlight": [
+      "Rwanda"
+     ],
+     "glow_country": "Dem. Rep. Congo",
+     "capitals": [
+      "Kigali"
+     ],
+     "tags": [
+      {
+       "at": [
+        24.8,
+        1.2
+       ],
+       "text": "DR CONGO",
+       "size": 70
+      },
+      {
+       "at": [
+        30.0,
+        -3.3
+       ],
+       "text": "RWANDA",
+       "size": 40,
+       "alpha": 200
+      }
+     ],
+     "pins": [
+      {
+       "at": "Goma",
+       "start": 0.28,
+       "label": "GOMA · JAN 2025",
+       "side": "l"
+      },
+      {
+       "at": "Bukavu",
+       "start": 0.48,
+       "label": "BUKAVU · FEB 2025",
+       "side": "l"
+      }
+     ]
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "03.mp3",
+     "say": "The split was over eastern Congo, where a rebel group called M23 seized two major cities, Goma and Bukavu, in early twenty twenty-five.",
+     "show": "The split was over eastern Congo, where a rebel group called M23 seized two major cities, Goma and Bukavu, in early 2025."
+    }
+   ]
+  },
+  {
+   "head": [
+    "BELGIUM PUSHED",
+    "FOR SANCTIONS"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "format": "whiteboard",
+    "items": [
+     {
+      "type": "text",
+      "text": "UN EXPERTS:",
+      "at": [
+       540,
+       640
+      ],
+      "size": 48
+     },
+     {
+      "type": "text",
+      "text": "RWANDA BACKS M23",
+      "at": [
+       540,
+       710
+      ],
+      "size": 58,
+      "color": "red"
+     },
+     {
+      "type": "text",
+      "text": "(RWANDA DENIES IT)",
+      "at": [
+       540,
+       775
+      ],
+      "size": 36,
+      "color": "blue"
+     },
+     {
+      "type": "text",
+      "text": "BELGIUM",
+      "at": [
+       260,
+       1020
+      ],
+      "size": 44,
+      "color": "gold"
+     },
+     {
+      "type": "circle",
+      "at": [
+       260,
+       1020
+      ],
+      "r": 150
+     },
+     {
+      "type": "arrow",
+      "from": [
+       430,
+       1020
+      ],
+      "to": [
+       640,
+       1020
+      ]
+     },
+     {
+      "type": "text",
+      "text": "EU",
+      "at": [
+       800,
+       960
+      ],
+      "size": 70
+     },
+     {
+      "type": "text",
+      "text": "SANCTIONS",
+      "at": [
+       800,
+       1050
+      ],
+      "size": 50,
+      "color": "red"
+     },
+     {
+      "type": "text",
+      "text": "MARCH 2025",
+      "at": [
+       540,
+       1220
+      ],
+      "size": 44,
+      "color": "blue"
+     }
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "04.mp3",
+     "say": "United Nations experts say Rwanda backs the rebels. Rwanda denies it. Belgium, its former colonial ruler, led calls in Europe to punish Rwanda.",
+     "show": "United Nations experts say Rwanda backs the rebels. Rwanda denies it. Belgium, its former colonial ruler, led calls in Europe to punish Rwanda."
+    }
+   ]
+  },
+  {
+   "head": [
+    "€95 MILLION",
+    "AID DEAL, SCRAPPED"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "format": "thenvsnow",
+    "then": {
+     "label": "BELGIAN AID DEAL",
+     "value": "€95M",
+     "note": "five-year programme"
+    },
+    "now": {
+     "label": "18 FEB 2025",
+     "value": "€0",
+     "note": "Rwanda ends the deal"
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "05.mp3",
+     "say": "Rwanda hit back in February, scrapping a ninety-five million euro aid deal with Belgium.",
+     "show": "Rwanda hit back in February, scrapping a €95 million aid deal with Belgium."
+    }
+   ]
+  },
+  {
+   "head": [
+    "48 HOURS",
+    "TO GET OUT"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "count": {
+    "line": 0,
+    "to": 48,
+    "suffix": " HOURS",
+    "dur": 1.0
+   },
+   "bg_spec": {
+    "anim": "ties",
+    "mode": "cut",
+    "at": 0.3,
+    "stamp": "TIES CUT"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "06.mp3",
+     "say": "Then in March, Rwanda cut ties and gave every Belgian diplomat forty-eight hours to leave. Belgium did the same.",
+     "show": "Then in March, Rwanda cut ties and gave every Belgian diplomat 48 hours to leave. Belgium did the same."
+    }
+   ]
+  },
+  {
+   "head": [
+    "QATAR",
+    "BROKE THE ICE"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "map": {
+     "view": "eurafrica",
+     "labels": false,
+     "highlight": [
+      "Rwanda",
+      "Belgium",
+      "Qatar"
+     ],
+     "route": {
+      "path": [
+       "Kigali",
+       "Doha",
+       "Brussels"
+      ],
+      "arc": -0.1,
+      "grow": [
+       0.1,
+       0.5
+      ],
+      "places": [
+       "Kigali",
+       "Doha",
+       "Brussels"
+      ],
+      "label_side": {
+       "Doha": "r",
+       "Kigali": "r",
+       "Brussels": "r"
+      }
+     },
+     "rings": {
+      "at": "Doha",
+      "start": 0.3,
+      "radius": 110
+     }
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "07.mp3",
+     "say": "The thaw began in Qatar, a small Gulf state, where the two foreign ministers first met in June twenty twenty-five.",
+     "show": "The thaw began in Qatar, a small Gulf state, where the two foreign ministers first met in June 2025."
+    }
+   ]
+  },
+  {
+   "head": [
+    "THE WAR",
+    "ISN'T OVER"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "format": "carousel",
+    "tag": "EASTERN CONGO",
+    "source": "Sources: IOM · Global Centre for R2P",
+    "slides": [
+     [
+      "5M+",
+      "people forced from their homes"
+     ],
+     [
+      "18.5M",
+      "need aid across DR Congo in 2026"
+     ]
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "08.mp3",
+     "say": "But in eastern Congo, the fighting isn't over. More than five million people there have been forced from their homes.",
+     "show": "But in eastern Congo, the fighting isn't over. More than 5 million people there have been forced from their homes."
+    }
+   ]
+  },
+  {
+   "head": [
+    "WHY ISN'T THIS",
+    "ON YOUR FEED?"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "anim": "feed",
+    "gold_card": 6,
+    "card_title": "AFRICA · RWANDA ↔ BELGIUM",
+    "card_sub": "Ties restored after 18 months"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "09.mp3",
+     "say": "A former colonial power and the country it once ruled just made peace. Almost nobody noticed.",
+     "show": "A former colonial power and the country it once ruled just made peace. Almost nobody noticed."
+    }
+   ]
+  },
+  {
+   "head": [
+    "SEND THIS TO",
+    "SOMEONE WHO HASN'T HEARD"
+   ],
+   "gold": 1,
+   "cta": true,
+   "hold": 1.2,
+   "bg_spec": {
+    "map": {
+     "view": "eurafrica",
+     "highlight": [
+      "Rwanda",
+      "Belgium"
+     ],
+     "dim": 0.4,
+     "labels": false
+    },
+    "anim": "planes",
+    "origin": [
+     640,
+     1060
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "10.mp3",
+     "say": "Send this to someone who hasn't heard.",
+     "show": "Send this to someone who hasn't heard."
+    }
+   ]
+  }
+ ],
+ "read_wps": 3.0,
+ "sources": [
+  "https://www.usnews.com/news/world/articles/2026-09-22/belgium-rwanda-resume-diplomatic-relations-after-drc-conflict-dispute (Reuters: ties restored 22 Sept 2026, embassies to reopen, Qatar talks June 2025)",
+  "https://www.aljazeera.com/news/2026/9/23/qatar-says-no-alternative-to-diplomacy-as-belgium-and-rwanda-restore-ties",
+  "https://minaffet.gov.rw/updates/news-details/declaration-conjointe-dolivier-jp-nduhungirehe-ministre-des-affaires-etrangeres-et-de-la-coop-internationale-du-rwanda-et-de-maxime-prevot-vice-pm-et-ministre-des-affaires-etrangeres-des-affaires-europeennes-et-de-la-coop-internationale-de-belgiq (joint statement)",
+  "https://www.minaffet.gov.rw/updates/news-details/rwanda-severs-diplomatic-relations-with-belgium (17 March 2025, 48 hours)",
+  "https://www.france24.com/en/live-news/20250317-%F0%9F%94%B4-rwanda-cuts-diplomatic-ties-with-belgium-expels-all-diplomats (Belgium expels Rwandan diplomats in response)",
+  "https://euronews.com/2025/02/19/rwanda-suspends-belgian-aid-programme-over-drc-war-comments (aid programme ended, Feb 2025)",
+  "https://jonathanrbeloff.com/2025/02/19/rwanda-suspends-belgium-aid/ (five-year €95 million deal)",
+  "https://www.ewn.co.za/2025/03/17/eu-sanctions-rwandan-commanders-over-m23-in-dr-congo (EU sanctions, 17 March 2025)",
+  "https://www.hrw.org/world-report/2026/country-chapters/democratic-republic-of-congo (M23 took Goma 27 Jan, Bukavu 16 Feb 2025)",
+  "https://africacenter.org/spotlight/drc-conflict-new-phase/",
+  "https://www.globalr2p.org/countries/democratic-republic-of-the-congo/ (5.3 million displaced in eastern DRC)",
+  "https://dtm.iom.int/reports/drc-internal-displacement-overview-2026 (over 5 million displaced in the east; 18.5 million need aid in 2026)",
+  "https://www.britannica.com/place/Rwanda (Belgian rule until independence, 1962)"
+ ]
+}

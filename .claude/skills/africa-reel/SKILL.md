@@ -30,14 +30,14 @@ Pick from, or add to, `reels/anim.py` and `reels/mapviz.py`:
 
 ## 5. Render (Instagram-safe)
 ```bash
-cd reels && python3 render_reel.py <slug> --ig-safe \
+cd reels && python3 render_reel.py <slug> --ig-safe --storyboard \
   --music <slug>/audio/music.wav --music-vol 0.28 \
   --sfx uganda-southsudan-power-60s/audio/whoosh.mp3 --sfx-vol 0.45 \
   --endcard <brand reel>.mp4 --out <slug>/<slug>-IG-reel.mp4
 ```
 
 ## 6. Verify (required before delivering)
-- Compute each scene's midpoint from the clip durations plus the gap and hold. Grab one frame per scene into `storyboard.jpg` (5×2 grid with labels) and **look at it**.
+- `--storyboard` writes `storyboard.jpg` (one frame per scene at the exact midpoints, Reels UI zones outlined in red). **Look at it.**
 - Check: nothing covered by the Reels UI (top 140 px, right 120 px from y 1020 to 1760, bottom from y 1560), no text collisions, each animation readable, captions in sync.
 - Check audio levels with volumedetect: voice around -21 dB mean while speaking, music clearly below it.
 

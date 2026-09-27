@@ -24,6 +24,8 @@ VIEWS = {
     "tigray": (38.9, 13.9, 230.0, 930),
     "drc": (23.5, -3.0, 58.0, 900),
     "drc_sw": (17.05, -4.7, 190.0, 900),
+    "eurafrica": (22.0, 22.0, 11.5, 980),   # Europe + Africa + the Gulf (Brussels, Kigali, Doha)
+    "greatlakes": (28.2, -1.6, 85.0, 930),  # Rwanda and the Kivus (Goma, Bukavu)
 }
 
 # approximate coordinates (lon, lat)
@@ -47,11 +49,17 @@ PLACES = {
     "Kikwit": (18.82, -5.04),
     "Kenge": (16.90, -4.81),
     "Goma": (29.22, -1.68),
+    "Bukavu": (28.86, -2.51),
+    "Kigali": (30.06, -1.95),
+    "Brussels": (4.35, 50.85),
+    "Doha": (51.53, 25.29),
+    "New York": (-74.0, 40.71),
 }
 ROUTE = ["Olwiyo", "Bibia", "Nimule", "Juba"]
 
 LABELS = {"Dem. Rep. Congo": "DR CONGO", "Angola": "ANGOLA", "Congo": "CONGO", "Eritrea": "ERITREA", "Djibouti": "DJIBOUTI", "Somalia": "SOMALIA", "Uganda": "UGANDA", "S. Sudan": "SOUTH SUDAN", "Kenya": "KENYA", "Ethiopia": "ETHIOPIA",
-          "Sudan": "SUDAN", "Dem. Rep. Congo": "DR CONGO", "Tanzania": "TANZANIA"}
+          "Sudan": "SUDAN", "Dem. Rep. Congo": "DR CONGO", "Tanzania": "TANZANIA",
+          "Rwanda": "RWANDA", "Belgium": "BELGIUM", "Qatar": "QATAR", "Burundi": "BURUNDI"}
 
 _COUNTRIES = None
 _BASE = None
@@ -68,7 +76,7 @@ def countries():
         warnings.filterwarnings("ignore")
         import geopandas as gpd
         world = gpd.read_file(gpd.datasets.get_path("naturalearth_lowres"))
-        world = world[world.continent.isin(["Africa", "Asia"])]
+        world = world[world.continent.isin(["Africa", "Asia", "Europe"])]
         out = []
         for name, geom in zip(world.name, world.geometry):
             polys = list(geom.geoms) if geom.geom_type == "MultiPolygon" else [geom]
@@ -121,8 +129,20 @@ def project(lon, lat, v):
     return W / 2 + (lon - cx) * s * k, sy - (lat - cy) * s
 
 
-def route_points(v):
-    return [project(*PLACES[n], v) for n in ROUTE]
+def route_points(v, path=None, arc=0.0):
+    """Screen points of a route. `path` (list of PLACES) overrides the default ROUTE;
+    `arc` bows each leg sideways by that fraction of its length (long-haul routes)."""
+    pts = [project(*PLACES[n], v) for n in (path or ROUTE)]
+    if not arc:
+        return pts
+    out = [pts[0]]
+    for a, b in zip(pts, pts[1:]):
+        nx, ny = -(b[1] - a[1]), b[0] - a[0]
+        for k in range(1, 25):
+            q = k / 24
+            bow = arc * 4 * q * (1 - q)
+            out.append((a[0] + (b[0] - a[0]) * q + nx * bow, a[1] + (b[1] - a[1]) * q + ny * bow))
+    return out
 
 
 def partial(pts, frac):
@@ -191,7 +211,8 @@ def render(spec, p, t):
     # route
     rs = spec.get("route")
     if rs:
-        pts = route_points(v)
+        path = rs.get("path") or ROUTE
+        pts = route_points(v, rs.get("path"), rs.get("arc", 0.0))
         a0, a1 = rs.get("grow", [0.0, 0.0])
         frac = 1.0 if a1 <= a0 else ease((p - a0) / (a1 - a0))
         line, head = partial(pts, frac)
@@ -227,7 +248,8 @@ def render(spec, p, t):
         # places
         for name in rs.get("places", []):
             x, y = project(*PLACES[name], v)
-            reached = name not in ROUTE or frac >= stop_fracs(pts)[ROUTE.index(name)] - 0.02
+            stops = stop_fracs([project(*PLACES[n], v) for n in path])
+            reached = name not in path or frac >= stops[path.index(name)] - 0.02
             if not reached or not (0 < x < W and 0 < y < H):
                 continue
             d.ellipse((x - 11, y - 11, x + 11, y + 11), fill=WHITE, outline=(0, 0, 0), width=3)
@@ -241,8 +263,8 @@ def render(spec, p, t):
                        stroke_fill=(0, 0, 0))
         # segment labels, e.g. "UGANDA · 150 KM", once the line has passed them
         for sg in rs.get("segments", []):
-            i0, i1 = ROUTE.index(sg["between"][0]), ROUTE.index(sg["between"][1])
-            if frac < stop_fracs(pts)[i1] - 0.02:
+            i1 = path.index(sg["between"][1])
+            if frac < stop_fracs([project(*PLACES[n], v) for n in path])[i1] - 0.02:
                 continue
             a0, a1 = project(*PLACES[sg["between"][0]], v), project(*PLACES[sg["between"][1]], v)
             mx, my = (a0[0] + a1[0]) / 2, (a0[1] + a1[1]) / 2

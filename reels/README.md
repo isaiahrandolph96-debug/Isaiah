@@ -95,3 +95,9 @@ When no voice clips exist (or credits are out), write scenes with `"lines"` and 
   - Never present stock as the real event.
   - Never use footage that misrepresents the place. For example, no snowy pine forests for Congo, and no hut villages for a provincial capital.
   - Record the asset IDs in `script.json` under `"stock"`.
+
+## Diplomacy tools (added for belgium-rwanda-ties-60s)
+- `anim` **`ties`**: two capitals as flag discs joined by a live cable. `{"anim": "ties", "mode": "cut"|"mend", "at": 0.45, "left": ["rwanda", "KIGALI"], "right": ["belgium", "BRUSSELS"], "stamp": "TIES CUT"}`. `cut` snaps the cable with sparks and a red flash; `mend` joins the frayed ends in a gold burst, then messages flow both ways. Flags live in `anim.FLAGS` (rwanda, belgium, drc, uganda, qatar); add more as bands.
+- Maps now include **Europe** and support **custom routes**: `"route": {"path": ["Kigali", "Doha", "Brussels"], "arc": 0.16, ...}` (`path` overrides the default `ROUTE`; `arc` bows long-haul legs; `segments` use the same path).
+- New views `eurafrica` (Europe + Africa + the Gulf) and `greatlakes` (Rwanda and the Kivus); new places Kigali, Bukavu, Brussels, Doha, New York.
+- `render_reel.py --storyboard` writes `storyboard.jpg` from the real timeline: one frame per scene at its exact midpoint, with the Reels UI zones outlined in red.
