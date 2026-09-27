@@ -3,8 +3,8 @@
  "date": "2026-09-27",
  "facts_as_of": "27 Sept 2026",
  "series": "Africa Blind Spot",
- "voice": "Text-led: vo/ empty (ElevenLabs credits at 0 on 27 Sept 2026). Record 01-09.mp3 from the 'say' lines with voice nJvj5shg2xu1GKGxqfkE (eleven_multilingual_v2), copy ../ebola-blindspot-60s/vo/10.mp3 for the CTA, and re-render.",
- "gap": 0.12,
+ "voice": "Daniel - Steady Broadcaster (ElevenLabs voice via vidIQ, onwK4e9ZLuTAKqWW03F9): one take split per scene, long pauses trimmed, atempo 1.1. House voice Yusuf (nJvj5shg2xu1GKGxqfkE) unavailable: ElevenLabs credits at 0 on 27 Sept 2026.",
+ "gap": 0.18,
  "scenes": [
   {
    "head": [
@@ -136,7 +136,7 @@
     {
      "who": "narrator",
      "file": "03.mp3",
-     "say": "The split was over eastern Congo, where a rebel group called M23 seized two major cities, Goma and Bukavu, in early twenty twenty-five.",
+     "say": "The split was over eastern Congo, where a rebel group called M twenty-three seized two major cities, Goma and Bukavu, in early twenty twenty-five.",
      "show": "The split was over eastern Congo, where a rebel group called M23 seized two major cities, Goma and Bukavu, in early 2025."
     }
    ]
@@ -447,7 +447,6 @@
    ]
   }
  ],
- "read_wps": 3.0,
  "sources": [
   "https://www.usnews.com/news/world/articles/2026-09-22/belgium-rwanda-resume-diplomatic-relations-after-drc-conflict-dispute (Reuters: ties restored 22 Sept 2026, embassies to reopen, Qatar talks June 2025)",
   "https://www.aljazeera.com/news/2026/9/23/qatar-says-no-alternative-to-diplomacy-as-belgium-and-rwanda-restore-ties",

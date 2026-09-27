@@ -1,8 +1,8 @@
 # Post pack: "Rwanda and Belgium are talking again" (Africa Blind Spot)
 
-**Files:** `belgium-rwanda-ties-IG-reel.mp4` (65 s incl. end card, 1080×1920, Instagram-safe) · `cover.jpg` · `storyboard.jpg`
+**Files:** `belgium-rwanda-ties-IG-reel.mp4` (76 s incl. end card, 1080×1920, Instagram-safe, voiced) · `cover.jpg` · `storyboard.jpg`
 **Facts as of:** 27 Sept 2026
-**Voice:** text-led for now (ElevenLabs credits were at 0). The `say` lines in `script.json` are ready to record; drop `01.mp3`–`09.mp3` into `vo/`, copy `../ebola-blindspot-60s/vo/10.mp3` for the CTA and re-render.
+**Voice:** Daniel, "Steady Broadcaster" (ElevenLabs voice via vidIQ). The house voice, Yusuf, was unavailable because ElevenLabs credits were at 0. To switch to Yusuf later, record `01.mp3`–`09.mp3` from the `say` lines, copy `../ebola-blindspot-60s/vo/10.mp3`, then re-render.
 
 ---
 
