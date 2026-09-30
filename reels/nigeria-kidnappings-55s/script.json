@@ -1,0 +1,329 @@
+{
+ "title": "Taken from the harvest (Nigeria mass kidnappings)",
+ "date": "2026-09-30",
+ "facts_as_of": "30 Sept 2026",
+ "series": "Africa Blind Spot",
+ "voice": "Text-led: vo/ empty (ElevenLabs credits at 0 on 30 Sept 2026). Record 01-08.mp3 from the 'say' lines with voice nJvj5shg2xu1GKGxqfkE (09.mp3 = copy of ebola-blindspot-60s/vo/10.mp3) and re-render.",
+ "gap": 0.18,
+ "scenes": [
+  {
+   "head": [
+    "A BABY BORN",
+    "IN CAPTIVITY"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "anim": "harvest",
+    "raid_at": 0.35,
+    "gone_at": 0.6
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "01.mp3",
+     "say": "She went out to harvest peanuts. Officials say she has now given birth in a kidnappers' camp.",
+     "show": "She went out to harvest peanuts. Officials say she has now given birth in a kidnappers' camp."
+    }
+   ]
+  },
+  {
+   "head": [
+    "80+ KIDNAPPED",
+    "IN ONE WEEKEND"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "sub": "SOURCE: AFP · AS OF 28 SEPT 2026",
+   "count": {
+    "line": 0,
+    "to": 80,
+    "suffix": "+ KIDNAPPED",
+    "dur": 1.2
+   },
+   "bg_spec": {
+    "map": {
+     "from": "africa",
+     "to": "nigeria",
+     "highlight": [
+      "Nigeria"
+     ],
+     "labels": false,
+     "label_max_y": 1270,
+     "capitals": [
+      "Abuja"
+     ],
+     "pins": [
+      {
+       "at": "Mariga",
+       "start": 0.45,
+       "label": "NIGER STATE",
+       "side": "l"
+      },
+      {
+       "at": "Gusau",
+       "start": 0.55,
+       "label": "ZAMFARA",
+       "side": "r"
+      }
+     ],
+     "glide": [
+      0.0,
+      0.4
+     ]
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "02.mp3",
+     "say": "Over one weekend in northern Nigeria, more than eighty people were kidnapped in two attacks. Most were women.",
+     "show": "Over one weekend in northern Nigeria, more than 80 people were kidnapped in two attacks. Most were women."
+    }
+   ]
+  },
+  {
+   "head": [
+    "47 FARMERS",
+    "TAKEN FROM THEIR FIELDS"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "sub": "LOCAL OFFICIAL: 47 · POLICE: 20+",
+   "count": {
+    "line": 0,
+    "to": 47,
+    "suffix": " FARMERS",
+    "dur": 1.0
+   },
+   "bg_spec": {
+    "map": {
+     "from": "nigeria",
+     "to": "nw_nigeria",
+     "highlight": [
+      "Nigeria"
+     ],
+     "labels": false,
+     "label_max_y": 1270,
+     "tags": [
+      {
+       "at": [
+        6.6,
+        10.25
+       ],
+       "text": "NIGER STATE"
+      },
+      {
+       "at": [
+        6.1,
+        12.75
+       ],
+       "text": "ZAMFARA"
+      }
+     ],
+     "pins": [
+      {
+       "at": "Mariga",
+       "start": 0.3,
+       "label": "MARIGA · 26 SEPT",
+       "side": "r"
+      }
+     ],
+     "rings": [
+      {
+       "at": "Mariga",
+       "start": 0.35,
+       "radius": 140,
+       "color": [
+        225,
+        70,
+        50
+       ]
+      }
+     ],
+     "glide": [
+      0.0,
+      0.35
+     ]
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "03.mp3",
+     "say": "In Niger State, a local official says forty-seven farmers were seized in the middle of the harvest.",
+     "show": "In Niger State, a local official says 47 farmers were seized in the middle of the harvest."
+    }
+   ]
+  },
+  {
+   "head": [
+    "4 HOURS.",
+    "NO HELP CAME."
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "anim": "clock",
+    "hours": 4,
+    "place": "YARGADA, ZAMFARA · 27 SEPT"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "04.mp3",
+     "say": "In Zamfara, about forty women were taken. Residents say the gunmen stayed four hours, and no help came.",
+     "show": "In Zamfara, about 40 women were taken. Residents say the gunmen stayed 4 hours, and no help came."
+    }
+   ]
+  },
+  {
+   "head": [
+    "2 MILLION NAIRA",
+    "FOR EACH PERSON"
+   ],
+   "gold": 0,
+   "head_y": 420,
+   "sub": "RANSOM DEMAND, PER MARIGA OFFICIAL",
+   "bg_spec": {
+    "anim": "coins"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "05.mp3",
+     "say": "Now the kidnappers are demanding two million naira for every person they took.",
+     "show": "Now the kidnappers are demanding 2 million naira for every person they took."
+    }
+   ]
+  },
+  {
+   "head": [
+    "RANSOMS",
+    "TRIPLED IN A YEAR"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "thenvsnow",
+    "then": {
+     "label": "JUL 2024 – JUN 2025",
+     "value": "₦2.6 BN",
+     "note": "paid in ransoms"
+    },
+    "now": {
+     "label": "JUL 2025 – JUN 2026",
+     "value": "₦7.8 BN",
+     "note": "about $6 million (SBM Intelligence)"
+    }
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "06.mp3",
+     "say": "Ransoms paid to armed groups more than tripled in a year, to nearly six million dollars.",
+     "show": "Ransoms paid to armed groups more than tripled in a year, to nearly $6 million."
+    }
+   ]
+  },
+  {
+   "head": [
+    "IT KEEPS",
+    "HAPPENING"
+   ],
+   "gold": 1,
+   "bg_spec": {
+    "format": "timeline",
+    "events": [
+     [
+      "AUG 2026",
+      "Up to 600 worshippers taken from a mosque in Dekera, Niger State"
+     ],
+     [
+      "21 SEPT",
+      "Families protest: hundreds still held"
+     ],
+     [
+      "26–27 SEPT",
+      "80+ kidnapped in Niger and Zamfara states"
+     ],
+     [
+      "JAN 2027",
+      "Nigeria elects a president"
+     ]
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "07.mp3",
+     "say": "In August, up to six hundred worshippers were taken from a mosque. Many are still held. And Nigeria votes for a president in January.",
+     "show": "In August, up to 600 worshippers were taken from a mosque. Many are still held. And Nigeria votes for a president in January."
+    }
+   ]
+  },
+  {
+   "head": [
+    "WHY ISN'T THIS",
+    "ON YOUR FEED?"
+   ],
+   "gold": 1,
+   "head_y": 420,
+   "bg_spec": {
+    "anim": "feed",
+    "card_title": "NIGERIA · 80+ KIDNAPPED",
+    "card_sub": "Farmers and women, one weekend"
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "08.mp3",
+     "say": "It happens so often that the world has stopped noticing. That's the blind spot.",
+     "show": "It happens so often that the world has stopped noticing. That's the blind spot."
+    }
+   ]
+  },
+  {
+   "head": [
+    "SEND THIS TO",
+    "SOMEONE WHO HASN'T HEARD"
+   ],
+   "gold": 1,
+   "cta": true,
+   "hold": 1.2,
+   "bg_spec": {
+    "map": {
+     "view": "africa",
+     "highlight": [
+      "Nigeria"
+     ],
+     "dim": 0.4,
+     "labels": false
+    },
+    "anim": "planes",
+    "origin": [
+     395,
+     871
+    ]
+   },
+   "lines": [
+    {
+     "who": "narrator",
+     "file": "09.mp3",
+     "say": "Send this to someone who hasn't heard.",
+     "show": "Send this to someone who hasn't heard."
+    }
+   ]
+  }
+ ],
+ "sources": [
+  "AFP via France 24, 28 Sept 2026: https://www.france24.com/en/live-news/20260928-dozens-kidnapped-in-two-weekend-attacks-in-northern-nigeria",
+  "Al Jazeera/AFP, 29 Sept 2026: https://www.aljazeera.com/news/2026/9/29/more-than-80-reported-abducted-in-nigeria-as-police-find-human-remains",
+  "Punch, 30 Sept 2026: https://punchng.com/security-operatives-move-to-rescue-47-abducted-farmers-in-niger/",
+  "Channels TV, 29 Sept 2026: https://www.channelstv.com/2026/09/29/suspected-bandits-abduct-farmers-in-niger-state-demand-%E2%82%A62m-ransom-each/",
+  "Daily Trust, 29 Sept 2026: https://dailytrust.com/abducted-niger-farmer-gives-birth-in-captivity/",
+  "Rocketparrot News, 28 Sept 2026 (4-hour attack, no security response): https://rocketparrot.com/bandits-kill-one-abduct-40-women-zamfara-attack",
+  "ThisDay, 28 Sept 2026: https://thisday.com.ng/bandits-abduct-over-80-farmers-women-in-niger-zamfara/",
+  "SBM Intelligence ransom figures, via AFP and News Central"
+ ],
+ "read_wps": 3.0
+}

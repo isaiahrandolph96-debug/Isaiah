@@ -95,3 +95,9 @@ When no voice clips exist (or credits are out), write scenes with `"lines"` and 
   - Never present stock as the real event.
   - Never use footage that misrepresents the place. For example, no snowy pine forests for Congo, and no hut villages for a provincial capital.
   - Record the asset IDs in `script.json` under `"stock"`.
+
+## Harvest, clock, glide and storyboard (added for nigeria-kidnappings-55s)
+- `anim` `harvest`: women bent over groundnut rows at dusk; motorbike lights close in from the horizon at `raid_at`, the figures fade one by one from `gone_at` and leave their baskets behind. Violence is implied, never shown.
+- `anim` `clock`: time passing in an attack. The minute hand spins, a gold arc fills to `hours` and shows "HOUR n OF N", with an optional `place` line and fires glowing on the horizon.
+- Maps: `"glide": [start, end]` limits the from→to view move to part of the scene, so pins drop onto a settled map. New views are `nigeria` and `nw_nigeria`; new places are Mariga, Gusau and Minna.
+- `storyboard.py <reel_dir> <reel.mp4>` builds the required verification sheet. It takes one frame per scene at the exact midpoints (from the clip lengths, or the text-led estimate, plus the gap and hold), labels each with its time, and outlines the Instagram UI zones in red.

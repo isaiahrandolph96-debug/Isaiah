@@ -407,8 +407,119 @@ def planes(spec, p, t, base):
     return img
 
 
+def _harvester(d, x, base, s, col, bob):
+    """Silhouette of a woman bent over a crop row (headwrap, wrapper skirt, one arm reaching down)."""
+    hip = (x, base - 62 * s)
+    sh = (x + 34 * s, base - 88 * s + bob * s)          # shoulders, bent forward
+    head = (x + 58 * s, base - 92 * s + bob * s)
+    d.polygon([(x - 26 * s, base), (x + 14 * s, base), (hip[0] + 10 * s, hip[1]), (hip[0] - 18 * s, hip[1] + 4 * s)], fill=col)
+    d.polygon([(hip[0] - 20 * s, hip[1] + 6 * s), (hip[0] + 12 * s, hip[1] - 2 * s), (sh[0] + 8 * s, sh[1] + 10 * s), (sh[0] - 6 * s, sh[1] - 8 * s)], fill=col)
+    d.ellipse((head[0] - 13 * s, head[1] - 13 * s, head[0] + 13 * s, head[1] + 13 * s), fill=col)
+    d.ellipse((head[0] - 16 * s, head[1] - 24 * s, head[0] + 10 * s, head[1] - 4 * s), fill=col)   # headwrap
+    hand = (sh[0] + 22 * s, base - 14 * s - bob * 0.6 * s)
+    d.line([sh, (sh[0] + 26 * s, sh[1] + 34 * s), hand], fill=col, width=max(2, int(8 * s)))
+    return hand
+
+
+def harvest(spec, p, t, base):
+    """Dusk groundnut harvest: women bent over the rows; motorbike lights close in; the field empties.
+    spec: raid_at (lights appear), gone_at (figures fade, one by one), n (figures)."""
+    img = gradient((22, 14, 24), (150, 78, 34), 1030, ((44, 30, 16), (10, 8, 6))).copy()
+    raid, gone = spec.get("raid_at", 0.35), spec.get("gone_at", 0.6)
+    put_glow(img, 300, 1030, 330, (255, 150, 60), 0.55)       # low sun
+    d = ImageDraw.Draw(img, "RGBA")
+    d.ellipse((250, 980, 350, 1080), fill=(255, 190, 110, 230))
+    d.rectangle((0, 1030, W, H), fill=(40, 28, 15, 255))      # field, covers the lower sun
+    # a line of distant trees on the horizon
+    for i in range(0, W + 40, 34):
+        h = 18 + 14 * math.sin(i * 0.37) ** 2
+        d.ellipse((i - 24, 1030 - h, i + 24, 1030 + 8), fill=(26, 18, 12, 255))
+    # crop rows converging on a vanishing point
+    vx = 540
+    for k in range(-9, 10):
+        xb = vx + k * 190
+        d.line([(vx + k * 8, 1034), (xb, H)], fill=(58, 42, 22, 255), width=3)
+    rng = np.random.default_rng(7)
+    for r in range(22):  # plant tufts, more spread towards the viewer
+        z = (r / 22) ** 1.6
+        y = 1040 + z * 860
+        sp = 10 + z * 70
+        for k in range(-9, 10):
+            x = vx + k * (8 + z * 182) + rng.uniform(-4, 4)
+            rr = 2 + z * 12
+            d.ellipse((x - rr * 1.4, y - rr, x + rr * 1.4, y + rr * 0.4), fill=(30 + int(20 * z), 46 + int(30 * z), 22, 255))
+    # the harvesters (nearer = bigger), each fades away in turn after gone_at
+    figs = spec.get("figs", [(420, 1120, 0.9), (880, 1110, 0.85), (170, 1170, 1.2), (700, 1180, 1.3),
+                             (930, 1330, 1.9), (80, 1300, 1.7), (620, 1380, 2.1), (330, 1440, 2.3)])
+    for i, (x, by, s) in enumerate(figs):
+        fade = ease((p - gone - i * 0.035) / 0.08)
+        a = int(255 * (1 - fade))
+        # basket stays behind
+        d.ellipse((x - 70 * s, by - 26 * s, x - 22 * s, by + 4 * s), fill=(84, 58, 28, 255))
+        d.ellipse((x - 70 * s, by - 32 * s, x - 22 * s, by - 18 * s), fill=(110, 78, 38, 255))
+        if a <= 0:
+            continue
+        bob = 6 * math.sin(t * 2.2 + i * 1.3) if p < raid else 0  # still once the lights appear
+        _harvester(d, x, by, s, (14, 10, 8, a), bob)
+    # motorbike headlights approach along the horizon
+    q = ease((p - raid) / (gone + 0.1 - raid))
+    if p > raid:
+        for j, (x0, y0, x1, y1) in enumerate([(1150, 1032, 780, 1090), (1220, 1036, 900, 1120), (1180, 1030, 620, 1070),
+                                              (-90, 1034, 250, 1080)]):
+            lq = ease((p - raid - j * 0.04) / (gone + 0.1 - raid))
+            if lq <= 0:
+                continue
+            x, y = x0 + (x1 - x0) * lq, y0 + (y1 - y0) * lq
+            sz = 6 + 22 * lq
+            put_glow(img, x, y, 40 + 90 * lq, (255, 236, 190), 0.55 + 0.3 * lq)
+            d.ellipse((x - sz * 0.4, y - sz * 0.4, x + sz * 0.4, y + sz * 0.4), fill=(255, 250, 235, 255))
+    # the light dies as the field empties
+    dark = 0.55 * ease((p - gone) / 0.35)
+    if dark > 0:
+        img.alpha_composite(Image.new("RGBA", (W, H), (0, 0, 0, int(255 * dark))))
+    return img
+
+
+def clock(spec, p, t, base):
+    """Hours passing: the minute hand spins, a gold arc fills to `hours`, a red glow of fires on the horizon."""
+    img = gradient((6, 6, 12), (18, 10, 8), 1500, ((20, 10, 6), (6, 5, 5))).copy()
+    hours = spec.get("hours", 4)
+    put_glow(img, 540, 1520, 520, (200, 60, 30), 0.35 + 0.08 * math.sin(t * 3.1))
+    d = ImageDraw.Draw(img, "RGBA")
+    # village rooftops on the horizon
+    for i, x in enumerate(range(40, W, 120)):
+        h = 40 + 18 * (i % 3)
+        d.rectangle((x, 1500 - h, x + 80, 1500), fill=(10, 8, 7, 255))
+        d.polygon([(x - 12, 1500 - h), (x + 92, 1500 - h), (x + 40, 1500 - h - 46)], fill=(12, 9, 8, 255))
+    d.rectangle((0, 1500, W, H), fill=(8, 6, 5, 255))
+    cx, cy, r = 540, 900, 260
+    put_glow(img, cx, cy, r + 120, (212, 170, 52), 0.18)
+    d.ellipse((cx - r, cy - r, cx + r, cy + r), fill=(16, 15, 20, 255), outline=(90, 84, 70, 255), width=6)
+    q = ease(p / 0.85)
+    ang = q * hours * 30
+    d.pieslice((cx - r + 18, cy - r + 18, cx + r - 18, cy + r - 18), -90, -90 + ang, fill=(92, 74, 26, 255))
+    d.arc((cx - r + 8, cy - r + 8, cx + r - 8, cy + r - 8), -90, -90 + ang, fill=(*GOLD, 255), width=14)
+    for k in range(60):
+        a = math.radians(k * 6 - 90)
+        r0 = r - (38 if k % 5 == 0 else 22)
+        d.line([(cx + r0 * math.cos(a), cy + r0 * math.sin(a)), (cx + (r - 12) * math.cos(a), cy + (r - 12) * math.sin(a))],
+               fill=(220, 214, 200, 255 if k % 5 == 0 else 120), width=6 if k % 5 == 0 else 2)
+    ha = math.radians(ang - 90)
+    ma = math.radians(q * hours * 360 - 90)
+    d.line([(cx, cy), (cx + r * 0.52 * math.cos(ha), cy + r * 0.52 * math.sin(ha))], fill=(246, 244, 238, 255), width=16)
+    d.line([(cx, cy), (cx + r * 0.8 * math.cos(ma), cy + r * 0.8 * math.sin(ma))], fill=GOLD, width=8)
+    d.ellipse((cx - 18, cy - 18, cx + 18, cy + 18), fill=GOLD)
+    hrs = min(hours, int(q * hours + 0.001) + (1 if q > 0 else 0))
+    d.text((cx, cy + r + 60), f"HOUR {max(1, hrs)} OF {hours}", font=_font(46), fill=(246, 244, 238), anchor="mm",
+           stroke_width=3, stroke_fill=(0, 0, 0))
+    if spec.get("place"):
+        d.text((cx, cy + r + 112), spec["place"], font=_font(30), fill=GOLD, anchor="mm")
+    return img
+
+
 SCENES = {"village": village, "coins": coins, "pylons": pylons, "whowins": whowins,
-          "build": build, "feed": feed, "planes": planes}
+          "build": build, "feed": feed, "planes": planes,
+          "harvest": harvest, "clock": clock}
 
 
 def render(spec, p, t, base=None, ctx=None):

@@ -24,6 +24,8 @@ VIEWS = {
     "tigray": (38.9, 13.9, 230.0, 930),
     "drc": (23.5, -3.0, 58.0, 900),
     "drc_sw": (17.05, -4.7, 190.0, 900),
+    "nigeria": (8.5, 9.0, 78.0, 980),
+    "nw_nigeria": (6.2, 11.2, 230.0, 960),
 }
 
 # approximate coordinates (lon, lat)
@@ -47,11 +49,14 @@ PLACES = {
     "Kikwit": (18.82, -5.04),
     "Kenge": (16.90, -4.81),
     "Goma": (29.22, -1.68),
+    "Mariga": (5.80, 10.80),  # Mariga LGA, Niger State (approximate)
+    "Gusau": (6.66, 12.17),
+    "Minna": (6.55, 9.61),
 }
 ROUTE = ["Olwiyo", "Bibia", "Nimule", "Juba"]
 
 LABELS = {"Dem. Rep. Congo": "DR CONGO", "Angola": "ANGOLA", "Congo": "CONGO", "Eritrea": "ERITREA", "Djibouti": "DJIBOUTI", "Somalia": "SOMALIA", "Uganda": "UGANDA", "S. Sudan": "SOUTH SUDAN", "Kenya": "KENYA", "Ethiopia": "ETHIOPIA",
-          "Sudan": "SUDAN", "Dem. Rep. Congo": "DR CONGO", "Tanzania": "TANZANIA"}
+          "Sudan": "SUDAN", "Dem. Rep. Congo": "DR CONGO", "Tanzania": "TANZANIA", "Nigeria": "NIGERIA"}
 
 _COUNTRIES = None
 _BASE = None
@@ -107,7 +112,8 @@ def resolve_view(v, scale=24.0, screen_y=820):
 def view_at(spec, p):
     a = resolve_view(spec.get("from", spec.get("view", "east")))
     b = resolve_view(spec.get("to", spec.get("view", "east")))
-    e = ease(p)
+    g0, g1 = spec.get("glide", (0.0, 1.0))  # scene progress over which the view moves from -> to
+    e = ease((p - g0) / max(1e-3, g1 - g0))
     cx = a[0] + (b[0] - a[0]) * e
     cy = a[1] + (b[1] - a[1]) * e
     s = math.exp(math.log(a[2]) + (math.log(b[2]) - math.log(a[2])) * e) * (1 + 0.04 * p)  # slow push
