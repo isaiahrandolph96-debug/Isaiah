@@ -3,46 +3,55 @@
 Six hundred years to build.
 Nine days to fall.
 
-In the rainforest of southern Nigeria, more than a thousand years ago, the Edo people began to dig.
-They didn't build with stone.
-They built with earth: a deep ditch, and behind it a high bank of red soil.
+More than a thousand years ago, in the rainforest of southern Nigeria, the Edo people picked up their tools and began to dig.
+Not stone.
+Earth.
+A deep ditch, and behind it a high wall of red soil.
 
-Then they kept digging.
-Generation after generation, for some six hundred years.
-Each new wall linked one community to the next, until hundreds of settlements were joined by walls of earth.
-At the centre stood the capital: Benin City.
-This is not the country called Benin. This is a city in Nigeria, the heart of the old Kingdom of Benin, ruled by a king called the Oba.
+Then their children dug.
+Then their children's children.
+For some six hundred years, generation after generation, the walls kept growing, joining village to village and family to family across the forest.
 
-By the end, the walls ran for about sixteen thousand kilometres and enclosed some six thousand five hundred square kilometres of forest and farmland.
-Every metre was dug by hand.
+At the heart of it all stood a capital: Benin City.
+This is not the country called Benin. It is a city in Nigeria, the seat of the old Kingdom of Benin, ruled by a king called the Oba.
+
+When the digging was done, the walls stretched for about sixteen thousand kilometres.
+That's more than three times the distance from Lagos to London.
+They wrapped around an area four times the size of London itself.
+And every metre was dug by human hands.
 Guinness World Records calls them the longest earthworks ever built before machines.
 
-Inside those walls, a great city lived.
-Its artists cast the faces of kings in brass, with plaques so fine that museums still fight over them.
-In the late 1400s, the first Portuguese arrived.
-Two centuries later, a Portuguese ship captain wrote that Benin City was larger than Lisbon, with streets that ran straight as far as the eye could see.
+Inside, a kingdom flourished.
+Its royal artists cast the faces of kings in brass, so lifelike and so fine that the greatest museums on Earth still hold them.
+When the Portuguese came, they were stunned.
+One ship captain wrote that Benin City was larger than Lisbon, with streets so straight they ran as far as the eye could see.
 
 Then came 1897.
 
-That January, a British party marching toward the city without the Oba's permission was ambushed, and most of them were killed.
-Britain's answer was an army of about twelve hundred men.
-On the ninth of February, they moved in.
+That January, a British party marched toward the city against the Oba's wishes.
+They were ambushed, and most of them were killed.
+Britain answered with an army.
+On the ninth of February, twelve hundred soldiers moved in.
 By the eighteenth, Benin City had fallen.
 
 The palace burned.
-Soldiers carried away thousands of treasures, the brass heads and plaques now known as the Benin Bronzes.
+The soldiers took thousands of treasures, the brass heads and plaques the world now calls the Benin Bronzes.
 Many were sold to pay for the invasion.
-Today they sit in museums across Europe and America, far from the city that made them.
+The Oba was sent into exile, and he never came home.
 
 Six hundred years to build.
 Nine days to fall.
 
-The walls are still there, if you know where to look.
-Low ridges of red earth, cut through by roads and houses in the city that grew over them.
-Most of the world has never heard of them.
+But it did not end there.
 
-But they are still there.
-And they still say what they said a thousand years ago:
+The walls are still there, low ridges of red earth running through a modern city, crossed by roads and covered by houses.
+On Igun Street, families of royal brass casters still pour metal the way their ancestors did.
+And slowly, some of the stolen bronzes have begun to come home.
+
+Most of the world has never heard this story.
+But the earth remembers.
+And it still says what it said a thousand years ago:
+
 We built this.
 With our own hands.
 
@@ -56,6 +65,7 @@ With our own hands.
 - 1897: the expedition began about 9 February and Benin City was captured on 18 February. The January 1897 ambush of the Phillips party was added for context.
 - Looted objects: estimates range from 3,000 to over 5,000; written as "thousands".
 - Cut: "blew up the walls" and "children play on them" (unsourced).
+- v2 additions: 16,000 km is more than 3x Lagos to London (~5,000 km); 6,500 sq km is about 4x Greater London (~1,570 sq km), both from memory, verify. Oba Ovonramwen was exiled to Calabar and died there in 1914. Igun Street brass casters' guild still works in Benin City. Germany transferred ownership of 1,100+ Benin Bronzes to Nigeria in 2022.
 
 ## Sources
 - Guinness World Records, Longest earthworks of the pre-mechanical era: https://www.guinnessworldrecords.com/world-records/97959-longest-earthworks-of-the-pre-mechanical-era
