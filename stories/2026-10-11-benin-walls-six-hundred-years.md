@@ -19,7 +19,7 @@ When the digging was done, the walls stretched for about sixteen thousand kilome
 That's more than three times the distance from Lagos to London.
 They wrapped around an area four times the size of London itself.
 And every metre was dug by human hands.
-Guinness World Records calls them the longest earthworks ever built before machines.
+Nowhere else on Earth have people dug walls so long.
 
 Inside, a kingdom flourished.
 Its royal artists cast the faces of kings in brass, so lifelike and so fine that the greatest museums on Earth still hold them.
@@ -67,7 +67,8 @@ In southern Nigeria, the Edo people dug walls of red earth by hand.
 Generation after generation, for six hundred years.
 
 The walls ran sixteen thousand kilometres across the Kingdom of Benin.
-Guinness World Records calls them the longest earthworks ever built before machines.
+No machines. Just hands.
+Nowhere else on Earth have people dug walls so long.
 
 At their heart stood Benin City.
 One Portuguese visitor wrote that it was larger than Lisbon, with streets as straight as the eye could see.
