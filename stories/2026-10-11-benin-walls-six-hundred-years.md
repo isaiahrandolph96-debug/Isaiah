@@ -3,7 +3,7 @@
 Six hundred years to build.
 Nine days to fall.
 
-More than a thousand years ago, in the rainforest of southern Nigeria, the Edo people began to dig.
+More than a thousand years ago, in the rainforest of southern Nigeria, the Edo people, who still live there today, began to dig.
 Not stone.
 Earth.
 A deep ditch, and behind it a high wall of red soil.
@@ -26,14 +26,14 @@ One Portuguese visitor wrote that Benin City was larger than Lisbon, with street
 
 Then came 1897.
 
-A British party marched toward the city against the Oba's wishes.
+A group of British officials marched toward the city against the Oba's wishes.
 They were ambushed, and most were killed.
 Britain answered with an army.
 In nine days, Benin City fell.
 
 The palace burned.
 Soldiers carried away thousands of treasures, the Benin Bronzes.
-The Oba was sent into exile.
+The Oba was forced from his kingdom.
 He never came home.
 
 Six hundred years to build.
@@ -43,7 +43,7 @@ But the story did not end there.
 
 The walls are still there.
 Low ridges of red earth, running through a modern city.
-On Igun Street, brass casters still pour metal the way their ancestors did.
+On Igun Street in Benin City, brass casters still pour metal the way their ancestors did.
 And some of the stolen bronzes have begun to come home.
 
 Most of the world has never heard this story.
