@@ -22,11 +22,12 @@ Nowhere else on Earth have people dug walls so long.
 
 Inside, a kingdom flourished.
 Its artists cast the faces of kings in brass.
+Brass plaques covered the pillars of the royal palace.
 One Portuguese visitor wrote that Benin City was larger than Lisbon, with streets as straight as the eye could see.
 
 Then came 1897.
 
-A group of British officials marched toward the city against the Oba's wishes.
+A group of British officials marched toward the city, uninvited, against the Oba's wishes.
 They were ambushed, and most were killed.
 Britain answered with an army.
 In nine days, Benin City fell.
@@ -44,10 +45,11 @@ But the story did not end there.
 The walls are still there.
 Low ridges of red earth, running through a modern city.
 On Igun Street in Benin City, brass casters still pour metal the way their ancestors did.
-And some of the stolen bronzes have begun to come home.
+And in 2022, Germany handed ownership of more than a thousand bronzes back to Nigeria.
 
 Most of the world has never heard this story.
 But the earth remembers.
+And it still says:
 
 We built this.
 With our own hands.
