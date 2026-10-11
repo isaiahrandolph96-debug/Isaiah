@@ -55,6 +55,36 @@ And it still says what it said a thousand years ago:
 We built this.
 With our own hands.
 
+
+---
+
+# Six Hundred Years (60-second cut for Reels/TikTok)
+
+Six hundred years to build.
+Nine days to fall.
+
+In southern Nigeria, the Edo people dug walls of red earth by hand.
+Generation after generation, for six hundred years.
+
+The walls ran sixteen thousand kilometres across the Kingdom of Benin.
+Guinness World Records calls them the longest earthworks ever built before machines.
+
+At their heart stood Benin City.
+One Portuguese visitor wrote that it was larger than Lisbon, with streets as straight as the eye could see.
+
+In 1897, after a British party was ambushed, Britain sent an army.
+In nine days, the city fell.
+The palace burned.
+Thousands of treasures, the Benin Bronzes, were carried off to Europe.
+
+The walls are still there.
+Low ridges of red earth.
+Most of the world has never heard of them.
+
+But they still say:
+We built this.
+With our own hands.
+
 ---
 
 ## Facts corrected from the draft
