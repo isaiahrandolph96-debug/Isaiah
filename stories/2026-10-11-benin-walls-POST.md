@@ -31,7 +31,7 @@ Did your school ever teach you this? 👇
 Dates for when the walls were built vary by source (roughly 700s–1400s AD).
 
 ## YouTube
-Title: The Longest Walls Ever Dug by Hand Are in Africa, and Britain Took Them in 9 Days
+Title: The Longest Walls Ever Dug by Hand Are in Africa, and Britain Took Their City in 9 Days
 
 Description:
 For six hundred years, the Edo people of southern Nigeria dug walls of red earth by hand: 16,000 km around the Kingdom of Benin. In 1897, a British army took Benin City in nine days and carried thousands of treasures to Europe. This is the story most of the world never heard.
