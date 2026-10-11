@@ -9,8 +9,9 @@ The owner sends a rough story most days. Return it **beautifully written, accura
 
 ## What to deliver
 1. **The script only, first.** A title (2–4 words), then the narration. No production notes inside the script.
-2. Under it, **two or three lines at most**: what facts you corrected and any claim to double-check. Nothing else unless asked.
-3. Save it to `stories/YYYY-MM-DD-<slug>.md` (script, then a short "Facts corrected" and "Sources" list), commit and push.
+2. **A 60-second cut for Reels/TikTok** (110–140 words), same hook and ending, right after the full script.
+3. Under them, **two or three lines at most**: what facts you corrected and any claim to double-check. Nothing else unless asked.
+4. Save it to `stories/YYYY-MM-DD-<slug>.md` (script, then a short "Facts corrected" and "Sources" list), commit and push.
 
 ## How to write it
 - **Hook: 5–7 words, about 3 seconds.** The stake or the twist, no date, no "In 19xx". Best hooks come from the owner's own strongest line (e.g. "And then they buried it again" became "This gold was buried twice. Once by a kingdom. Once by a lie.").
