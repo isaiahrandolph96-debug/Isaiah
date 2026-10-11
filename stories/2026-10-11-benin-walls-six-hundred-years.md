@@ -1,4 +1,62 @@
-# Six Hundred Years
+# Six Hundred Years (FINAL, 150 seconds)
+
+Six hundred years to build.
+Nine days to fall.
+
+More than a thousand years ago, in the rainforest of southern Nigeria, the Edo people began to dig.
+Not stone.
+Earth.
+A deep ditch, and behind it a high wall of red soil.
+
+Then their children dug.
+Then their children's children.
+For six hundred years, the walls kept growing, joining village to village across the forest.
+
+At the heart of it all stood Benin City.
+Not the country called Benin. A city in Nigeria, the capital of the old Kingdom of Benin, ruled by a king called the Oba.
+
+When the digging was done, the walls stretched for sixteen thousand kilometres.
+More than three times the distance from Lagos to London.
+No machines. Just hands.
+Nowhere else on Earth have people dug walls so long.
+
+Inside, a kingdom flourished.
+Its artists cast the faces of kings in brass.
+One Portuguese visitor wrote that Benin City was larger than Lisbon, with streets as straight as the eye could see.
+
+Then came 1897.
+
+A British party marched toward the city against the Oba's wishes.
+They were ambushed, and most were killed.
+Britain answered with an army.
+In nine days, Benin City fell.
+
+The palace burned.
+Soldiers carried away thousands of treasures, the Benin Bronzes.
+The Oba was sent into exile.
+He never came home.
+
+Six hundred years to build.
+Nine days to fall.
+
+But the story did not end there.
+
+The walls are still there.
+Low ridges of red earth, running through a modern city.
+On Igun Street, brass casters still pour metal the way their ancestors did.
+And some of the stolen bronzes have begun to come home.
+
+Most of the world has never heard this story.
+But the earth remembers.
+
+We built this.
+With our own hands.
+
+Pacing: hold a beat after "Nine days to fall." (both times), after "He never came home." and before the last two lines.
+
+---
+
+# Six Hundred Years (extended, about 3 minutes)
 
 Six hundred years to build.
 Nine days to fall.
